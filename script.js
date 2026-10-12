@@ -1,80 +1,80 @@
-(() => {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navMenu = document.querySelector("#nav-menu");
-  const header = document.querySelector(".site-header");
-  const toTop = document.querySelector(".to-top");
-  const toast = document.querySelector(".toast");
+const menuToggle = document.querySelector("#menu-toggle");
+const navLinks = document.querySelector("#nav-links");
 
-  const closeMenu = () => {
-    if (!menuToggle || !navMenu) return;
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    menuToggle.innerHTML = isOpen ? 'CLOSE <span aria-hidden="true">×</span>' : 'MENU <span aria-hidden="true">＋</span>';
+  });
+  navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Open navigation");
-    navMenu.classList.remove("open");
-    document.body.classList.remove("menu-open");
-  };
-
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-      menuToggle.setAttribute("aria-expanded", String(!isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
-      navMenu.classList.toggle("open", !isOpen);
-      document.body.classList.toggle("menu-open", !isOpen);
-    });
-    navMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeMenu();
-    });
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 680) closeMenu();
-    });
-  }
-
-  const updateScrollUI = () => {
-    const y = window.scrollY || 0;
-    header?.classList.toggle("scrolled", y > 12);
-    toTop?.classList.toggle("visible", y > 550);
-  };
-  window.addEventListener("scroll", updateScrollUI, { passive: true });
-  updateScrollUI();
-  toTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-  const year = document.querySelector("#year");
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  const time = document.querySelector("#local-time");
-  const updateTime = () => {
-    if (!time) return;
-    const formatted = new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit" }).format(new Date());
-    time.textContent = `LOCAL TIME — ${formatted}`;
-  };
-  updateTime();
-  setInterval(updateTime, 60_000);
-
-  const revealItems = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
-      observer.observe(item);
-    });
-  } else {
-    revealItems.forEach(item => item.classList.add("is-visible"));
-  }
-
-  const placeholderLinks = document.querySelectorAll("[data-placeholder-link]");
-  placeholderLinks.forEach(link => link.addEventListener("click", event => {
-    event.preventDefault();
-    if (!toast) return;
-    toast.textContent = "Add your real profile URL in index.html first.";
-    toast.classList.add("show");
-    window.setTimeout(() => toast.classList.remove("show"), 2600);
+    menuToggle.innerHTML = 'MENU <span aria-hidden="true">＋</span>';
   }));
-})();
+}
+
+document.querySelector("#year").textContent = new Date().getFullYear();
+
+// Reveal sections as they enter view; show everything if IntersectionObserver is unavailable.
+const revealItems = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealItems.forEach(item => observer.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
+
+// Goals are stored only in this browser. Nothing is sent to a server.
+const goalBoxes = [...document.querySelectorAll("[data-goal]")];
+const goalCount = document.querySelector("#goal-count");
+const goalProgress = document.querySelector("#goal-progress");
+const storageKey = "unkn0wn4o3-goals-v1";
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+  goalBoxes.forEach(box => { box.checked = saved.includes(box.dataset.goal); });
+} catch (_) { /* Storage may be unavailable; the checklist still works for this visit. */ }
+
+function updateGoals(save = true) {
+  const done = goalBoxes.filter(box => box.checked).length;
+  goalCount.textContent = `${done} / ${goalBoxes.length} COMPLETE`;
+  goalProgress.style.width = `${goalBoxes.length ? done / goalBoxes.length * 100 : 0}%`;
+  if (save) {
+    try { localStorage.setItem(storageKey, JSON.stringify(goalBoxes.filter(box => box.checked).map(box => box.dataset.goal))); } catch (_) {}
+  }
+}
+goalBoxes.forEach(box => box.addEventListener("change", () => updateGoals()));
+updateGoals(false);
+
+// Guard against accidentally leaving template contact links live.
+const toast = document.querySelector("#toast");
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.setTimeout(() => toast.classList.remove("show"), 2600);
+}
+document.querySelectorAll("[data-placeholder-link]").forEach(link => {
+  link.addEventListener("click", event => {
+    if (link.href.includes("example.com")) {
+      event.preventDefault();
+      showToast("Replace this sample link with your public social profile first.");
+    }
+  });
+});
+document.querySelectorAll("[data-placeholder-email]").forEach(link => {
+  link.addEventListener("click", event => {
+    if (link.href.includes("YOUR_EMAIL@example.com")) {
+      event.preventDefault();
+      showToast("Add a contact email only if you want to publish one.");
+    }
+  });
+});

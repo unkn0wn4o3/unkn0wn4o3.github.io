@@ -1,33 +1,20 @@
-# unkn0wn4o3 — Personal Brand Website
+# unkn0wn4o3 — Personal Space
 
-A responsive, dark minimalist personal website built with plain HTML, CSS, and JavaScript. It is designed for free hosting on GitHub Pages.
+A responsive black-and-white personal website built with plain HTML, CSS, and JavaScript for GitHub Pages.
 
 ## Files
-
-- `index.html` — page structure and editable content
-- `styles.css` — theme, layout, responsive design, and animations
-- `script.js` — mobile navigation, reveal animations, back-to-top control, local clock, and placeholder-link feedback
+- `index.html` — sections and content
+- `styles.css` — responsive layout, black-and-white visual design, motion
+- `script.js` — mobile navigation, scroll reveals, and local goals checklist
 - `favicon.svg` — browser tab icon
 
-## Publish on GitHub Pages
-
-1. Upload these files to the root of `unkn0wn4o3.github.io`.
-2. Open **Settings → Pages**.
-3. Set **Source** to **Deploy from a branch**.
-4. Choose branch `main` and folder `/(root)`, then save.
-5. Visit `https://unkn0wn4o3.github.io/`.
-
 ## Personalize before sharing
+1. Edit the About section in `index.html` to reflect your real interests.
+2. Replace the sample project cards and journal notes with your own work and thoughts.
+3. Replace the sample social link and `YOUR_EMAIL@example.com` only if you want to publish a contact method.
+4. Keep private details off a public website.
 
-- The site uses `unkn0wn4o3` as the displayed online alias. Change it in `index.html` if you want a different public name.
-- The GitHub card links to `https://github.com/unkn0wn4o3`.
-- Instagram, YouTube, and Discord are inactive placeholders. Replace their links with your real public profiles or remove the cards.
-- Project cards and field notes are starter examples. Keep them only if they accurately represent you.
-- The site intentionally does not expose a personal email address or home location.
+## Publish
+Upload the files to the root of your existing `username.github.io` repository and commit the changes. GitHub Pages will publish updates from the configured branch. See the official [GitHub Pages documentation](https://docs.github.com/en/pages).
 
-## Useful details
-
-- No framework, build step, database, or paid hosting is required.
-- Google Fonts are loaded online; system fonts are used as fallback.
-- The site includes keyboard-accessible navigation, reduced-motion support, responsive layouts, and scroll-reveal effects.
-- There is no contact backend or message storage.
+The goals checklist saves to the visitor's own browser via localStorage. This static website does not include a server, database, or working contact-form backend.
