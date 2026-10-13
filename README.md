@@ -1,20 +1,23 @@
-# unkn0wn4o3 — Personal Space
+# ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹 — Off the Grid
 
-A responsive black-and-white personal website built with plain HTML, CSS, and JavaScript for GitHub Pages.
+A responsive personal website inspired by the profile and games layout in your reference video.
 
 ## Files
-- `index.html` — sections and content
-- `styles.css` — responsive layout, black-and-white visual design, motion
-- `script.js` — mobile navigation, scroll reveals, and local goals checklist
-- `favicon.svg` — browser tab icon
+- `index.html` — all page content
+- `styles.css` — dark multi-colour visual theme and responsive layout
+- `script.js` — mobile menu, random quote generator, reveal effects, and locally saved quest checklist
+- `assets/crown-icon.png` — your supplied website icon
+- `assets/profile-picture.jpg` — your supplied profile picture
 
-## Personalize before sharing
-1. Edit the About section in `index.html` to reflect your real interests.
-2. Replace the sample project cards and journal notes with your own work and thoughts.
-3. Replace the sample social link and `YOUR_EMAIL@example.com` only if you want to publish a contact method.
-4. Keep private details off a public website.
+## Publish on GitHub Pages
+1. Download and extract the ZIP.
+2. Open your repository: `https://github.com/unkn0wn4o3/unkn0wn4o3.github.io`
+3. Upload the files and the `assets` folder into the repository root. Do not upload the ZIP itself.
+4. Commit the changes, then refresh your site with Ctrl+F5.
 
-## Publish
-Upload the files to the root of your existing `username.github.io` repository and commit the changes. GitHub Pages will publish updates from the configured branch. See the official [GitHub Pages documentation](https://docs.github.com/en/pages).
-
-The goals checklist saves to the visitor's own browser via localStorage. This static website does not include a server, database, or working contact-form backend.
+## Before publishing
+- The only configured external profile link is your GitHub profile.
+- The website is static: it has no database, accounts, or working contact form.
+- Quest progress is stored in the visitor's own browser.
+- This is a personal fan-style games section; game titles belong to their respective owners.
+- Avoid adding private details such as your home address, phone number, school timetable, or private account links.

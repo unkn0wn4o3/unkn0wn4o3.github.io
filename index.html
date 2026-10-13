@@ -3,102 +3,134 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050505">
-  <meta name="description" content="The personal corner of unkn0wn4o3 — projects, ideas, goals, and experiments.">
-  <title>unkn0wn4o3 — Personal Space</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080b">
+  <meta name="description" content="The dark little corner of ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹: games, anime, dark humour, and quiet ambition.">
+  <title>ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹 — Off the Grid</title>
+  <link rel="icon" href="assets/crown-icon.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <a class="wordmark" href="#home" aria-label="unkn0wn4o3 home"><span class="mark">u.</span> unkn0wn4o3</a>
-    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation">MENU <span aria-hidden="true">＋</span></button>
-    <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#journal">Journal</a><a href="#goals">Goals</a><a href="#contact">Contact</a>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark">♛</span><span>ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">MENU <span>＋</span></button>
+    <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+      <a href="#about">PROFILE</a><a href="#games">GAMES</a><a href="#interests">INTERESTS</a><a href="#lore">LORE</a><a href="#contact">LINKS</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero section-wrap" id="home">
-      <div class="eyebrow"><span class="status-dot"></span> PERSONAL SPACE / EST. 2026</div>
-      <p class="hero-kicker">Curious mind. Work in progress.</p>
-      <h1>Building things.<br><span>Learning out loud.</span></h1>
-      <p class="hero-copy">I'm <strong>unkn0wn4o3</strong> — an independent learner exploring ideas, making small projects, and documenting the process one step at a time.</p>
-      <div class="hero-actions"><a class="button button-light" href="#projects">Explore my work <span aria-hidden="true">↘</span></a><a class="text-link" href="#about">A little about me <span aria-hidden="true">→</span></a></div>
-      <div class="hero-bottom"><span>DESIGN / CODE / CURIOSITY</span><span>SCROLL TO EXPLORE ↓</span></div>
+    <section class="hero" id="home">
+      <div class="hero-backdrop" aria-hidden="true"><span class="orb orb-one"></span><span class="orb orb-two"></span><span class="crosshair">＋</span></div>
+      <div class="hero-content">
+        <div class="status"><span class="pulse"></span> ONLINE IN MY OWN UNIVERSE</div>
+        <p class="micro">NOT LOST. JUST NOT AVAILABLE.</p>
+        <h1>ᴜɴᴋɴᴏᴡɴ_<span>𝟺ᴏ𝟹</span></h1>
+        <p class="hero-subtitle">A quiet soul with a darker side.</p>
+        <p class="hero-copy">Low noise. High standards. Questionable sleep schedule.<br>Currently avoiding unnecessary humans and unnecessary tutorials.</p>
+        <div class="hero-buttons"><a class="button primary" href="#about">ENTER THE VOID <span>↘</span></a><button class="button ghost" id="quote-button" type="button">GENERATE A THOUGHT <span>⟳</span></button></div>
+        <p class="quote-line" id="quote-line" aria-live="polite">“I’m not ignoring the world. We’re just on different updates.”</p>
+      </div>
+      <div class="hero-side"><span>FILE 0403</span><span>MOOD: UNREADABLE</span><span>LOCATION: MY HEAD</span></div>
+      <div class="scroll-cue">SCROLL IF YOU DARE <span>↓</span></div>
     </section>
 
-    <section class="section-wrap about-section reveal" id="about">
-      <div class="section-label"><span>01</span> / ABOUT</div>
-      <div class="about-grid">
-        <h2>A little unknown.<br><span>A lot to discover.</span></h2>
-        <div class="about-text"><p>This site is my digital corner: a place to collect things I build, ideas I want to explore, and lessons I pick up along the way.</p><p>I value curiosity, consistency, and being willing to start before everything feels perfect. This page will evolve as I do.</p><p class="muted">Currently exploring: web design, creative problem-solving, and turning ideas into finished projects.</p></div>
-      </div>
-      <div class="principles">
-        <article><span class="tiny-index">A / 01</span><h3>Stay curious</h3><p>Ask better questions. Learn something new.</p></article>
-        <article><span class="tiny-index">A / 02</span><h3>Make it real</h3><p>Turn ideas into small, useful experiments.</p></article>
-        <article><span class="tiny-index">A / 03</span><h3>Keep improving</h3><p>Progress over perfection, every time.</p></article>
-      </div>
-    </section>
-
-    <section class="section-wrap" id="projects">
-      <div class="section-label"><span>02</span> / SELECTED WORK</div>
-      <div class="section-heading"><h2>Things in progress<span class="white-dot">.</span></h2><p>A few places to start. Replace these sample cards with your real work as you make it.</p></div>
-      <div class="project-grid reveal">
-        <article class="project-card project-feature">
-          <div class="project-art art-grid"><span>01</span><div class="art-orbit"></div><b>WEB<br>SPACE</b></div>
-          <div class="project-meta"><span>WEB / PERSONAL</span><span>001</span></div><h3>Personal Brand Website</h3><p>A small online home built with HTML, CSS, and JavaScript.</p><span class="tag">LIVE EXPERIMENT</span>
+    <section class="section profile-section reveal" id="about">
+      <div class="section-top"><span class="section-index">01 / PROFILE</span><span class="section-note">A BRIEF INVESTIGATION</span></div>
+      <div class="profile-layout">
+        <article class="profile-card">
+          <div class="profile-cover"><span class="cover-symbol">♛</span><span class="cover-label">UNKNOWN ENTITY / 0403</span></div>
+          <div class="profile-main">
+            <img class="avatar" src="assets/profile-picture.jpg" alt="Black-and-white anime profile picture">
+            <div class="profile-title"><div class="display-name">~~𓆩 𝖚𝖓𝖐𝖓𝖔𝖜𝖓 𓆪~~</div><div class="handle">ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹 <span class="verified">✦</span></div></div>
+            <span class="online-pill"><i></i> around, technically</span>
+            <div class="bio">
+              <p class="pronouns">he / him ✶</p>
+              <p class="bio-line">A QUIET SOUL WITH A DARKER SIDE.</p>
+              <p class="bio-line">CALM MIND, COLD AURA, SOFT HEART.</p>
+              <p class="bio-line">NOT DISTANT. JUST SELECTIVE.</p>
+              <p class="bio-line">LOST IN GAMES, ANIME & MY OWN WORLD.</p>
+              <p class="jp-line">「彼は自分の世界で静かに生きている。」</p>
+            </div>
+            <div class="profile-stats"><div><strong>∞</strong><span>THOUGHTS</span></div><div><strong>01</strong><span>INNER CIRCLE</span></div><div><strong>404</strong><span>AVAILABLE?</span></div></div>
+          </div>
         </article>
-        <article class="project-card">
-          <div class="project-art art-type"><span>02</span><b>IDEAS<br>INTO<br>OUTPUT.</b></div>
-          <div class="project-meta"><span>LEARNING / NOTES</span><span>002</span></div><h3>Learning Log</h3><p>A collection of concepts, useful notes, and things worth remembering.</p><span class="tag">PLANNED</span>
-        </article>
-        <article class="project-card">
-          <div class="project-art art-lines"><span>03</span><div class="line-stack"></div><b>SMALL<br>TOOLS</b></div>
-          <div class="project-meta"><span>EXPERIMENT / CODE</span><span>003</span></div><h3>Mini Tools Lab</h3><p>Simple experiments that solve one tiny problem at a time.</p><span class="tag">PLANNED</span>
-        </article>
+        <div class="about-copy">
+          <p class="eyebrow">SUBJECT: MYSTERY WITH WI-FI</p>
+          <h2>Quiet doesn't mean<br><span>empty.</span></h2>
+          <p>I’m the type who can spend hours in my own world and come back with three new interests, a game to finish, and absolutely no explanation for where the time went.</p>
+          <p>I like animated movies, anime, games, and learning things just because my brain randomly opened a new tab. I prefer doing my own thing, improving quietly, and letting the results make the announcement.</p>
+          <p>I'm not anti-social; I'm just on a very exclusive subscription plan. The free trial is short. ☠️</p>
+          <div class="trait-list"><span>INTROVERTED</span><span>OBSERVANT</span><span>INDEPENDENT</span><span>LOW-KEY CHAOTIC</span><span>WORK IN PROGRESS</span></div>
+          <div class="mini-warning"><span>⚠</span><p><b>NOTICE</b><br>May disappear to play games, watch anime, or think about absolutely everything at 2 a.m.</p></div>
+        </div>
       </div>
     </section>
 
-    <section class="section-wrap journal-section" id="journal">
-      <div class="section-label"><span>03</span> / FIELD NOTES</div>
-      <div class="section-heading"><h2>Recently on my mind<span class="white-dot">.</span></h2><p>Short notes from the learning process. These are starter entries—edit them to reflect your own experience.</p></div>
-      <div class="journal-list reveal">
-        <article class="journal-entry"><span class="journal-date">NOTE 001 / STARTING</span><div><h3>Start with what you have</h3><p>A first version does not need to be perfect. It needs to exist, so there is something real to improve.</p></div><span class="entry-arrow">↗</span></article>
-        <article class="journal-entry"><span class="journal-date">NOTE 002 / LEARNING</span><div><h3>Small steps compound</h3><p>Consistent practice makes complicated things feel more approachable over time.</p></div><span class="entry-arrow">↗</span></article>
-        <article class="journal-entry"><span class="journal-date">NOTE 003 / CREATIVITY</span><div><h3>Make room to experiment</h3><p>Not every idea has to become a big project. Some are useful just because they teach you something.</p></div><span class="entry-arrow">↗</span></article>
+    <section class="section games-section reveal" id="games">
+      <div class="section-top"><span class="section-index">02 / GAME LIBRARY</span><span class="section-note">RESPAWN IS A LIFESTYLE</span></div>
+      <div class="section-heading"><div><p class="eyebrow">CURRENTLY IN MY INVENTORY</p><h2>Games I might<br><span>forget time in.</span></h2></div><p class="section-intro">A little competitive energy, a little chaos, and the occasional “one last match” that somehow becomes seven.</p></div>
+      <div class="games-grid">
+        <article class="game-card game-tekken"><div class="game-number">01</div><div class="game-symbol">拳</div><div class="game-info"><span>FIGHTING</span><h3>TEKKEN 8</h3><p>Peace was never an option.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-wukong"><div class="game-number">02</div><div class="game-symbol">☯</div><div class="game-info"><span>ACTION / ADVENTURE</span><h3>BLACK MYTH: WUKONG</h3><p>Monkeys. Mythology. Problems.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-stumble"><div class="game-number">03</div><div class="game-symbol">✹</div><div class="game-info"><span>PARTY / CHAOS</span><h3>STUMBLE GUYS</h3><p>Graceful? Absolutely not.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-palworld"><div class="game-number">04</div><div class="game-symbol">◉</div><div class="game-info"><span>SURVIVAL</span><h3>PALWORLD</h3><p>Friendship, but make it survival.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-fallguys"><div class="game-number">05</div><div class="game-symbol">●</div><div class="game-info"><span>PARTY / PLATFORMER</span><h3>FALL GUYS</h3><p>Falling with confidence.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-genshin"><div class="game-number">06</div><div class="game-symbol">✧</div><div class="game-info"><span>OPEN-WORLD RPG</span><h3>GENSHIN IMPACT</h3><p>Just exploring. And collecting. And exploring.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-apex"><div class="game-number">07</div><div class="game-symbol">△</div><div class="game-info"><span>BATTLE ROYALE</span><h3>APEX LEGENDS</h3><p>Strategic until the panic starts.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-rocket"><div class="game-number">08</div><div class="game-symbol">↗</div><div class="game-info"><span>SPORTS / ACTION</span><h3>ROCKET LEAGUE</h3><p>Cars playing football. Finally, culture.</p></div><span class="game-arrow">↗</span></article>
+        <article class="game-card game-roblox featured-game"><div class="game-number">09</div><div class="game-symbol">▧</div><div class="game-info"><span>FAVOURITE GAME / SANDBOX</span><h3>ROBLOX</h3><p>“Let everyone know why this is your favourite.” Fair enough.</p></div><span class="game-arrow">★</span></article>
+      </div>
+      <p class="small-disclaimer">Game titles belong to their respective owners. This is a personal fan-style section, not an official affiliation.</p>
+    </section>
+
+    <section class="section interests-section reveal" id="interests">
+      <div class="section-top"><span class="section-index">03 / INTERESTS</span><span class="section-note">HOBBIES WITH LORE</span></div>
+      <div class="interest-grid">
+        <article class="interest-card anime-card"><span class="interest-icon">◈</span><p class="eyebrow">01 / ANIME & ANIMATION</p><h3>Fictional worlds.<br>Real feelings.</h3><p>Give me a good story, memorable characters, a dark soundtrack, and a fictional problem I can care about more than my actual to-do list.</p><span class="card-foot">EMOTIONAL DAMAGE: CINEMATIC</span></article>
+        <article class="interest-card solo-card"><span class="interest-icon">⌁</span><p class="eyebrow">02 / SOLO MODE</p><h3>Alone, not<br>aimless.</h3><p>I like my space. I like my plans. I like getting better without announcing every move. Quiet progress is still progress.</p><span class="card-foot">NO CROWD REQUIRED</span></article>
+        <article class="interest-card curiosity-card"><span class="interest-icon">⟡</span><p class="eyebrow">03 / RANDOM CURIOSITY</p><h3>One question<br>became twelve.</h3><p>Sometimes I look up one thing and accidentally begin a full investigation. My brain has 47 tabs open. At least 12 are playing music.</p><span class="card-foot">BROWSER STATUS: CONCERNING</span></article>
+        <article class="interest-card ambition-card"><span class="interest-icon">♛</span><p class="eyebrow">04 / THE LONG GAME</p><h3>Build quietly.<br>Arrive loudly.</h3><p>My goal is to keep learning, build useful skills, and make my future self proud. No dramatic speech needed. Just work, repeat, improve.</p><span class="card-foot">LOADING: NEXT VERSION</span></article>
       </div>
     </section>
 
-    <section class="section-wrap goals-section" id="goals">
-      <div class="section-label"><span>04</span> / CURRENT DIRECTION</div>
-      <div class="section-heading"><h2>Focus, not noise<span class="white-dot">.</span></h2><p>A flexible checklist for what I'm working toward. Progress is saved in this browser only.</p></div>
-      <div class="goals-panel reveal">
-        <div class="goals-top"><span>PERSONAL ROADMAP</span><span id="goal-count">0 / 4 COMPLETE</span></div>
-        <div class="progress-track"><span id="goal-progress"></span></div>
-        <label class="goal-item"><input type="checkbox" data-goal="0"><span class="custom-check" aria-hidden="true"></span><span><b>Build and maintain this website</b><small>Make it more personal as I learn.</small></span><span class="goal-number">01</span></label>
-        <label class="goal-item"><input type="checkbox" data-goal="1"><span class="custom-check" aria-hidden="true"></span><span><b>Finish a small independent project</b><small>Plan it, build it, and write what I learned.</small></span><span class="goal-number">02</span></label>
-        <label class="goal-item"><input type="checkbox" data-goal="2"><span class="custom-check" aria-hidden="true"></span><span><b>Practice a skill consistently</b><small>Choose steady progress over rushed results.</small></span><span class="goal-number">03</span></label>
-        <label class="goal-item"><input type="checkbox" data-goal="3"><span class="custom-check" aria-hidden="true"></span><span><b>Publish a useful learning note</b><small>Share an idea in a clear, simple way.</small></span><span class="goal-number">04</span></label>
-        <p class="goals-footnote">Your checklist is stored locally on this device. It is not sent to a server.</p>
+    <section class="section lore-section reveal" id="lore">
+      <div class="section-top"><span class="section-index">04 / INTERNAL LORE</span><span class="section-note">CLASSIFIED, MOSTLY</span></div>
+      <div class="lore-layout">
+        <div><p class="eyebrow">FIELD NOTES FROM THE VOID</p><h2>My operating<br><span>system.</span></h2><p class="lore-intro">A rough guide to the creature behind the screen. Not a manual. There are no refunds.</p></div>
+        <div class="lore-list">
+          <article><span>01</span><div><h3>Social battery</h3><p>Full bar at home. Drops to 3% after one unnecessary conversation.</p></div><b>LOW POWER</b></article>
+          <article><span>02</span><div><h3>Motivation</h3><p>Quietly collecting skills like side quests. Main mission still active.</p></div><b>IN PROGRESS</b></article>
+          <article><span>03</span><div><h3>Humour</h3><p>Dry enough to qualify as a desert. Occasionally, even I laugh.</p></div><b>QUESTIONABLE</b></article>
+          <article><span>04</span><div><h3>Personal space</h3><p>Respectfully, please remain outside the loading zone.</p></div><b>PROTECTED</b></article>
+          <article><span>05</span><div><h3>Future plans</h3><p>Learn more. Build more. Become someone my past self would respect.</p></div><b>UNDER CONSTRUCTION</b></article>
+        </div>
       </div>
     </section>
 
-    <section class="section-wrap contact-section" id="contact">
-      <div class="section-label"><span>05</span> / FIND ME ELSEWHERE</div>
-      <div class="contact-grid reveal"><div><h2>Let's keep<br>in touch<span class="white-dot">.</span></h2><p>For project questions or thoughtful conversations, use one of the links below. Add only public-facing accounts you are comfortable sharing.</p></div>
-      <div class="contact-links">
-        <a href="https://github.com/unkn0wn4o3" target="_blank" rel="noopener noreferrer"><span>GitHub</span><small>@unkn0wn4o3</small><b>↗</b></a>
-        <a href="https://example.com" data-placeholder-link><span>Instagram / Social</span><small>Replace with your public profile URL</small><b>↗</b></a>
-        <a href="mailto:YOUR_EMAIL@example.com" data-placeholder-email><span>Email</span><small>Replace with a public contact email, if you want one</small><b>↗</b></a>
-      </div></div>
-      <p class="privacy-note">Privacy note: this is a public website. Do not add your home address, phone number, school timetable, private accounts, or other sensitive details.</p>
+    <section class="section goals-section reveal" id="goals">
+      <div class="section-top"><span class="section-index">05 / SIDE QUESTS</span><span class="section-note">SMALL STEPS. BIG PLOT.</span></div>
+      <div class="section-heading"><div><p class="eyebrow">PERSONAL ROADMAP</p><h2>Quietly levelling<br><span>up.</span></h2></div><p class="section-intro">Tick off a quest when you complete it. Your progress is saved in this browser only.</p></div>
+      <div class="quest-panel">
+        <div class="quest-top"><span>QUEST LOG <span class="quest-blink">●</span></span><span id="goal-count">0 / 5 CLEARED</span></div><div class="progress-track"><span id="goal-progress"></span></div>
+        <label class="quest"><input type="checkbox" data-goal="0"><span class="checkmark"></span><span><b>Build a skill that stays with me</b><small>Practice even when nobody is watching.</small></span><span class="quest-no">01</span></label>
+        <label class="quest"><input type="checkbox" data-goal="1"><span class="checkmark"></span><span><b>Finish a personal project</b><small>Make the idea real, not just a browser tab.</small></span><span class="quest-no">02</span></label>
+        <label class="quest"><input type="checkbox" data-goal="2"><span class="checkmark"></span><span><b>Keep learning something new</b><small>Curiosity is a pretty good superpower.</small></span><span class="quest-no">03</span></label>
+        <label class="quest"><input type="checkbox" data-goal="3"><span class="checkmark"></span><span><b>Make time for the things I enjoy</b><small>Games and stories count as having a life. Probably.</small></span><span class="quest-no">04</span></label>
+        <label class="quest"><input type="checkbox" data-goal="4"><span class="checkmark"></span><span><b>Become a stronger version of myself</b><small>One day at a time. No audience required.</small></span><span class="quest-no">05</span></label>
+        <p class="privacy-note">Progress stays on this device. No account, server, or public activity feed.</p>
+      </div>
+    </section>
+
+    <section class="section contact-section reveal" id="contact">
+      <div class="section-top"><span class="section-index">06 / SIGNALS</span><span class="section-note">END OF TRANSMISSION</span></div>
+      <div class="contact-box"><div><p class="eyebrow">YOU FOUND THE EXIT</p><h2>Stay strange.<br><span>Stay curious.</span></h2><p>That's the file. The rest is still being written.</p></div><div class="signal-links"><a href="https://github.com/unkn0wn4o3" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><small>@unkn0wn4o3</small><b>↗</b></a><a href="#home"><span>RETURN TO TOP</span><small>Nothing to see here. Probably.</small><b>↑</b></a></div></div>
     </section>
   </main>
 
-  <footer class="site-footer"><a class="wordmark" href="#home"><span class="mark">u.</span> unkn0wn4o3</a><span>BUILT TO EVOLVE · <span id="year"></span></span><a href="#home" class="back-top">BACK TO TOP ↑</a></footer>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">♛</span><span>~~𓆩 𝖚𝖓𝖐𝖓𝖔𝖜𝖓 𓆪~~</span></a><span>BUILT IN THE SHADOWS · <span id="year"></span></span><a href="#home">BACK TO TOP ↑</a></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

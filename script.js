@@ -1,80 +1,9 @@
-const menuToggle = document.querySelector("#menu-toggle");
-const navLinks = document.querySelector("#nav-links");
-
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-    menuToggle.innerHTML = isOpen ? 'CLOSE <span aria-hidden="true">×</span>' : 'MENU <span aria-hidden="true">＋</span>';
-  });
-  navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
-    menuToggle.innerHTML = 'MENU <span aria-hidden="true">＋</span>';
-  }));
-}
-
-document.querySelector("#year").textContent = new Date().getFullYear();
-
-// Reveal sections as they enter view; show everything if IntersectionObserver is unavailable.
-const revealItems = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealItems.forEach(item => observer.observe(item));
-} else {
-  revealItems.forEach(item => item.classList.add("visible"));
-}
-
-// Goals are stored only in this browser. Nothing is sent to a server.
-const goalBoxes = [...document.querySelectorAll("[data-goal]")];
-const goalCount = document.querySelector("#goal-count");
-const goalProgress = document.querySelector("#goal-progress");
-const storageKey = "unkn0wn4o3-goals-v1";
-try {
-  const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-  goalBoxes.forEach(box => { box.checked = saved.includes(box.dataset.goal); });
-} catch (_) { /* Storage may be unavailable; the checklist still works for this visit. */ }
-
-function updateGoals(save = true) {
-  const done = goalBoxes.filter(box => box.checked).length;
-  goalCount.textContent = `${done} / ${goalBoxes.length} COMPLETE`;
-  goalProgress.style.width = `${goalBoxes.length ? done / goalBoxes.length * 100 : 0}%`;
-  if (save) {
-    try { localStorage.setItem(storageKey, JSON.stringify(goalBoxes.filter(box => box.checked).map(box => box.dataset.goal))); } catch (_) {}
-  }
-}
-goalBoxes.forEach(box => box.addEventListener("change", () => updateGoals()));
-updateGoals(false);
-
-// Guard against accidentally leaving template contact links live.
-const toast = document.querySelector("#toast");
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
-  window.setTimeout(() => toast.classList.remove("show"), 2600);
-}
-document.querySelectorAll("[data-placeholder-link]").forEach(link => {
-  link.addEventListener("click", event => {
-    if (link.href.includes("example.com")) {
-      event.preventDefault();
-      showToast("Replace this sample link with your public social profile first.");
-    }
-  });
-});
-document.querySelectorAll("[data-placeholder-email]").forEach(link => {
-  link.addEventListener("click", event => {
-    if (link.href.includes("YOUR_EMAIL@example.com")) {
-      event.preventDefault();
-      showToast("Add a contact email only if you want to publish one.");
-    }
-  });
-});
+const menuButton=document.getElementById('menu-toggle');const nav=document.getElementById('nav-links');
+if(menuButton&&nav){menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.innerHTML=open?'CLOSE <span>×</span>':'MENU <span>＋</span>';});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.innerHTML='MENU <span>＋</span>';}));}
+const quotes=["“I’m not ignoring the world. We’re just on different updates.”","“My social battery is not dead. It has simply resigned.”","“I have a plan. The plan is currently loading.”","“Silence is golden. Especially when the group chat is loud.”","“Character development costs sleep. Apparently.”","“I’m not mysterious. I just forget to explain things.”","“One more game. A phrase with a suspicious history.”","“Trust the process. Distrust my sleep schedule.”","“Somewhere between the side quest and the main character arc.”","“I work in silence because my progress has no press team.”"];
+const quoteButton=document.getElementById('quote-button'),quoteLine=document.getElementById('quote-line');if(quoteButton&&quoteLine){quoteButton.addEventListener('click',()=>{let next=quoteLine.dataset.last;let i;do{i=Math.floor(Math.random()*quotes.length)}while(String(i)===next&&quotes.length>1);quoteLine.dataset.last=String(i);quoteLine.textContent=quotes[i];});}
+const checks=[...document.querySelectorAll('[data-goal]')],count=document.getElementById('goal-count'),bar=document.getElementById('goal-progress');const key='unknown403-quest-progress-v1';let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+checks.forEach(box=>{box.checked=Boolean(saved[box.dataset.goal]);box.addEventListener('change',()=>{saved[box.dataset.goal]=box.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){};updateGoals();});});
+function updateGoals(){const done=checks.filter(c=>c.checked).length;if(count)count.textContent=`${done} / ${checks.length} CLEARED`;if(bar)bar.style.width=`${checks.length?done/checks.length*100:0}%`;}updateGoals();
+const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();
+const revealItems=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});revealItems.forEach(el=>observer.observe(el));}else revealItems.forEach(el=>el.classList.add('visible'));
