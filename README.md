@@ -18,6 +18,9 @@ Media cards request thumbnail images from Wikipedia's public article image API w
 3. Replace existing files when prompted and commit the changes.
 4. Open the site and press Ctrl+F5.
 
+## Profile card
+The profile card includes the user's supplied name, pronouns, bio, and Japanese line exactly as provided, preserving the requested wording and symbols.
+
 ## Notes
 - GitHub is linked to the known profile `https://github.com/unkn0wn4o3`.
 - Snapchat, Discord, Facebook, and YouTube links are intentionally placeholders until the correct public profile URLs are provided.
