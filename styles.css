@@ -4,3 +4,25 @@
 @media(max-width:760px){.topbar{height:64px;padding:0 18px}.menu-toggle{display:block}.topbar nav{display:none;position:absolute;top:63px;left:0;right:0;padding:12px 18px 18px;background:#080808;border-bottom:1px solid #292929;flex-direction:column;gap:0}.topbar nav.open{display:flex}.topbar nav a{padding:11px 0;border-bottom:1px solid #1e1e1e}.hero{min-height:auto;padding:65px 22px 78px;grid-template-columns:1fr;gap:35px}.hero h1{font-size:clamp(2.5rem,12vw,4.5rem)}.hero-portrait{width:210px;justify-self:start;margin:0 0 20px 20px}.floating-note{font-size:.62rem}.note-one{right:-30%}.note-two{left:-22%}.hero-bottom{left:22px}.section{padding:70px 20px}.about-grid{grid-template-columns:1fr;gap:22px}.media-grid,.poster-grid,.series-block .poster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.poster-wrap img,.poster-grid .poster-wrap img,.movies-block .poster-wrap img,.animated-block .poster-wrap img{height:160px}.card-copy{padding:10px}.card-copy h3{font-size:.85rem}.card-copy p{font-size:.72rem}.rotation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rotation-item img{width:48px;height:48px}.rotation-item span{font-size:.76rem}.wishlist-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wish-item{grid-template-columns:44px 1fr;padding:8px;gap:3px 8px}.wish-item img{width:44px;height:50px}.wish-item span{font-size:.73rem}.wish-item small{font-size:.58rem}.interest-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.interest-grid article{padding:16px;min-height:165px}.interest-grid p{font-size:.76rem}.project-grid{grid-template-columns:1fr}.project-card{min-height:175px}.social-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.social-grid>a{padding:11px;gap:8px}.social-icon{width:34px;height:34px}.social-grid small{font-size:.6rem}footer{grid-template-columns:1fr;gap:10px}footer>small{grid-column:auto}}
 @media(max-width:390px){.media-grid,.poster-grid,.series-block .poster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.poster-wrap img,.poster-grid .poster-wrap img,.movies-block .poster-wrap img,.animated-block .poster-wrap img{height:130px}.social-grid{grid-template-columns:1fr}.hero-actions .btn{font-size:.76rem}.section-head h2{font-size:2.25rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Real projects only + future goals */
+.project-grid{grid-template-columns:minmax(0,520px)}
+.project-foot{display:inline-block;text-decoration:none}
+.project-card.current .project-foot:hover{color:#c9dff5}
+.ambitions{background:radial-gradient(ellipse at 85% 15%,#17111c 0%,#0a090c 45%,#080808 100%)}
+.ambitions .eyebrow{color:#c0a0d4}
+.ambitions .section-head h2 span{color:#b78ad5}
+.ambition-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.ambition-card{padding:20px;border:1px solid #302638;background:#100e13;border-radius:13px;min-height:180px;transition:transform .2s,border-color .2s}
+.ambition-card:hover{transform:translateY(-3px);border-color:#705080}
+.ambition-index{font: .62rem 'DM Mono',monospace;color:#ad8ac2;letter-spacing:.08em}
+.ambition-card h3{font-size:1.12rem;line-height:1.25;margin:16px 0 8px}
+.ambition-card p,.future-file>p:not(.eyebrow){color:#a99eaf;font-size:.84rem;line-height:1.65;margin:0}
+.future-file{margin-top:18px;padding:clamp(22px,4vw,38px);border:1px solid #493653;border-radius:14px;background:linear-gradient(135deg,#17111c,#0d0c10 70%);position:relative;overflow:hidden}
+.future-file:after{content:"CLASSIFIED";position:absolute;right:-18px;top:27px;transform:rotate(13deg);border:2px solid #674a70;color:#765780;font: .7rem 'DM Mono',monospace;letter-spacing:.15em;padding:5px 24px;opacity:.65}
+.future-file h3{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 12px;letter-spacing:-.03em}
+.future-file .eyebrow{margin-bottom:12px}
+.future-file>p:not(.eyebrow){max-width:800px}
+.future-file .future-note{margin-top:15px!important;color:#d1b8df!important;font-family:'DM Mono',monospace;font-size:.72rem!important}
+@media(max-width:760px){.project-grid{grid-template-columns:1fr}.ambition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ambition-card{padding:16px;min-height:170px}}
+@media(max-width:460px){.ambition-grid{grid-template-columns:1fr}.ambition-card{min-height:0}.future-file:after{right:-25px;top:18px;font-size:.58rem}}
