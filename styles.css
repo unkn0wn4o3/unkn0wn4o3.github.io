@@ -60,3 +60,34 @@
 @media(max-width:1050px){.ambition-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.blueprint-image{height:140px}}
 @media(max-width:760px){.ambition-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.blueprint-image{height:125px}.blueprint-card-copy{padding:12px}}
 @media(max-width:460px){.ambition-grid{grid-template-columns:1fr}.blueprint-card{display:grid;grid-template-columns:110px 1fr}.blueprint-image{height:100%;min-height:150px}.blueprint-image:after{inset:0 0 0 40%;background:linear-gradient(90deg,transparent,#08080b55)}.blueprint-card-copy{padding:14px}.blueprint-card h3{margin-top:9px}}
+
+
+/* Blueprint refinement: neutral dark styling, compact image slots, consistent subheads */
+.blueprint{background:linear-gradient(180deg,#0b090a 0%,#0a0a0a 100%);}
+.blueprint .eyebrow{color:#d07880;}
+.blueprint .section-head h2 span{color:#d07880;}
+.blueprint .section-intro{color:#aaa;}
+.blueprint .blueprint-subhead{margin:36px 0 17px;padding-top:28px;border-top:1px solid #292929;background:transparent;border-radius:0;}
+.blueprint .blueprint-subhead h3{font-size:1.4rem;margin:0 0 3px;letter-spacing:-.025em;color:#eee;}
+.blueprint .blueprint-subhead h3 span{color:#d07880;}
+.blueprint .blueprint-subhead p{margin:0;color:#888;font-size:.86rem;}
+.blueprint .project-grid{grid-template-columns:minmax(0,520px);}
+.blueprint .project-card.current{background:#101010;border-color:#292929;}
+.blueprint .project-card .status{color:#d07880;}
+.blueprint .project-foot{color:#d07880;}
+.blueprint .goals-line{color:#888;}
+.blueprint .ambition-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.blueprint .blueprint-card{display:flex;flex-direction:row;align-items:center;gap:13px;min-height:0;padding:12px!important;border:1px solid #292929;border-radius:10px;background:#101010;box-shadow:none;}
+.blueprint .blueprint-card:hover{transform:translateY(-2px);border-color:#555;box-shadow:none;background:#121212;}
+.blueprint .blueprint-image{flex:0 0 56px;width:56px;height:56px;border:1px dashed #484848;border-radius:7px;overflow:hidden;background:#171717;display:flex;align-items:center;justify-content:center;}
+.blueprint .blueprint-image:after{display:none;}
+.blueprint .blueprint-image.image-slot span{font: .48rem 'DM Mono',monospace;letter-spacing:.05em;line-height:1.5;text-align:center;color:#777;}
+.blueprint .blueprint-card-copy{padding:0;min-width:0;}
+.blueprint .blueprint-card .ambition-index{font: .58rem 'DM Mono',monospace;color:#888;letter-spacing:.06em;line-height:1.5;}
+.blueprint .blueprint-card h3{font-size:.92rem;line-height:1.3;margin:5px 0 4px;color:#eee;}
+.blueprint .blueprint-card p{font-size:.8rem;line-height:1.5;color:#999;margin:0;}
+.blueprint .future-file{margin-top:26px;border:1px solid #292929;border-radius:10px;background:#101010;}
+.blueprint .future-file:after{border-color:#494949;color:#777;}
+.blueprint .future-file .eyebrow{color:#d07880;}
+.blueprint .future-file .future-note{color:#aaa!important;}
+@media(max-width:760px){.blueprint .ambition-grid{grid-template-columns:1fr}.blueprint .blueprint-card{padding:10px!important}.blueprint .blueprint-image{flex-basis:50px;width:50px;height:50px}}
