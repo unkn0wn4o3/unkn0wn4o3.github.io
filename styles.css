@@ -5,24 +5,58 @@
 @media(max-width:390px){.media-grid,.poster-grid,.series-block .poster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.poster-wrap img,.poster-grid .poster-wrap img,.movies-block .poster-wrap img,.animated-block .poster-wrap img{height:130px}.social-grid{grid-template-columns:1fr}.hero-actions .btn{font-size:.76rem}.section-head h2{font-size:2.25rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-/* Real projects only + future goals */
-.project-grid{grid-template-columns:minmax(0,520px)}
-.project-foot{display:inline-block;text-decoration:none}
-.project-card.current .project-foot:hover{color:#c9dff5}
-.ambitions{background:radial-gradient(ellipse at 85% 15%,#17111c 0%,#0a090c 45%,#080808 100%)}
-.ambitions .eyebrow{color:#c0a0d4}
-.ambitions .section-head h2 span{color:#b78ad5}
-.ambition-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.ambition-card{padding:20px;border:1px solid #302638;background:#100e13;border-radius:13px;min-height:180px;transition:transform .2s,border-color .2s}
+/* The Blueprint: one tidy home for real work and future goals */
+.blueprint .project-grid{grid-template-columns:minmax(0,520px)}
+.blueprint .project-foot{display:inline-block;text-decoration:none}
+.blueprint .project-card.current .project-foot:hover{color:#c9dff5}
+.blueprint-subhead{margin:32px 0 15px}
+.blueprint-subhead h3{font-size:1.12rem;margin:0 0 6px}
+.blueprint-subhead h3 span{color:#b78ad5}
+.blueprint-subhead p{margin:0;color:#999;font-size:.83rem;line-height:1.6}
+.ambition-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:18px}
+.ambition-card{padding:20px;border:1px solid #302638;background:#100e13;border-radius:13px;min-height:175px;transition:transform .2s,border-color .2s}
 .ambition-card:hover{transform:translateY(-3px);border-color:#705080}
-.ambition-index{font: .62rem 'DM Mono',monospace;color:#ad8ac2;letter-spacing:.08em}
-.ambition-card h3{font-size:1.12rem;line-height:1.25;margin:16px 0 8px}
-.ambition-card p,.future-file>p:not(.eyebrow){color:#a99eaf;font-size:.84rem;line-height:1.65;margin:0}
-.future-file{margin-top:18px;padding:clamp(22px,4vw,38px);border:1px solid #493653;border-radius:14px;background:linear-gradient(135deg,#17111c,#0d0c10 70%);position:relative;overflow:hidden}
-.future-file:after{content:"CLASSIFIED";position:absolute;right:-18px;top:27px;transform:rotate(13deg);border:2px solid #674a70;color:#765780;font: .7rem 'DM Mono',monospace;letter-spacing:.15em;padding:5px 24px;opacity:.65}
+.ambition-index{font:.62rem 'DM Mono',monospace;color:#ad8ac2;letter-spacing:.08em}
+.ambition-card h3{font-size:1.05rem;line-height:1.3;margin:15px 0 8px}
+.ambition-card p,.future-file>p:not(.eyebrow){color:#a99eaf;font-size:.82rem;line-height:1.65;margin:0}
+.future-file{margin-top:22px;padding:clamp(22px,4vw,38px);border:1px solid #493653;border-radius:14px;background:linear-gradient(135deg,#17111c,#0d0c10 70%);position:relative;overflow:hidden}
+.future-file:after{content:"CLASSIFIED";position:absolute;right:-18px;top:27px;transform:rotate(13deg);border:2px solid #674a70;color:#765780;font:.7rem 'DM Mono',monospace;letter-spacing:.15em;padding:5px 24px;opacity:.65}
 .future-file h3{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 12px;letter-spacing:-.03em}
-.future-file .eyebrow{margin-bottom:12px}
+.future-file .eyebrow{margin:0 0 12px;color:#c0a0d4}
 .future-file>p:not(.eyebrow){max-width:800px}
 .future-file .future-note{margin-top:15px!important;color:#d1b8df!important;font-family:'DM Mono',monospace;font-size:.72rem!important}
-@media(max-width:760px){.project-grid{grid-template-columns:1fr}.ambition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ambition-card{padding:16px;min-height:170px}}
+@media(max-width:760px){.blueprint .project-grid{grid-template-columns:1fr}.ambition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ambition-card{padding:16px;min-height:160px}}
 @media(max-width:460px){.ambition-grid{grid-template-columns:1fr}.ambition-card{min-height:0}.future-file:after{right:-25px;top:18px;font-size:.58rem}}
+
+/* Blueprint visual refresh: image-led cards with individual accent colours */
+.blueprint{background:radial-gradient(ellipse at 12% 10%,#21153a 0%,#0a0910 43%,#080808 100%)}
+.blueprint .section-head h2 span{color:#c4a0ff}
+.blueprint .section-head>.eyebrow{color:#c4a0ff}
+.blueprint-subhead{margin:30px 0 15px;padding-left:13px;border-left:3px solid #a982e8}
+.blueprint-subhead h3{font-size:1.18rem;margin:0 0 5px}
+.blueprint-subhead h3 span{color:#c4a0ff}
+.blueprint-subhead p{font-size:.83rem;color:#9e96ac;margin:0;line-height:1.6}
+.blueprint .project-card.current{border-color:#44365d;background:linear-gradient(145deg,#171020,#0d0b11)}
+.blueprint .project-card.current .status{color:#c4a0ff}
+.ambition-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.blueprint-card{padding:0!important;overflow:hidden;min-height:0!important;border-radius:14px;background:#100e14;display:flex;flex-direction:column;border-color:#332a40;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.blueprint-card:hover{transform:translateY(-5px);border-color:var(--accent,#b99aff);box-shadow:0 12px 30px #0006}
+.blueprint-card-01{--accent:#d6a75d;border-color:#57462c;background:#17130d}
+.blueprint-card-02{--accent:#67caff;border-color:#23485b;background:#0c151b}
+.blueprint-card-03{--accent:#ff6d8d;border-color:#572b3b;background:#190d13}
+.blueprint-card-04{--accent:#8bdebb;border-color:#285445;background:#0c1713}
+.blueprint-card-05{--accent:#e8c66b;border-color:#594b28;background:#17140b}
+.blueprint-card-06{--accent:#83c5a2;border-color:#315342;background:#0d1511}
+.blueprint-card-07{--accent:#d7a5ff;border-color:#513a68;background:#160f1d}
+.blueprint-card-08{--accent:#79aaff;border-color:#2d4268;background:#0d111b}
+.blueprint-image{height:150px;overflow:hidden;position:relative;background:#09090d}
+.blueprint-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#08080b99)}
+.blueprint-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.blueprint-card:hover .blueprint-image img{transform:scale(1.045)}
+.blueprint-card-copy{padding:16px 16px 19px;flex:1}
+.blueprint-card .ambition-index{font: .59rem 'DM Mono',monospace;color:var(--accent,#b99aff);letter-spacing:.07em;line-height:1.5}
+.blueprint-card h3{font-size:1.02rem;line-height:1.3;margin:12px 0 8px}
+.blueprint-card p{font-size:.78rem;line-height:1.65;color:#b6b0c2;margin:0}
+@media(max-width:1050px){.ambition-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.blueprint-image{height:140px}}
+@media(max-width:760px){.ambition-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.blueprint-image{height:125px}.blueprint-card-copy{padding:12px}}
+@media(max-width:460px){.ambition-grid{grid-template-columns:1fr}.blueprint-card{display:grid;grid-template-columns:110px 1fr}.blueprint-image{height:100%;min-height:150px}.blueprint-image:after{inset:0 0 0 40%;background:linear-gradient(90deg,transparent,#08080b55)}.blueprint-card-copy{padding:14px}.blueprint-card h3{margin-top:9px}}
