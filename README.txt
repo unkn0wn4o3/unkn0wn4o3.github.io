@@ -18,3 +18,7 @@ NOTES
 - Google Fonts are loaded externally when internet is available; the site falls back to system fonts.
 - Game/show/movie descriptions are humorous website copy, not ratings or claims about play history.
 - Some franchise categories use one supplied franchise poster while listing the films in the accompanying text.
+
+
+VISUAL EFFECTS UPDATE
+This version adds restrained entrance animations, hover depth, image motion, a subtle hero background texture, and active navigation feedback. It respects the operating system reduced-motion preference. Existing content and image assets are preserved.
