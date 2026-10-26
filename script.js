@@ -69,22 +69,13 @@ if('IntersectionObserver' in window && observedSections.length){
     document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
   }
-  // Keep the status capsule in the footer so it never covers page content.
-  const footer = document.querySelector('footer');
-  if (footer && !footer.querySelector('.site-status')) {
-    const meta = document.createElement('div');
-    meta.className = 'footer-meta';
+  // Keep the system-status capsule floating at the bottom-right.
+  // The copyright remains in its original footer position and stays unobstructed.
+  if (!document.querySelector('.site-status')) {
     const status = document.createElement('span');
     status.className = 'site-status';
     status.innerHTML = 'SYSTEM <strong>ONLINE</strong> &nbsp;//&nbsp; BRAIN: 37 TABS';
     status.setAttribute('aria-hidden','true');
-    const copyright = footer.querySelector('small');
-    if (copyright) {
-      footer.insertBefore(meta, copyright);
-      meta.append(status, copyright);
-    } else {
-      footer.appendChild(meta);
-      meta.appendChild(status);
-    }
+    document.body.appendChild(status);
   }
 })();
