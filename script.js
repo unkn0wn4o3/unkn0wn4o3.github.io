@@ -43,3 +43,50 @@ if('IntersectionObserver' in window && observedSections.length){
   },{rootMargin:'-25% 0px -60% 0px',threshold:0});
   observedSections.forEach(section=>activeObserver.observe(section));
 }
+
+
+// Cinematic Noir extras: playful custom cursor, status capsule, and back-to-top.
+(() => {
+  const root = document.documentElement;
+  const cursor = document.getElementById('customCursor');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (cursor && finePointer && !reducedMotion) {
+    root.classList.add('cursor-ready');
+    let x = window.innerWidth / 2, y = window.innerHeight / 2;
+    let tx = x, ty = y;
+    const interactive = 'a,button,[role="button"],.media-card,.ambition-card,.project-card,.social-grid>a';
+    window.addEventListener('mousemove', (event) => {
+      tx = event.clientX; ty = event.clientY;
+      cursor.style.transform = `translate(${tx - 5}px, ${ty - 5}px) rotate(-10deg)`;
+    }, {passive:true});
+    document.addEventListener('mouseover', (event) => {
+      const target = event.target.closest(interactive);
+      cursor.textContent = target ? '🫵' : '👾';
+      cursor.classList.toggle('is-pointing', !!target);
+      cursor.style.fontSize = target ? '25px' : '23px';
+    });
+    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+  }
+  if (!document.querySelector('.site-status')) {
+    const status = document.createElement('div');
+    status.className = 'site-status';
+    status.innerHTML = 'SYSTEM <strong>ONLINE</strong> &nbsp;//&nbsp; BRAIN: 37 TABS';
+    status.setAttribute('aria-hidden','true');
+    document.body.appendChild(status);
+  }
+  if (!document.querySelector('.back-top-float')) {
+    const topButton = document.createElement('button');
+    topButton.className = 'back-top-float';
+    topButton.type = 'button';
+    topButton.setAttribute('aria-label','Back to top');
+    topButton.title = 'Back to top';
+    topButton.textContent = '↑';
+    document.body.appendChild(topButton);
+    topButton.addEventListener('click', () => window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'}));
+    const refresh = () => topButton.classList.toggle('visible', window.scrollY > 500);
+    window.addEventListener('scroll', refresh, {passive:true});
+    refresh();
+  }
+})();
