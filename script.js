@@ -153,16 +153,24 @@ if('IntersectionObserver' in window && observedSections.length){
   }
   function openTerminal() {
     if (!terminal) {
-      terminal = createModal('egg-modal', 'THE BACKROOM', `<div class="egg-terminal-content"><p class="egg-kicker">UNAUTHORIZED ACCESS // JUST KIDDING</p><h2>THE BACKROOM<span>.</span></h2><p class="egg-copy">A tiny terminal for people who click absolutely everything.</p><div class="egg-output" aria-live="polite">Type <code>help</code> to see available commands.</div><form class="egg-command-form"><label for="egg-command">guest@unknown403:~$</label><input id="egg-command" autocomplete="off" spellcheck="false" aria-label="Terminal command" placeholder="type a command..."><button type="submit">RUN ↵</button></form><div class="egg-footline"><span data-egg-count>0 / 4</span><span>NO HACKING. JUST VIBES.</span></div></div>`);
+      terminal = createModal('egg-modal', 'THE BACKROOM', `<div class="egg-terminal-content"><p class="egg-kicker">UNAUTHORIZED ACCESS // JUST KIDDING</p><h2>THE BACKROOM<span>.</span></h2><p class="egg-copy">A tiny terminal for people who click absolutely everything.</p><section class="egg-fun-zone" aria-label="Quotes and roasts"><article class="egg-fun-card"><h3>QUOTES // MAINFRAME</h3><p data-egg-quote>“The plot is still loading. Character development takes time.”</p><button type="button" data-egg-action="quote">NEW QUOTE ↻</button></article><article class="egg-fun-card"><h3>ROASTS // FRIENDLY FIRE</h3><p data-egg-roast>“Bro got 37 tabs open and still forgot why he opened the browser.” 💀</p><button type="button" data-egg-action="roast">ROAST ME ↻</button></article></section><div class="egg-output" aria-live="polite">Type <code>help</code> to see available commands, including <code>quote</code> and <code>roast</code>.</div><form class="egg-command-form"><label for="egg-command">guest@unknown403:~$</label><input id="egg-command" autocomplete="off" spellcheck="false" aria-label="Terminal command" placeholder="type a command..."><button type="submit">RUN ↵</button></form><div class="egg-footline"><span data-egg-count>0 / 4</span><span>NO HACKING. JUST VIBES.</span></div></div>`);
       const input = terminal.querySelector('#egg-command');
       const output = terminal.querySelector('.egg-output');
+      const quotes = ['The plot is still loading. Character development takes time.','Move in silence. Let the update speak.','Not every delay is a failure; sometimes the build is compiling.','Keep the standards high and the drama on mute.'];
+      const roasts = ['Bro got 37 tabs open and still forgot why he opened the browser. 💀','Your sleep schedule has been marked as a missing person. 🌙','Bro said “one more game” three hours ago.','The confidence is online. The common sense is buffering.'];
+      terminal.querySelector('[data-egg-action="quote"]').addEventListener('click', () => { terminal.querySelector('[data-egg-quote]').textContent = '“' + quotes[Math.floor(Math.random()*quotes.length)] + '”'; });
+      terminal.querySelector('[data-egg-action="roast"]').addEventListener('click', () => { terminal.querySelector('[data-egg-roast]').textContent = '“' + roasts[Math.floor(Math.random()*roasts.length)] + '”'; });
       terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
         e.preventDefault(); const command = input.value.trim().toLowerCase(); input.value = '';
         const jokes = ['Why did the developer go broke? Too many cache issues. 💀','My browser has 37 tabs open. The RAM filed a complaint.','I tried to touch grass. It asked me to accept cookies.'];
+        const quotes = ['The plot is still loading. Character development takes time.','Move in silence. Let the update speak.','Not every delay is a failure; sometimes the build is compiling.','Keep the standards high and the drama on mute.'];
+        const roasts = ['Bro got 37 tabs open and still forgot why he opened the browser. 💀','Your sleep schedule has been marked as a missing person. 🌙','Bro said “one more game” three hours ago.','The confidence is online. The common sense is buffering.'];
         const lore = ['TRACE 01: The alias is a mask, not the whole story.','TRACE 02: Every corner has a clue. Not every clue is loud.','TRACE 03: Four traces. One identity. Keep looking.'];
         let response;
-        if (command === 'help') response = 'COMMANDS: help · joke · lore · secrets · clear · room · exit';
+        if (command === 'help') response = 'COMMANDS: help · joke · roast · quote · lore · secrets · clear · room · exit';
         else if (command === 'joke') response = jokes[Math.floor(Math.random() * jokes.length)];
+        else if (command === 'roast') response = roasts[Math.floor(Math.random() * roasts.length)];
+        else if (command === 'quote') response = quotes[Math.floor(Math.random() * quotes.length)];
         else if (command === 'lore') response = lore[Math.floor(Math.random() * lore.length)];
         else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint.';
         else if (command === 'room') response = found.size === DISCOVERIES.length ? 'ROOM ACCESS GRANTED.' : `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing.`;
