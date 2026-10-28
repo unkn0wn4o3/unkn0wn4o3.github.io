@@ -270,3 +270,39 @@ html.cursor-ready input,html.cursor-ready textarea{cursor:text!important}
 @media(max-width:520px){.site-status{right:10px;bottom:10px}.section-head h2{font-size:clamp(2rem,11vw,3.2rem)}.subhead{gap:5px 10px}}
 @media(hover:none),(pointer:coarse){.custom-cursor{display:none!important}html,html body,html a,html button{cursor:auto!important}}
 @media(prefers-reduced-motion:reduce){body:after{display:none}.hero-glow,.portrait-frame,.floating-note{animation:none!important}.custom-cursor{display:none!important}html,html body,html a,html button{cursor:auto!important}}
+
+
+/* Easter egg system: subtle clues, responsive overlays, local discovery tracker. */
+.egg-home-clue{position:absolute;left:clamp(22px,5vw,70px);bottom:64px;color:#82777a;font:9px 'DM Mono',monospace;letter-spacing:.15em;opacity:.48;transition:opacity .2s;z-index:2}
+.egg-home-clue:hover{opacity:1;color:#d18b91}
+.egg-project-clue{margin:0 0 15px;color:#92878a;font:10px 'DM Mono',monospace;letter-spacing:.07em}
+.egg-project-clue button{border:0;background:transparent;color:#b45a63;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}
+.egg-project-clue button:hover,.egg-project-clue button:focus-visible{color:#f0b1b7}
+.egg-tracker{position:fixed;left:14px;bottom:14px;z-index:120;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #38272a;border-radius:4px;background:#090808ed;color:#b7abad;font:9px 'DM Mono',monospace;letter-spacing:.07em;box-shadow:0 5px 22px #0008;backdrop-filter:blur(8px);cursor:pointer;transition:border-color .2s,transform .2s}
+.egg-tracker:hover{border-color:#a34b55;transform:translateY(-2px)}
+.egg-tracker strong{color:#d18b91;font-weight:600}.egg-tracker-dot{width:6px;height:6px;border-radius:50%;background:#9a333d;box-shadow:0 0 8px #b13d48}.egg-tracker.complete{border-color:#9b555d}
+.egg-toast{position:fixed;left:50%;bottom:70px;transform:translate(-50%,12px);opacity:0;pointer-events:none;z-index:10000;max-width:min(520px,calc(100vw - 30px));padding:13px 16px;border:1px solid #71343b;background:#100b0c;color:#f0dfe1;font:11px/1.6 'DM Mono',monospace;text-align:center;box-shadow:0 12px 40px #000b;transition:opacity .2s,transform .2s}
+.egg-toast.show{opacity:1;transform:translate(-50%,0)}
+.egg-modal,.egg-room-modal{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;padding:18px;background:#000c;backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.egg-modal.open,.egg-room-modal.open{opacity:1;visibility:visible}
+.egg-window{width:min(680px,100%);max-height:min(760px,calc(100dvh - 36px));overflow:auto;border:1px solid #533036;background:#0b090a;color:#eee7e8;box-shadow:0 25px 90px #000d;font-family:'DM Mono',monospace}
+.egg-window-top{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid #332124;background:#100c0d;color:#8e7e81;font-size:10px;letter-spacing:.08em}
+.egg-lights{display:flex;gap:5px}.egg-lights i{width:7px;height:7px;border-radius:50%;background:#693039}.egg-lights i:nth-child(2){background:#7a6341}.egg-lights i:nth-child(3){background:#44674e}
+.egg-close{border:0;background:transparent;color:#bdaeb0;font-size:24px;line-height:1;cursor:pointer;padding:0 3px}.egg-close:hover{color:white}
+.egg-terminal-content,.egg-room-content{padding:clamp(20px,5vw,38px)}
+.egg-kicker{color:#bd6670;font-size:9px;letter-spacing:.18em}
+.egg-terminal-content h2,.egg-room-content h2{margin:12px 0;color:#f1e9ea;font-family:Arial,sans-serif;font-size:clamp(28px,7vw,46px);letter-spacing:-.05em;line-height:1.05}.egg-terminal-content h2 span,.egg-room-content h2 span{color:#bd4653}
+.egg-copy{color:#9d9194;font-size:12px;line-height:1.7}
+.egg-output{min-height:76px;margin:22px 0 16px;padding:15px;border:1px solid #302124;background:#050505;color:#d4c6c8;font-size:12px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.egg-output code{color:#d18b91}
+.egg-command-form{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:9px;padding:12px;border:1px solid #39272b;background:#100c0d}
+.egg-command-form label{color:#c77780;font-size:10px}.egg-command-form input{min-width:0;border:0;outline:0;background:transparent;color:#f7eeee;font:12px 'DM Mono',monospace}.egg-command-form button,.egg-room-close{border:1px solid #71343b;background:#291316;color:#f0dfe1;padding:9px 11px;font:10px 'DM Mono',monospace;cursor:pointer}.egg-command-form button:hover,.egg-room-close:hover{background:#4a1b22}
+.egg-footline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:15px;color:#75696c;font-size:9px;letter-spacing:.06em}
+.egg-room-content{text-align:center}.egg-room-sigil{margin:22px 0;color:#bd6670;font-size:40px}.egg-room-content>p:not(.egg-kicker){max-width:450px;margin:15px auto;color:#b8aaad;font-size:12px;line-height:1.9}.egg-achievement{display:flex;align-items:center;gap:12px;max-width:420px;margin:24px auto;padding:15px;text-align:left;border:1px solid #624047;background:#130d0e}.egg-achievement>div{display:grid;gap:6px}.egg-achievement strong{color:#e7d6d8;font-size:11px}.egg-achievement small{color:#bd6670;font-size:9px;letter-spacing:.06em}.egg-room-note{font-size:10px!important;color:#75696c!important}
+.egg-copyright{cursor:help;position:relative}.egg-copyright:hover{color:#d18b91}
+.egg-room-ready{position:fixed;right:14px;bottom:52px;z-index:100;color:#bd6670;font:9px 'DM Mono',monospace;letter-spacing:.08em}
+.egg-mobile-konami{position:fixed;left:14px;bottom:62px;z-index:130;width:min(300px,calc(100vw - 28px));padding:14px;border:1px solid #533036;background:#0b090a;box-shadow:0 10px 35px #000b}.egg-mobile-konami p{margin:0 0 10px;color:#bd6670;font:10px 'DM Mono',monospace}.egg-mobile-keys{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.egg-mobile-keys button{padding:9px 0;border:1px solid #39272b;background:#151011;color:#eee;font:12px 'DM Mono',monospace;cursor:pointer}
+.egg-glitch{animation:eggGlitch .25s steps(2,end) 3}@keyframes eggGlitch{0%{filter:none}50%{filter:contrast(1.15) hue-rotate(-12deg)}100%{filter:none}}
+body.egg-modal-open{overflow:hidden}
+@media(max-width:520px){.egg-tracker{left:8px;bottom:8px;padding:7px 8px;font-size:8px;gap:6px}.egg-toast{bottom:58px;font-size:10px}.egg-command-form{grid-template-columns:1fr auto}.egg-command-form label{grid-column:1/-1}.egg-home-clue{bottom:55px;left:18px;font-size:8px}.egg-project-clue{line-height:1.8}.egg-window{max-height:calc(100dvh - 20px)}}
+@media(prefers-reduced-motion:reduce){.egg-modal,.egg-room-modal,.egg-toast,.egg-tracker{transition:none!important}.egg-glitch{animation:none!important}}
