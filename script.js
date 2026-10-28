@@ -70,7 +70,7 @@ if('IntersectionObserver' in window && observedSections.length){
     document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
   }
   // Keep the system-status capsule floating at the bottom-right.
-  // The copyright remains in its original footer position and stays unobstructed.
+  // Copyright stays centered at the bottom of the page.
   if (!document.querySelector('.site-status')) {
     const status = document.createElement('span');
     status.className = 'site-status';
@@ -141,22 +141,13 @@ if('IntersectionObserver' in window && observedSections.length){
   }
   function createModal(className, title, inner) {
     const overlay = document.createElement('div'); overlay.className = className; overlay.setAttribute('role','dialog'); overlay.setAttribute('aria-modal','true');
-    overlay.setAttribute('aria-label', title);
     overlay.innerHTML = `<div class="egg-window"><div class="egg-window-top"><span class="egg-lights"><i></i><i></i><i></i></span><span>unknown403://backroom</span><button type="button" class="egg-close" aria-label="Close window">×</button></div>${inner}</div>`;
     document.body.appendChild(overlay);
-    let closeTimer = null;
-    const close = () => {
-      if (!overlay.classList.contains('open') || overlay.classList.contains('closing')) return;
-      overlay.classList.add('closing');
-      closeTimer = window.setTimeout(() => {
-        overlay.classList.remove('open','closing');
-        if (!document.querySelector('.egg-modal.open, .egg-room-modal.open')) document.body.classList.remove('egg-modal-open');
-      }, reducedMotion ? 0 : 230);
-    };
+    const close = () => { if (!overlay.classList.contains('open') || overlay.classList.contains('closing')) return; overlay.classList.add('closing'); overlay.classList.remove('open'); document.body.classList.remove('egg-modal-open'); const finish = () => { overlay.classList.remove('closing'); }; if (reducedMotion) finish(); else setTimeout(finish, 260); };
     overlay.querySelector('.egg-close').addEventListener('click', close);
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
-    overlay._open = () => { if (closeTimer) window.clearTimeout(closeTimer); overlay.classList.remove('closing'); overlay.classList.add('open'); document.body.classList.add('egg-modal-open'); };
+    document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); document.removeEventListener('keydown', esc); } });
+    overlay._open = () => { overlay.classList.remove('closing'); overlay.classList.add('open'); document.body.classList.add('egg-modal-open'); if (!reducedMotion) { overlay.classList.remove('breach'); void overlay.offsetWidth; overlay.classList.add('breach'); setTimeout(() => overlay.classList.remove('breach'), 560); } };
     overlay._close = close;
     return overlay;
   }
@@ -167,64 +158,17 @@ if('IntersectionObserver' in window && observedSections.length){
       const output = terminal.querySelector('.egg-output');
       terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
         e.preventDefault(); const command = input.value.trim().toLowerCase(); input.value = '';
-        const jokes = [
-          'Why did the developer go broke? Too many cache issues. 💀',
-          'My browser has 37 tabs open. The RAM has contacted HR.',
-          'I tried to touch grass. It asked me to accept cookies.',
-          'My sleep schedule is open-source: everyone knows it is broken and nobody is fixing it.',
-          '404: motivation not found. Try again after snacks.',
-          'I told my homework I needed space. It followed me into every room.',
-          'Roblox is free. The urge to say “one last round” costs everything.',
-          'My brain has 37 tabs open and somehow the music is coming from one I cannot find.',
-          'I am not procrastinating. I am letting the deadline build character.',
-          'Football taught me teamwork. Group projects taught me trust issues.',
-          'The Wi-Fi went down. I had to talk to my family. They seem nice.',
-          'I asked my PC for emotional support. It said: “Have you tried restarting?”',
-          'I opened the syllabus and the syllabus opened a boss fight.',
-          'My aim is not bad. The enemy simply moved into the bullet’s personal space.',
-          'This terminal has more personality than my alarm clock. That is not a high bar.',
-          'Achievement unlocked: opened a tab and forgot why. Legendary rarity.',
-          'I would explain the joke, but the punchline is still buffering.',
-          'My to-do list has a to-do list. They are both disappointed in me.',
-          'I went AFK in real life. The responsibilities did not respect the game rules.',
-          'The website is not haunted. It is just running on vibes and questionable decisions.'
-        ];
-        const roasts = [
-          'SELF-ROAST: bro built a whole secret terminal instead of closing one browser tab. 💀',
-          'ROAST.exe: ambition at 100%, bedtime at “we do not discuss that”.',
-          'Respectfully, your backlog has its own backlog.',
-          'You call it a side quest. Your homework calls it an escape room.',
-          'Main-character energy. Tutorial-level time management.',
-          'You said “five minutes” so confidently that the clock started laughing.'
-        ];
-        const lore = [
-          'TRACE 01: The alias is a mask, not the whole story.',
-          'TRACE 02: Every corner has a clue. Not every clue is loud.',
-          'TRACE 03: Four traces. One identity. Keep looking.',
-          'TRACE 04: The profile is the loading screen. The real lore is still updating.',
-          'TRACE 05: Some signals flicker. Some people scroll straight past them.',
-          'TRACE 06: The system is local. The chaos is personal.',
-          'TRACE 07: A website can be a portfolio, a playground, and a very elaborate distraction.'
-        ];
-        const quotes = [
-          '“Lock in, but do not forget to log out and sleep.” — probably a responsible NPC',
-          '“Consistency beats the motivational speech you watched at 2 AM.” — system wisdom',
-          '“Be honest, keep learning, and do not let one bad match become your whole personality.”',
-          '“Progress is progress, even when the progress bar moves like school Wi-Fi.”'
-        ];
+        const jokes = ['Why did the developer go broke? Too many cache issues. 💀','My browser has 37 tabs open. The RAM filed a complaint.','I tried to touch grass. It asked me to accept cookies.'];
+        const lore = ['TRACE 01: The alias is a mask, not the whole story.','TRACE 02: Every corner has a clue. Not every clue is loud.','TRACE 03: Four traces. One identity. Keep looking.'];
         let response;
-        if (command === 'help') response = 'COMMANDS: help · about · profile · stats · joke · roast · quote · lore · secrets · room · clear · exit';
-        else if (command === 'about' || command === 'profile') response = 'UNKNOWN_403 // quiet at first, random when the vibe is right. Football, games, anime, reading, learning new things, and building this corner of the internet. Honest people > fake vibes. Rest of the lore is classified (for now).';
+        if (command === 'help') response = 'COMMANDS: help · joke · lore · secrets · clear · room · exit';
         else if (command === 'joke') response = jokes[Math.floor(Math.random() * jokes.length)];
-        else if (command === 'roast') response = roasts[Math.floor(Math.random() * roasts.length)];
-        else if (command === 'quote') response = quotes[Math.floor(Math.random() * quotes.length)];
-        else if (command === 'stats') response = 'PLAYER CARD // Main game: Roblox ⭐ | Sports arc: Football ⚽ | Current build: This website 🖥️ | Skill tree: communication + learning + consistency | Current debuff: 37 browser tabs.';
         else if (command === 'lore') response = lore[Math.floor(Math.random() * lore.length)];
-        else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint. Some visual signals only show up if you slow down.';
-        else if (command === 'room') { if (found.size === DISCOVERIES.length) { unlockRoom(); response = 'ROOM ACCESS GRANTED. Opening the room now.'; } else response = `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing. Nice try, agent.`; }
-        else if (command === 'clear') { output.textContent = 'Terminal cleared. The void says hi. Your dignity remains in the recycle bin.'; updateTracker(); return; }
+        else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint.';
+        else if (command === 'room') response = found.size === DISCOVERIES.length ? 'ROOM ACCESS GRANTED.' : `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing.`;
+        else if (command === 'clear') { output.textContent = 'Terminal cleared. The void says hi.'; updateTracker(); return; }
         else if (command === 'exit') { terminal._close(); return; }
-        else response = `COMMAND NOT FOUND: ${command || '(nothing)'}. Type help. This is a terminal, not a mind reader. 💀`;
+        else response = `COMMAND NOT FOUND: ${command || '(nothing)'}. Type help. Skill issue? 💀`;
         output.textContent = response;
         if (command === 'lore') output.dataset.lore = 'seen';
       });
@@ -235,7 +179,7 @@ if('IntersectionObserver' in window && observedSections.length){
   }
   function unlockRoom() {
     if (!room) {
-      room = createModal('egg-room-modal', 'SECRET ROOM', `<div class="egg-room-content"><p class="egg-kicker">ACCESS GRANTED // 4 OF 4 TRACES</p><div class="egg-room-sigil">𓆩 ✦ 𓆪</div><h2>YOU FOUND THE<br><span>SECRET ROOM.</span></h2><p>Four traces. One identity. You were never just scrolling — you were decoding the little details. Welcome to the off-menu character file.</p><div class="egg-achievement">🏆 <div><strong>UNKNOWN_403 // SYSTEM EXPLORER</strong><small>ACHIEVEMENT UNLOCKED · 100% DISCOVERY</small></div></div><div class="egg-profile-grid"><article><span>PLAYER CLASS</span><strong>Quiet-ish Chaos Mage</strong><small>silent loading screen; random dialogue unlocked when comfortable.</small></article><article><span>MAIN GAME</span><strong>Roblox ⭐</strong><small>free to play, premium emotional damage.</small></article><article><span>SPORTS ARC</span><strong>Football ⚽</strong><small>touch grass, chase the ball, repeat. side quest became canon.</small></article><article><span>SKILL TREE</span><strong>Learn • Speak • Build</strong><small>communication upgrades, new knowledge, and making this website less NPC.</small></article><article><span>VIBE CHECK</span><strong>Honesty > fake vibes</strong><small>keep it real, be a good friend, and leave the unnecessary drama in drafts.</small></article><article><span>PASSIVE DEBUFF</span><strong>37 Tabs Syndrome 💀</strong><small>one tab is playing music. nobody knows which one.</small></article></div><div class="egg-room-extra"><p><b>KNOWN SIDE QUESTS</b> Reading • trying new things • healthy fitness habits • anime lore • “one last match” that is never one last match.</p><p><b>DEVELOPMENT STATUS</b> Still learning. Still building. Still not a CEO of anything. We keep the claims patch-noted.</p></div><button type="button" class="egg-room-close">RETURN TO THE INTERNET ↗</button><p class="egg-room-note">Your discoveries are stored only in this browser on this device. No account. No server. No tracking.</p></div>`);
+      room = createModal('egg-room-modal', 'SECRET ROOM', `<div class="egg-room-content"><p class="egg-kicker">ACCESS GRANTED // 4 OF 4 TRACES</p><div class="egg-room-sigil">𓆩 ✦ 𓆪</div><h2>WELCOME TO THE<br><span>RED FLAG ARCHIVE 🚩</span></h2><p>u found the hidden archive. no spoilers, just lore. read at ur own risk 💀</p><div class="egg-secret-grid"><article class="egg-secret-card"><h3>ROMANCE ARC: SINGLE 💀</h3><p>No girlfriend. No side quests. Just the main character waiting for the next update.</p></article><article class="egg-secret-card"><h3>ACCESS POLICY: TRUST IS EARNED 🔒</h3><p>Real ones get access. Fake vibes get denied.</p></article><article class="egg-secret-card"><h3>PERSONALITY.EXE: UNPREDICTABLE</h3><p>Quiet in one moment. Randomly becomes the entire entertainment department in the next.</p></article><article class="egg-secret-card"><h3>FRIENDSHIP ACCESS: RESTRICTED 🔒</h3><p>Small circle. Real loyalty. Zero tolerance for fake energy.</p></article><article class="egg-secret-card"><h3>PERSONALITY PATCH NOTES: COMING SOON</h3><p>Still figuring things out. Character development is ongoing.</p></article><article class="egg-secret-card"><h3>FUTURE BUILD: IN DEVELOPMENT ⚙️</h3><p>Current version has bugs. The next update is going to be different.</p></article><article class="egg-secret-card"><h3>CURIOSITY LEVEL: UNPATCHABLE</h3><p>Starts learning one thing. Somehow ends up researching five unrelated things.</p></article><article class="egg-secret-card"><h3>STANDARDS: NON-NEGOTIABLE.</h3><p>Not everything deserves access to your time and energy.</p></article><article class="egg-secret-card"><h3>SLEEP PROTOCOL: COMPROMISED 🌙</h3><p>Brain scheduled a meeting after everyone else logged off.</p></article><article class="egg-secret-card"><h3>MAIN CHARACTER STATUS: UNCONFIRMED 💀</h3><p>Confidence installed. Common sense still downloading.</p></article><article class="egg-secret-card"><h3>LOYALTY CHECK: ACTIONS &gt; WORDS</h3><p>Anyone can talk. Consistency tells the real story.</p></article><article class="egg-secret-card"><h3>LIFE PLAN: NO SPOILERS</h3><p>The plot is developing. Even the main character doesn't know the next episode.</p></article></div><div class="egg-developer-status"><span>DEVELOPER STATUS</span><strong>UNKNOWN_403 // STILL IN DEVELOPMENT</strong><small>BUILD: UNFINISHED · ACCESS: LIMITED · VIBES: CLASSIFIED</small></div><button type="button" class="egg-room-close">RETURN TO THE INTERNET ↗</button><p class="egg-room-note">discoveries stay in this browser on this device. no account. no server. no tracking.</p></div>`);
       room.querySelector('.egg-room-close').addEventListener('click', () => room._close());
     }
     room._open();
@@ -248,6 +192,22 @@ if('IntersectionObserver' in window && observedSections.length){
       clicks++; clearTimeout(clickTimer); clickTimer = setTimeout(() => { clicks = 0; }, 1800);
       if (clicks >= 5) { e.preventDefault(); clicks = 0; openTerminal(); }
     });
+  }
+  // Five quick clicks on the profile picture reveal the same hidden terminal.
+  const profilePicture = document.querySelector('.portrait-frame img');
+  if (profilePicture) {
+    profilePicture.tabIndex = 0;
+    profilePicture.setAttribute('role', 'button');
+    profilePicture.setAttribute('aria-label', 'Profile picture: click five times for a hidden interaction');
+    let pfpClicks = 0, pfpTimer;
+    const countPfpClick = () => {
+      pfpClicks++; clearTimeout(pfpTimer); pfpTimer = setTimeout(() => { pfpClicks = 0; }, 2200);
+      profilePicture.classList.remove('pfp-secret-flicker'); void profilePicture.offsetWidth; profilePicture.classList.add('pfp-secret-flicker');
+      if (pfpClicks >= 5) { pfpClicks = 0; openTerminal(); }
+    };
+    profilePicture.addEventListener('click', countPfpClick);
+    profilePicture.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); countPfpClick(); } });
+    profilePicture.addEventListener('animationend', () => profilePicture.classList.remove('pfp-secret-flicker'));
   }
   // '?' opens the terminal; ignore when typing in a form control.
   document.addEventListener('keydown', e => {
@@ -283,17 +243,6 @@ if('IntersectionObserver' in window && observedSections.length){
       clicks++; clearTimeout(timer); timer = setTimeout(() => { clicks = 0; }, 2200);
       if (clicks >= 5) { clicks = 0; discover('footer'); showToast('HIDDEN FOOTER MESSAGE: You scrolled all the way down. Now prove you were paying attention.'); }
     });
-  }
-  // Profile picture: a quiet visual signal and a harmless extra clue (not a fifth discovery).
-  const portrait = document.querySelector('.portrait-frame');
-  if (portrait) {
-    portrait.classList.add('egg-identity-signal');
-    portrait.setAttribute('tabindex','0');
-    portrait.setAttribute('role','button');
-    portrait.setAttribute('aria-label','Inspect identity signal');
-    const inspectPortrait = () => showToast('IDENTITY SIGNAL // the profile is the loading screen. Try the terminal command: profile.');
-    portrait.addEventListener('click', inspectPortrait);
-    portrait.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inspectPortrait(); } });
   }
   const fragment = document.querySelector('[data-egg-fragment]');
   if (fragment) fragment.addEventListener('click', () => {
