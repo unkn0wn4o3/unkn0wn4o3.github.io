@@ -22,3 +22,11 @@ NOTES
 
 VISUAL EFFECTS UPDATE
 This version adds restrained entrance animations, hover depth, image motion, a subtle hero background texture, and active navigation feedback. It respects the operating system reduced-motion preference. Existing content and image assets are preserved.
+
+
+VERSION 2 EASTER EGG UPDATE
+- Copyright line centered at the bottom of the footer.
+- Profile picture has a rare subtle crimson signal and is keyboard/click accessible.
+- Secret Terminal includes joke, roast, quote, stats, profile, lore, secrets, room, clear, help, and exit commands.
+- Terminal and Secret Room have restrained opening/closing transitions (respects reduced-motion settings).
+- Secret Room includes playful profile cards based on the site's interests and goals.
