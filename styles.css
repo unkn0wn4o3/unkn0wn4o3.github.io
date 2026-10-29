@@ -361,3 +361,55 @@ footer>small.egg-copyright{position:absolute;left:50%;bottom:20px;transform:tran
 .egg-fun-card button{margin-top:10px;border:1px solid #71343b;border-radius:6px;background:#211012;color:#e8cdd0;padding:6px 9px;font:10px 'DM Mono',monospace;cursor:pointer}
 .egg-fun-card button:hover,.egg-fun-card button:focus-visible{border-color:#bd4653;box-shadow:0 0 12px #b8324030}
 @media(max-width:480px){.egg-fun-zone{grid-template-columns:1fr}}
+
+/* MOBILE PORTRAIT ALIGNMENT PATCH: center the anime PFP and its halo together. */
+@media (max-width: 760px) {
+  .hero-portrait {
+    width: min(72vw, 270px) !important;
+    max-width: 270px !important;
+    justify-self: center !important;
+    margin: 14px auto 22px !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    isolation: isolate;
+  }
+  .hero-portrait::before {
+    content: "";
+    position: absolute;
+    width: 112%;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #71343b;
+    border-radius: 50%;
+    box-shadow: 0 0 0 16px #ffffff04, 0 0 38px #c93d4a22;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero-portrait .portrait-frame {
+    width: 100%;
+    margin: 0 auto;
+    transform: rotate(1deg);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-portrait .floating-note.note-one { right: -8% !important; }
+  .hero-portrait .floating-note.note-two { left: -8% !important; }
+  .hero-glow {
+    width: min(84vw, 330px) !important;
+    height: min(84vw, 330px) !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 7% !important;
+    transform: translateX(-50%) !important;
+    z-index: 0;
+  }
+}
+@media (max-width: 380px) {
+  .hero-portrait { width: min(74vw, 245px) !important; }
+  .hero-portrait .floating-note { font-size: .58rem; }
+}
