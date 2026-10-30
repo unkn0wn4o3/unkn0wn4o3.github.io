@@ -70,7 +70,7 @@ if('IntersectionObserver' in window && observedSections.length){
     document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
   }
   // Keep the system-status capsule floating at the bottom-right.
-  // Copyright stays centered at the bottom of the page.
+  // The copyright remains in its original footer position and stays unobstructed.
   if (!document.querySelector('.site-status')) {
     const status = document.createElement('span');
     status.className = 'site-status';
@@ -143,11 +143,11 @@ if('IntersectionObserver' in window && observedSections.length){
     const overlay = document.createElement('div'); overlay.className = className; overlay.setAttribute('role','dialog'); overlay.setAttribute('aria-modal','true');
     overlay.innerHTML = `<div class="egg-window"><div class="egg-window-top"><span class="egg-lights"><i></i><i></i><i></i></span><span>unknown403://backroom</span><button type="button" class="egg-close" aria-label="Close window">×</button></div>${inner}</div>`;
     document.body.appendChild(overlay);
-    const close = () => { if (!overlay.classList.contains('open') || overlay.classList.contains('closing')) return; overlay.classList.add('closing'); overlay.classList.remove('open'); document.body.classList.remove('egg-modal-open'); const finish = () => { overlay.classList.remove('closing'); }; if (reducedMotion) finish(); else setTimeout(finish, 260); };
+    const close = () => { overlay.classList.remove('open'); document.body.classList.remove('egg-modal-open'); };
     overlay.querySelector('.egg-close').addEventListener('click', close);
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
     document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); document.removeEventListener('keydown', esc); } });
-    overlay._open = () => { overlay.classList.remove('closing'); overlay.classList.add('open'); document.body.classList.add('egg-modal-open'); if (!reducedMotion) { overlay.classList.remove('breach'); void overlay.offsetWidth; overlay.classList.add('breach'); setTimeout(() => overlay.classList.remove('breach'), 560); } };
+    overlay._open = () => { overlay.classList.add('open'); document.body.classList.add('egg-modal-open'); };
     overlay._close = close;
     return overlay;
   }
@@ -156,36 +156,17 @@ if('IntersectionObserver' in window && observedSections.length){
       terminal = createModal('egg-modal', 'THE BACKROOM', `<div class="egg-terminal-content"><p class="egg-kicker">UNAUTHORIZED ACCESS // JUST KIDDING</p><h2>THE BACKROOM<span>.</span></h2><p class="egg-copy">A tiny terminal for people who click absolutely everything.</p><div class="egg-output" aria-live="polite">Type <code>help</code> to see available commands.</div><form class="egg-command-form"><label for="egg-command">guest@unknown403:~$</label><input id="egg-command" autocomplete="off" spellcheck="false" aria-label="Terminal command" placeholder="type a command..."><button type="submit">RUN ↵</button></form><div class="egg-footline"><span data-egg-count>0 / 4</span><span>NO HACKING. JUST VIBES.</span></div></div>`);
       const input = terminal.querySelector('#egg-command');
       const output = terminal.querySelector('.egg-output');
-      const quotes = ['The plot is still loading. Character development takes time.','Move in silence. Let the update speak.','Not every delay is a failure; sometimes the build is compiling.','Keep the standards high and the drama on mute.','Quiet progress still counts.','Consistency is louder than a motivational speech.','Your next version is built by what you do today.','Not every thought needs a microphone.','Small steps still move the storyline forward.','Less announcing. More becoming.'];
-      const roasts = ['Bro got 37 tabs open and still forgot why he opened the browser. 💀','Your sleep schedule has been marked as a missing person. 🌙','Bro said “one more game” three hours ago.','The confidence is online. The common sense is buffering.','Your to-do list has become historical fiction.','Your brain has 4K ideas and 2% battery.','Your focus left the chat and disabled read receipts.','You have main-character energy with background-app organization.','You said “five more minutes” in a different timezone.','You are not late; you are arriving in a different season.'];
-      terminal.querySelector('[data-egg-action="quote"]').addEventListener('click', () => { terminal.querySelector('[data-egg-quote]').textContent = '“' + quotes[Math.floor(Math.random()*quotes.length)] + '”'; });
-      terminal.querySelector('[data-egg-action="roast"]').addEventListener('click', () => { terminal.querySelector('[data-egg-roast]').textContent = '“' + roasts[Math.floor(Math.random()*roasts.length)] + '”'; });
       terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
         e.preventDefault(); const command = input.value.trim().toLowerCase(); input.value = '';
-        const jokes = ['Why did the developer go broke? Too many cache issues. 💀','My browser has 37 tabs open. The RAM filed a complaint.','I tried to touch grass. It asked me to accept cookies.','My sleep schedule is a rumor with no confirmed witnesses.','I opened one tutorial and unlocked five unrelated side quests.','Brain.exe stopped responding. Try turning the human off and on again.','I am not procrastinating. I am loading dramatically.','The Wi-Fi has more stability than my life plan.','I came, I saw, I forgot why I came.','My motivation said “brb” three business days ago.'];
-        const quotes = ['The plot is still loading. Character development takes time.','Move in silence. Let the update speak.','Not every delay is a failure; sometimes the build is compiling.','Keep the standards high and the drama on mute.','Quiet progress still counts.','Consistency is louder than a motivational speech.','Your next version is built by what you do today.','Not every thought needs a microphone.','Small steps still move the storyline forward.','Less announcing. More becoming.'];
-        const roasts = ['Bro got 37 tabs open and still forgot why he opened the browser. 💀','Your sleep schedule has been marked as a missing person. 🌙','Bro said “one more game” three hours ago.','The confidence is online. The common sense is buffering.','Your to-do list has become historical fiction.','Your brain has 4K ideas and 2% battery.','Your focus left the chat and disabled read receipts.','You have main-character energy with background-app organization.','You said “five more minutes” in a different timezone.','You are not late; you are arriving in a different season.'];
-        const lore = ['TRACE 01: The alias is a mask, not the whole story.','TRACE 02: Every corner has a clue. Not every clue is loud.','TRACE 03: Four traces. One identity. Keep looking.','TRACE 04: The profile is the cover. The details are the actual story.','TRACE 05: Curiosity is the key. Clicking everything is the security flaw.','TRACE 06: Discoveries stay on this device.','TRACE 07: Some secrets are hidden in plain sight. This one is testing your attention.','TRACE 08: Character development is ongoing.','TRACE 09: The red accents are warnings. Mostly about the owner.','TRACE 10: You found the terminal. Now pretend you meant to do that.'];
+        const jokes = ['Why did the developer go broke? Too many cache issues. 💀','My browser has 37 tabs open. The RAM filed a complaint.','I tried to touch grass. It asked me to accept cookies.','I opened one tutorial and somehow earned a minor in procrastination.','My PC said “low memory” so I closed my hopes and dreams.','Debugging is just being a detective in a crime you committed.'];
+        const quotes = ['The plot is still loading. Character development takes time.','Move in silence. Let the update speak.','Not every delay is a failure; sometimes the build is compiling.','Keep the standards high and the drama on mute.','Build quietly. Let the results make the noise.'];
+        const roasts = ['Bro got 37 tabs open and still forgot why he opened the browser. 💀','Your sleep schedule has been marked as a missing person. 🌙','Bro said “one more game” three hours ago.','The confidence is online. The common sense is buffering.','Your motivation has a free trial that expired yesterday.'];
+        const lore = ['TRACE 01: The alias is a mask, not the whole story.','TRACE 02: Every corner has a clue. Not every clue is loud.','TRACE 03: Four traces. One identity. Keep looking.','TRACE 04: The archive rewards curiosity, not speed.','Some details are decoys. The pattern is the point.'];
         let response;
-        if (command === 'help') {
-          response = 'COMMANDS: help · joke · roast · quote · lore · secrets · clear · room · exit';
-          const oldPanel = terminal.querySelector('.egg-fun-zone');
-          if (oldPanel) oldPanel.remove();
-          const panel = document.createElement('section');
-          panel.className = 'egg-fun-zone';
-          panel.setAttribute('aria-label', 'Quotes and roasts');
-          panel.innerHTML = '<article class="egg-fun-card"><h3>QUOTES // MAINFRAME</h3><p data-egg-quote>“The plot is still loading. Character development takes time.”</p><button type="button" data-egg-action="quote">NEW QUOTE ↻</button></article><article class="egg-fun-card"><h3>ROASTS // FRIENDLY FIRE</h3><p data-egg-roast>“Bro got 37 tabs open and still forgot why he opened the browser.” 💀</p><button type="button" data-egg-action="roast">ROAST ME ↻</button></article>';
-          output.before(panel);
-          panel.querySelector('[data-egg-action="quote"]').addEventListener('click', () => {
-            panel.querySelector('[data-egg-quote]').textContent = '“' + quotes[Math.floor(Math.random() * quotes.length)] + '”';
-          });
-          panel.querySelector('[data-egg-action="roast"]').addEventListener('click', () => {
-            panel.querySelector('[data-egg-roast]').textContent = '“' + roasts[Math.floor(Math.random() * roasts.length)] + '”';
-          });
-        }
+        if (command === 'help') response = 'COMMANDS: help · joke · quote · roast · lore · secrets · clear · room · exit';
         else if (command === 'joke') response = jokes[Math.floor(Math.random() * jokes.length)];
-        else if (command === 'roast') response = roasts[Math.floor(Math.random() * roasts.length)];
         else if (command === 'quote') response = quotes[Math.floor(Math.random() * quotes.length)];
+        else if (command === 'roast') response = roasts[Math.floor(Math.random() * roasts.length)];
         else if (command === 'lore') response = lore[Math.floor(Math.random() * lore.length)];
         else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint.';
         else if (command === 'room') response = found.size === DISCOVERIES.length ? 'ROOM ACCESS GRANTED.' : `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing.`;
@@ -202,7 +183,7 @@ if('IntersectionObserver' in window && observedSections.length){
   }
   function unlockRoom() {
     if (!room) {
-      room = createModal('egg-room-modal', 'SECRET ROOM', `<div class="egg-room-content"><p class="egg-kicker">ACCESS GRANTED // 4 OF 4 TRACES</p><div class="egg-room-sigil">𓆩 ✦ 𓆪</div><h2>WELCOME TO THE<br><span>RED FLAG ARCHIVE 🚩</span></h2><p>u found the hidden archive. no spoilers, just lore. read at ur own risk 💀</p><div class="egg-secret-grid"><article class="egg-secret-card"><h3>ROMANCE ARC: SINGLE 💀</h3><p>No girlfriend. No side quests. Just the main character waiting for the next update.</p></article><article class="egg-secret-card"><h3>ACCESS POLICY: TRUST IS EARNED 🔒</h3><p>Real ones get access. Fake vibes get denied.</p></article><article class="egg-secret-card"><h3>PERSONALITY.EXE: UNPREDICTABLE</h3><p>Quiet in one moment. Randomly becomes the entire entertainment department in the next.</p></article><article class="egg-secret-card"><h3>FRIENDSHIP ACCESS: RESTRICTED 🔒</h3><p>Small circle. Real loyalty. Zero tolerance for fake energy.</p></article><article class="egg-secret-card"><h3>PERSONALITY PATCH NOTES: COMING SOON</h3><p>Still figuring things out. Character development is ongoing.</p></article><article class="egg-secret-card"><h3>FUTURE BUILD: IN DEVELOPMENT ⚙️</h3><p>Current version has bugs. The next update is going to be different.</p></article><article class="egg-secret-card"><h3>CURIOSITY LEVEL: UNPATCHABLE</h3><p>Starts learning one thing. Somehow ends up researching five unrelated things.</p></article><article class="egg-secret-card"><h3>STANDARDS: NON-NEGOTIABLE.</h3><p>Not everything deserves access to your time and energy.</p></article><article class="egg-secret-card"><h3>SLEEP PROTOCOL: COMPROMISED 🌙</h3><p>Brain scheduled a meeting after everyone else logged off.</p></article><article class="egg-secret-card"><h3>MAIN CHARACTER STATUS: UNCONFIRMED 💀</h3><p>Confidence installed. Common sense still downloading.</p></article><article class="egg-secret-card"><h3>LOYALTY CHECK: ACTIONS &gt; WORDS</h3><p>Anyone can talk. Consistency tells the real story.</p></article><article class="egg-secret-card"><h3>LIFE PLAN: NO SPOILERS</h3><p>The plot is developing. Even the main character doesn't know the next episode.</p></article></div><div class="egg-developer-status"><span>DEVELOPER STATUS</span><strong>UNKNOWN_403 // STILL IN DEVELOPMENT</strong><small>BUILD: UNFINISHED · ACCESS: LIMITED · VIBES: CLASSIFIED</small></div><button type="button" class="egg-room-close">RETURN TO THE INTERNET ↗</button><p class="egg-room-note">discoveries stay in this browser on this device. no account. no server. no tracking.</p></div>`);
+      room = createModal('egg-room-modal', 'SECRET ROOM', `<div class="egg-room-content"><p class="egg-kicker">ACCESS GRANTED // 4 OF 4 TRACES</p><div class="egg-room-sigil">𓆩 ✦ 𓆪</div><h2>YOU FOUND THE<br><span>SECRET ROOM.</span></h2><p>Four traces. One identity. You were never just scrolling — you were decoding the little details.</p><div class="egg-achievement">🏆 <div><strong>UNKNOWN_403 // SYSTEM EXPLORER</strong><small>ACHIEVEMENT UNLOCKED · 100% DISCOVERY</small></div></div><button type="button" class="egg-room-close">RETURN TO THE INTERNET ↗</button><p class="egg-room-note">Your discoveries are stored only in this browser on this device. No account. No server. No tracking.</p></div>`);
       room.querySelector('.egg-room-close').addEventListener('click', () => room._close());
     }
     room._open();
@@ -215,22 +196,6 @@ if('IntersectionObserver' in window && observedSections.length){
       clicks++; clearTimeout(clickTimer); clickTimer = setTimeout(() => { clicks = 0; }, 1800);
       if (clicks >= 5) { e.preventDefault(); clicks = 0; openTerminal(); }
     });
-  }
-  // Five quick clicks on the profile picture reveal the same hidden terminal.
-  const profilePicture = document.querySelector('.portrait-frame img');
-  if (profilePicture) {
-    profilePicture.tabIndex = 0;
-    profilePicture.setAttribute('role', 'button');
-    profilePicture.setAttribute('aria-label', 'Profile picture: click five times for a hidden interaction');
-    let pfpClicks = 0, pfpTimer;
-    const countPfpClick = () => {
-      pfpClicks++; clearTimeout(pfpTimer); pfpTimer = setTimeout(() => { pfpClicks = 0; }, 2200);
-      profilePicture.classList.remove('pfp-secret-flicker'); void profilePicture.offsetWidth; profilePicture.classList.add('pfp-secret-flicker');
-      if (pfpClicks >= 5) { pfpClicks = 0; openTerminal(); }
-    };
-    profilePicture.addEventListener('click', countPfpClick);
-    profilePicture.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); countPfpClick(); } });
-    profilePicture.addEventListener('animationend', () => profilePicture.classList.remove('pfp-secret-flicker'));
   }
   // '?' opens the terminal; ignore when typing in a form control.
   document.addEventListener('keydown', e => {
