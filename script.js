@@ -63,9 +63,8 @@ if('IntersectionObserver' in window && observedSections.length){
     }, {passive:true});
     document.addEventListener('mouseover', (event) => {
       const target = event.target.closest(interactive);
-      cursor.textContent = target ? '🫵' : '👾';
+      // Keep the 👾 idle cursor; the CSS hover state substitutes a tech crosshair for 🫵.
       cursor.classList.toggle('is-pointing', !!target);
-      cursor.style.fontSize = target ? '25px' : '23px';
     });
     document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
