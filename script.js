@@ -263,29 +263,94 @@ if('IntersectionObserver' in window && observedSections.length){
         'TRACE 05: The quietest page may hold the loudest clue.',
         'TRACE 06: Curiosity opened the door. You did the rest.'
       ];
-      const showFunZone = () => {
-        if (terminal.querySelector('.egg-fun-zone')) return;
-        output.insertAdjacentHTML('beforebegin', `<section class="egg-fun-zone" aria-label="Quotes and roasts"><article class="egg-fun-card"><h3>QUOTES // MAINFRAME</h3><p data-egg-quote>“The plot is still loading. Character development takes time.”</p><button type="button" data-egg-action="quote" aria-label="Show another quote">NEW QUOTE ↻</button></article><article class="egg-fun-card"><h3>ROASTS // FRIENDLY FIRE</h3><p data-egg-roast>“Bro got 37 tabs open and still forgot why he opened the browser.” 💀</p><button type="button" data-egg-action="roast" aria-label="Show another friendly roast">ROAST ME ↻</button></article></section>`);
-        terminal.querySelector('[data-egg-action="quote"]').addEventListener('click', () => { terminal.querySelector('[data-egg-quote]').textContent = '“' + quotes[Math.floor(Math.random()*quotes.length)] + '”'; });
-        terminal.querySelector('[data-egg-action="roast"]').addEventListener('click', () => { terminal.querySelector('[data-egg-roast]').textContent = '“' + roasts[Math.floor(Math.random()*roasts.length)] + '”'; });
+      const commandList = ['help','joke','lore','secrets','clear','room','exit','quote','roast','whoami','date','history','version','riddle','guide','ascii','cipher','scan'];
+      const commandHistory = [];
+      let historyIndex = 0;
+      let activeChallenge = null;
+      const riddles = [
+        { q: 'I have keys but no locks. I have space but no room. What am I?', a: ['keyboard','a keyboard'] },
+        { q: 'The more you take, the more you leave behind. What are they?', a: ['footsteps','steps'] },
+        { q: 'I speak without a mouth and hear without ears. What am I?', a: ['echo','an echo'] }
+      ];
+      const ciphers = [
+        { q: 'Decode this Caesar-shifted message (shift back 1): IFMMP', a: ['hello'] },
+        { q: 'Decode this reversed word: YRATERCES', a: ['secret'] },
+        { q: 'Decode this reversed word: WOL', a: ['low'] }
+      ];
+      const renderCard = (kind, value) => {
+        const isQuote = kind === 'quote';
+        const title = isQuote ? 'QUOTES // MAINFRAME' : 'ROASTS // FRIENDLY FIRE';
+        const actionLabel = isQuote ? 'NEW QUOTE ↻' : 'ROAST ME ↻';
+        const card = document.createElement('section');
+        card.className = 'egg-fun-zone egg-fun-zone-single';
+        card.setAttribute('aria-label', title);
+        const article = document.createElement('article');
+        article.className = 'egg-fun-card';
+        const heading = document.createElement('h3'); heading.textContent = title;
+        const paragraph = document.createElement('p'); paragraph.textContent = '“' + value + '”';
+        const button = document.createElement('button'); button.type = 'button'; button.textContent = actionLabel;
+        button.addEventListener('click', () => {
+          const collection = isQuote ? quotes : roasts;
+          paragraph.textContent = '“' + collection[Math.floor(Math.random() * collection.length)] + '”';
+        });
+        article.append(heading, paragraph, button); card.append(article);
+        terminal.querySelector('.egg-fun-zone')?.remove();
+        output.insertAdjacentElement('beforebegin', card);
       };
-      terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
-        e.preventDefault(); const command = input.value.trim().toLowerCase(); input.value = '';
-        let response;
-        if (command === 'help') { response = 'COMMANDS: help · joke · roast · quote · lore · secrets · clear · room · exit'; showFunZone(); }
-        else if (command === 'joke') response = jokes[Math.floor(Math.random() * jokes.length)];
-        else if (command === 'roast') response = roasts[Math.floor(Math.random() * roasts.length)];
-        else if (command === 'quote') response = quotes[Math.floor(Math.random() * quotes.length)];
-        else if (command === 'lore') response = lore[Math.floor(Math.random() * lore.length)];
+      const setResponse = (message) => { output.textContent = message; };
+      const normalize = value => value.trim().toLowerCase().replace(/[.!?]+$/g, '');
+      const pick = list => list[Math.floor(Math.random() * list.length)];
+      const runScan = () => {
+        const frames = ['INITIALIZING LOCAL DIAGNOSTICS...', 'CHECKING INTERFACE MODULES...', 'VERIFYING EASTER-EGG SIGNALS...', 'SCAN COMPLETE // 0 DEVICE THREATS'];
+        let i = 0; setResponse(frames[0]);
+        const tick = () => { i++; if (i < frames.length && terminal?.classList.contains('open')) { setResponse(frames[i]); setTimeout(tick, 420); } };
+        setTimeout(tick, 420);
+      };
+      const runCommand = raw => {
+        const command = raw.trim().toLowerCase();
+        if (!command) { setResponse('NO INPUT DETECTED. Type help for available commands.'); return; }
+        if (commandHistory[commandHistory.length - 1] !== command) commandHistory.push(command);
+        historyIndex = commandHistory.length;
+        let response = '';
+        if (activeChallenge) {
+          const attempt = normalize(raw);
+          if (activeChallenge.answers.includes(attempt)) response = 'CORRECT. CHALLENGE CLEARED. NICE WORK.';
+          else response = 'NOT QUITE. TRY AGAIN, OR TYPE cancel TO ABORT THE CHALLENGE.';
+          if (attempt === 'cancel') response = 'CHALLENGE ABORTED. Type riddle or cipher to start another.';
+          if (activeChallenge.answers.includes(attempt) || attempt === 'cancel') activeChallenge = null;
+          setResponse(response); return;
+        }
+        if (command === 'help') response = 'AVAILABLE COMMANDS:\nhelp · joke · lore · secrets · clear · room · exit\nquote · roast · whoami · date · history · version\nriddle · guide · ascii · cipher · scan';
+        else if (command === 'joke') response = pick(jokes);
+        else if (command === 'roast') { renderCard('roast', pick(roasts)); setResponse('ROAST MODULE // FRIENDLY FIRE ENABLED'); return; }
+        else if (command === 'quote') { renderCard('quote', pick(quotes)); setResponse('QUOTE MODULE // MAINFRAME TRANSMISSION RECEIVED'); return; }
+        else if (command === 'lore') response = pick(lore);
         else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint.';
         else if (command === 'room') { if (found.size === DISCOVERIES.length) { response = 'ROOM ACCESS GRANTED. Opening archive...'; setTimeout(unlockRoom, 180); } else response = `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing.`; }
         else if (command === 'clear') { terminal.querySelector('.egg-fun-zone')?.remove(); output.textContent = 'Terminal cleared. The void says hi.'; updateTracker(); return; }
         else if (command === 'exit') { terminal._close(); return; }
-        else response = `COMMAND NOT FOUND: ${command || '(nothing)'}. Type help. Skill issue? 💀`;
-        output.textContent = response;
+        else if (command === 'whoami') response = 'IDENTITY: UNKNOWN VISITOR\nACCESS LEVEL: GUEST\nSESSION: LOCAL // ANONYMOUS';
+        else if (command === 'date') response = 'LOCAL DATE: ' + new Date().toLocaleDateString() + '\nLOCAL TIME: ' + new Date().toLocaleTimeString() + '\nCLOCK SOURCE: YOUR DEVICE';
+        else if (command === 'history') response = commandHistory.length ? commandHistory.map((item, index) => String(index + 1).padStart(2, '0') + '  ' + item).join('\n') : 'NO COMMAND HISTORY YET.';
+        else if (command === 'version') response = 'UNKNOWN_403 // BACKROOM TERMINAL\nINTERFACE BUILD: 1.1\nMODULE STATUS: ONLINE\nRELEASE CHANNEL: PERSONAL';
+        else if (command === 'riddle') { activeChallenge = pick(riddles); response = 'RIDDLE MODULE // ANSWER IN THE COMMAND LINE\n' + activeChallenge.q + '\nType cancel to abort.'; }
+        else if (command === 'cipher') { activeChallenge = pick(ciphers); response = 'CIPHER MODULE // DECODE THE MESSAGE\n' + activeChallenge.q + '\nType cancel to abort.'; }
+        else if (command === 'guide') response = 'BACKROOM QUICK GUIDE:\n↑ / ↓  Browse command history\nTAB    Complete a command\nESC    Close the terminal\nclear  Clear the output\nroom   Open the archive (when all traces are found)\nType help to list every command.';
+        else if (command === 'ascii') response = `   .----.   .----.\n  / .--. \\ / .--. \\n | |    | | | |    | |\n | |    | | | |    | |\n  \\ '--' / \\ '--' /\n   '----'   '----'\nUNKNOWN_403 // SIGNAL FOUND`;
+        else if (command === 'scan') { runScan(); return; }
+        else response = `COMMAND NOT FOUND: ${command}. Type help. Skill issue? 💀`;
+        setResponse(response);
         if (command === 'lore') output.dataset.lore = 'seen';
+      };
+      terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
+        e.preventDefault(); const command = input.value; input.value = ''; runCommand(command);
       });
-      input.addEventListener('keydown', e => { if (e.key === 'Escape') terminal._close(); });
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { terminal._close(); return; }
+        if (e.key === 'ArrowUp' && !activeChallenge) { e.preventDefault(); if (commandHistory.length) { historyIndex = Math.max(0, historyIndex - 1); input.value = commandHistory[historyIndex] || ''; } }
+        if (e.key === 'ArrowDown' && !activeChallenge) { e.preventDefault(); historyIndex = Math.min(commandHistory.length, historyIndex + 1); input.value = commandHistory[historyIndex] || ''; }
+        if (e.key === 'Tab') { e.preventDefault(); const value = input.value.trim().toLowerCase(); const matches = commandList.filter(item => item.startsWith(value)); if (matches.length === 1) input.value = matches[0]; else if (matches.length > 1) setResponse('MATCHES: ' + matches.join(' · ')); }
+      });
     }
     discover('terminal');
     updateTracker();
