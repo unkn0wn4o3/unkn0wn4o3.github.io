@@ -630,3 +630,76 @@ footer>small.egg-copyright{position:absolute;left:50%;bottom:20px;transform:tran
   .hero-portrait .note-one { right: -8%; }
   .hero-portrait .note-two { left: -8%; }
 }
+
+/* BACKROOM TERMINAL 2.0 — responsive cards, command directory, history and touch controls */
+.egg-terminal-content { min-width: 0; }
+.egg-output { white-space: pre-wrap; overflow-wrap: anywhere; }
+.egg-main-card {
+  margin: 14px 0 16px; padding: 17px 18px; min-width: 0;
+  border: 1px solid #49252c; border-left: 2px solid #bd3445;
+  border-radius: 7px; background: linear-gradient(145deg, #171113, #0d0c0d 72%);
+  box-shadow: 0 12px 32px #0007, inset 0 1px #ffffff08;
+  animation: egg-card-in .22s ease-out both;
+}
+.egg-main-card h3 { margin: 0 0 13px; color: #e9cbd0; font: 700 11px/1.5 'DM Mono', monospace; letter-spacing: .13em; }
+.egg-card-body { color: #d8cdd0; font: 13px/1.75 'DM Mono', monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.egg-card-foot { margin: 12px 0 0; color: #957d83; font: 10px/1.5 'DM Mono', monospace; }
+.egg-card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.egg-card-actions button, .egg-history-filter button {
+  min-height: 36px; padding: 8px 11px; border: 1px solid #63303a; border-radius: 4px;
+  background: #1b1114; color: #e9cbd0; font: 10px 'DM Mono', monospace; letter-spacing: .06em; cursor: pointer;
+}
+.egg-card-actions button:hover, .egg-history-filter button:hover { border-color: #d34b5d; background: #2a1419; }
+.egg-card-help { border-color: #53323a; }
+.egg-help-list { display: grid; gap: 13px; }
+.egg-help-group { padding-top: 10px; border-top: 1px solid #332126; }
+.egg-help-group:first-child { padding-top: 0; border-top: 0; }
+.egg-help-group h4 { margin: 0 0 8px; color: #d75a69; font: 700 10px 'DM Mono', monospace; letter-spacing: .12em; }
+.egg-help-item { display: grid; grid-template-columns: minmax(118px, 36%) 1fr; gap: 10px; padding: 6px 0; border-bottom: 1px solid #ffffff09; align-items: start; }
+.egg-help-item code { color: #f0d8dc; font: 11px 'DM Mono', monospace; overflow-wrap: anywhere; }
+.egg-help-item span { color: #a9959a; font: 11px/1.55 'DM Mono', monospace; }
+.egg-feature-quote { color: #f0dfe2; font: 16px/1.7 Georgia, serif; }
+.egg-card-roast .egg-feature-quote { color: #e5c1c6; }
+.egg-ascii-wrap { min-width: 0; }
+.egg-ascii { max-width: 100%; margin: 0; padding: 12px; overflow-x: auto; color: #e0a8b0; background: #090809; border: 1px solid #332027; border-radius: 4px; font: clamp(7px, 1.7vw, 11px)/1.35 'DM Mono', monospace; white-space: pre; scrollbar-width: thin; }
+.egg-ascii-label { margin: 9px 0 0; color: #967d83; font: 9px 'DM Mono', monospace; letter-spacing: .12em; }
+.egg-challenge-question { margin: 0 0 12px; color: #f0dce0; font-size: 14px; line-height: 1.7; }
+.egg-challenge-status { margin: 0; color: #a98b92; font-size: 10px; line-height: 1.6; }
+.egg-card-challenge { border-color: #87404b; box-shadow: 0 0 0 1px #8b39431c, 0 12px 32px #0007; }
+.egg-history-list { display: grid; gap: 8px; }
+.egg-history-entry { display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 10px; padding: 10px 0; border-bottom: 1px solid #ffffff10; }
+.egg-history-number { color: #b64a59; font: 11px 'DM Mono', monospace; padding-top: 2px; }
+.egg-history-detail { min-width: 0; }
+.egg-history-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; }
+.egg-history-top code { color: #f0d6db; font: 11px 'DM Mono', monospace; overflow-wrap: anywhere; }
+.egg-history-top time { color: #8e777d; font: 9px 'DM Mono', monospace; }
+.egg-history-detail p { margin: 5px 0 0; color: #a9959a; font: 10px/1.5 'DM Mono', monospace; overflow-wrap: anywhere; }
+.egg-history-summary { padding: 12px 0 2px; color: #d65a69; font: 10px 'DM Mono', monospace; letter-spacing: .07em; }
+.egg-history-filter { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; margin-top: 13px; padding-top: 12px; border-top: 1px solid #ffffff12; }
+.egg-history-filter label { display: grid; flex: 1 1 180px; gap: 6px; color: #987f86; font: 9px 'DM Mono', monospace; letter-spacing: .1em; }
+.egg-history-filter input { width: 100%; min-width: 0; min-height: 36px; padding: 8px 10px; border: 1px solid #493039; border-radius: 4px; outline: none; background: #0b090a; color: #eee; font: 11px 'DM Mono', monospace; }
+.egg-history-filter input:focus { border-color: #c44859; }
+.egg-virtual-pad { display: grid; gap: 7px; margin: 14px 0 0; padding: 12px; border: 1px solid #33242a; border-radius: 6px; background: #0d0b0c; }
+.egg-pad-row { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; }
+.egg-pad-row button { min-width: 0; min-height: 39px; border: 1px solid #56303a; border-radius: 4px; background: #191114; color: #e8cbd0; font: 11px 'DM Mono', monospace; touch-action: manipulation; }
+.egg-pad-row button:active { background: #51212b; transform: translateY(1px); }
+@keyframes egg-card-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  .egg-modal { padding: 10px !important; align-items: flex-start !important; overflow-y: auto; }
+  .egg-window { width: 100% !important; max-width: none !important; max-height: calc(100dvh - 20px) !important; margin: 0 auto; overflow-y: auto; }
+  .egg-terminal-content { padding: 15px !important; }
+  .egg-command-form { display: grid !important; grid-template-columns: 1fr auto; gap: 7px; }
+  .egg-command-form label { grid-column: 1 / -1; }
+  .egg-command-form input { width: 100%; min-width: 0; }
+  .egg-command-form button { min-width: 64px; }
+  .egg-main-card { padding: 13px; }
+  .egg-help-item { grid-template-columns: minmax(95px, 40%) 1fr; gap: 8px; }
+  .egg-help-item code, .egg-help-item span { font-size: 9px; }
+  .egg-card-body { font-size: 11px; }
+  .egg-feature-quote { font-size: 14px; }
+  .egg-virtual-pad { position: sticky; bottom: 0; z-index: 4; box-shadow: 0 -8px 20px #0008; }
+  .egg-pad-row button { min-height: 43px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .egg-main-card { animation: none !important; }
+}

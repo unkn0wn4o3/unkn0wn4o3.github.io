@@ -166,6 +166,7 @@ if('IntersectionObserver' in window && observedSections.length){
     let returnFocus = null;
     let closeVersion = 0;
     const close = () => {
+      overlay._beforeClose?.();
       if (!overlay.classList.contains('open') || overlay.classList.contains('closing')) return;
       overlay.classList.add('closing');
       overlay.classList.remove('open');
@@ -233,7 +234,10 @@ if('IntersectionObserver' in window && observedSections.length){
         'I asked my computer for a break. It opened Task Manager.',
         'My Wi-Fi has two moods: loading and pretending to load.',
         'I made a to-do list. It is now on my to-do list.',
-        'The update said “2 minutes remaining” 45 minutes ago.'
+        'The update said “2 minutes remaining” 45 minutes ago.',
+        'My keyboard has a space bar. Still no space in my schedule.',
+        'I named my laptop Titanic. It keeps crashing.',
+        'The cloud is full. Apparently my thoughts were syncing.'
       ];
       const quotes = [
         'The plot is still loading. Character development takes time.',
@@ -243,7 +247,9 @@ if('IntersectionObserver' in window && observedSections.length){
         'Small progress still counts. Keep the streak alive.',
         'Build quietly. Let consistency make the announcement.',
         'Curiosity is a side quest that often becomes the main quest.',
-        'One good decision at a time. That is how the arc changes.'
+        'One good decision at a time. That is how the arc changes.',
+        'A better version is built one honest revision at a time.',
+        'Stay curious. The map is bigger than the current screen.'
       ];
       const roasts = [
         'Bro got 37 tabs open and still forgot why he opened the browser. 💀',
@@ -253,7 +259,9 @@ if('IntersectionObserver' in window && observedSections.length){
         'Your to-do list just filed a missing-person report.',
         'Your loading screen has a loading screen.',
         'Bro opened settings and forgot what needed fixing.',
-        'The plan is premium. The execution is still on the free trial.'
+        'The plan is premium. The execution is still on the free trial.',
+        'Your cursor has visited more places than your productivity.',
+        'You have main-character energy with tutorial-level navigation.'
       ];
       const lore = [
         'TRACE 01: The alias is a mask, not the whole story.',
@@ -261,95 +269,299 @@ if('IntersectionObserver' in window && observedSections.length){
         'TRACE 03: Four traces. One identity. Keep looking.',
         'TRACE 04: The blueprint records the work in progress.',
         'TRACE 05: The quietest page may hold the loudest clue.',
-        'TRACE 06: Curiosity opened the door. You did the rest.'
+        'TRACE 06: Curiosity opened the door. You did the rest.',
+        'TRACE 07: The archive remembers what the feed forgets.',
+        'TRACE 08: A hidden route is still a route.',
+        'TRACE 09: The system is local. The imagination is not.',
+        'TRACE 10: Every finished build began as an unfinished idea.'
       ];
-      const commandList = ['help','joke','lore','secrets','clear','room','exit','quote','roast','whoami','date','history','version','riddle','guide','ascii','cipher','scan'];
-      const commandHistory = [];
-      let historyIndex = 0;
-      let activeChallenge = null;
+      const secrets = [
+        'SECRET 01 // Five quick clicks on the crown logo open the terminal.',
+        'SECRET 02 // The profile picture has its own five-click trigger.',
+        'SECRET 03 // The classic Konami sequence leaves a trace.',
+        'SECRET 04 // The footer is more than a footer.',
+        'SECRET 05 // The final fragment is hidden in the blueprint.',
+        'SECRET 06 // The discovery register tracks four traces.',
+        'SECRET 07 // The terminal works locally in this browser.',
+        'SECRET 08 // Reduced-motion settings are respected.',
+        'SECRET 09 // The archive contains twelve red-flag files.',
+        'SECRET 10 // Some commands have subcommands. Ask them directly.'
+      ];
+      const asciiArt = [
+        {id:'ghost',label:'PHANTOM / GHOST',art:String.raw`        .-.
+       (o o)   PHANTOM SIGNAL
+       | O \\
+      /|   |\\
+     /_|___|_\\
+       /   \\
+      /_____\\
+      ~~~~~~~~`},
+        {id:'skull',label:'CYBER SKULL',art:String.raw`       .-=========-.
+      /  .-"""""-.  \\
+     |  /  .-. .-. \\  |
+     | |  /   Y   \\ | |
+     | |  \\  ^  /  | |
+      \\  '.___.'  /
+       '._ CYBER _. '
+          /| |\\
+         /_| |_\\`},
+        {id:'dragon',label:'VOID DRAGON',art:String.raw`                 /\                 /\
+        /\      /  \\   _____   /  \\      /\
+       /  \\____/ /\ \\_/     \_/ /\ \\____/  \\
+      /            \\   (o o)   /            \\
+     /_____/\_______\\___\_/___/_______/\_____\\
+            \\       /  /| |\\  \\       /
+             \\_____/__/ |_| \__\\_____/`},
+        {id:'wolf',label:'NIGHT WOLF',art:String.raw`             /\_/\\
+      ______/ o o \\______
+     /   __   ^   __      \\
+    /___/  \\_____/  \\______\\
+       /  /|  |  |\\  \\
+      /__/ |__|__| \\__\\
+          /_/  \\_\\
+       NIGHT SIGNAL // 04`},
+        {id:'angel',label:'DARK ANGEL',art:String.raw`       _.-'` + "`" + String.raw`-._       _.-'` + "`" + String.raw`-._
+    .-'  /\\  ` + "`" + String.raw`-._.-'  /\\  ` + "`" + String.raw`-.
+   /___ /  \\ ___|___ /  \\ ___\\
+       / /\\ \\       / /\\ \\
+      /_/  \\_\\     /_/  \\_\\
+          .-^-.
+         /  ✦  \\
+        /_______\\
+       WINGS // OFFLINE`},
+        {id:'terminal',label:'HACKER MAINFRAME',art:String.raw`+--------------------------------+
+| ROOT ACCESS: SIMULATED          |
+| [##########..........] 50%      |
+|                                |
+| > tracing_signal.exe            |
+| > decrypting_local_cache        |
+| > access: GUEST                 |
+|                                |
+| STATUS: WATCHING                |
++--------------------------------+`},
+        {id:'mask',label:'CYBERNETIC MASK',art:String.raw`       .----------------.
+      /  .------------.  \\
+     /  /  []      []  \\  \\
+    |  |       __       |  |
+    |  |   .-./  \\.-.   |  |
+     \\  \\  '._==_.'  /  /
+      \\  '---.____.---'  /
+       '------|  |------'
+              |__|
+          UNIT // 403`},
+        {id:'galaxy',label:'DEEP SPACE',art:String.raw`             .       *       .
+       *          .     .
+    .       .-=========-.      *
+           /  .  *  .   \\
+      *   |  *   .    *  |   .
+          \\   .     .  /
+     .     '---=====---'       *
+          *      |      .
+       .      .  |  *
+             .  / \\
+       SIGNAL FROM THE VOID`},
+        {id:'machine',label:'MECHANICAL BEAST',art:String.raw`          .----.____.----.
+       __/  []  ||  []  \\__
+      /___  ____||____  ___\\
+          \\|  _    _  |/
+       ____| |o|  |o| |____
+      /    |  ____    |    \\
+     /_____|_/    \\__|_____\\
+          /_/      \\_\\
+       ENGINE // AWAKE`},
+        {id:'sigil',label:'UNKNOWN SYSTEM SIGIL',art:String.raw`       +------------------+
+       |   .----------.   |
+       |  /  /\\  /\\  \\  |
+       | |  (  \\/  )  | |
+       |  \\  \\__/  /  |
+       |   '---||---'   |
+       |      /__\\      |
+       |   UNKNOWN_403  |
+       +------------------+`}
+      ];
       const riddles = [
-        { q: 'I have keys but no locks. I have space but no room. What am I?', a: ['keyboard','a keyboard'] },
-        { q: 'The more you take, the more you leave behind. What are they?', a: ['footsteps','steps'] },
-        { q: 'I speak without a mouth and hear without ears. What am I?', a: ['echo','an echo'] }
+        {q:'I have keys but no locks. I have space but no room. What am I?',a:['keyboard','a keyboard'],hint:'You use it to type.'},
+        {q:'The more you take, the more you leave behind. What are they?',a:['footsteps','steps'],hint:'Think about walking.'},
+        {q:'I speak without a mouth and hear without ears. What am I?',a:['echo','an echo'],hint:'Sound can bounce back.'},
+        {q:'What has one eye but cannot see?',a:['needle','a needle'],hint:'A small sewing tool.'},
+        {q:'What gets wetter the more it dries?',a:['towel','a towel'],hint:'You might keep it near a shower.'},
+        {q:'What has a neck but no head?',a:['bottle','a bottle'],hint:'It can hold a drink.'},
+        {q:'What can travel around the world while staying in one corner?',a:['stamp','a stamp'],hint:'It goes on an envelope.'},
+        {q:'What has many teeth but cannot bite?',a:['comb','a comb'],hint:'Used to tidy hair.'},
+        {q:'What belongs to you but others use it more?',a:['name','your name'],hint:'People say it to get your attention.'},
+        {q:'What has cities but no houses, rivers but no water?',a:['map','a map'],hint:'A paper or digital guide.'}
       ];
       const ciphers = [
-        { q: 'Decode this Caesar-shifted message (shift back 1): IFMMP', a: ['hello'] },
-        { q: 'Decode this reversed word: YRATERCES', a: ['secret'] },
-        { q: 'Decode this reversed word: WOL', a: ['low'] }
+        {q:'Caesar shift: decode by shifting each letter back 1: IFMMP',a:['hello'],hint:'I becomes H; F becomes E.'},
+        {q:'Reverse this word: YRATERCES',a:['secretary'],hint:'Read it from right to left.'},
+        {q:'Reverse this word: WOL',a:['low'],hint:'Read it backwards.'},
+        {q:'Caesar shift back 1: UFTU',a:['test'],hint:'Move each letter one place earlier.'},
+        {q:'Decode the binary ASCII: 01001000 01001001',a:['hi'],hint:'Two 8-bit characters.'},
+        {q:'Reverse this word: NOHTYP',a:['python'],hint:'Flip the letter order.'},
+        {q:'Caesar shift back 1: DPEF',a:['code'],hint:'Every letter is one step ahead.'},
+        {q:'Decode the binary ASCII: 01001111 01001011',a:['ok'],hint:'Two uppercase letters.'},
+        {q:'Reverse this word: EDOM',a:['mode'],hint:'Read it from right to left.'},
+        {q:'Caesar shift back 1: TFDSFU',a:['secret'],hint:'Shift each letter back once.'}
       ];
-      const renderCard = (kind, value) => {
-        const isQuote = kind === 'quote';
-        const title = isQuote ? 'QUOTES // MAINFRAME' : 'ROASTS // FRIENDLY FIRE';
-        const actionLabel = isQuote ? 'NEW QUOTE ↻' : 'ROAST ME ↻';
-        const card = document.createElement('section');
-        card.className = 'egg-fun-zone egg-fun-zone-single';
-        card.setAttribute('aria-label', title);
-        const article = document.createElement('article');
-        article.className = 'egg-fun-card';
-        const heading = document.createElement('h3'); heading.textContent = title;
-        const paragraph = document.createElement('p'); paragraph.textContent = '“' + value + '”';
-        const button = document.createElement('button'); button.type = 'button'; button.textContent = actionLabel;
-        button.addEventListener('click', () => {
-          const collection = isQuote ? quotes : roasts;
-          paragraph.textContent = '“' + collection[Math.floor(Math.random() * collection.length)] + '”';
+      const commandHistory = [];
+      let historyIndex = 0, activeChallenge = null, lastAscii = -1, scanTimer = null;
+      let historyFilter = 'all';
+      const commandRegistry = {
+        help:{group:'CORE',usage:'help [command]',desc:'Show the command directory or details for one command.',subs:[]},
+        clear:{group:'CORE',usage:'clear',desc:'Clear terminal output.',subs:[]},
+        exit:{group:'CORE',usage:'exit',desc:'Close the terminal.',subs:[]},
+        guide:{group:'CORE',usage:'guide',desc:'Show keyboard and terminal controls.',subs:[]},
+        history:{group:'CORE',usage:'history',desc:'Show timestamped session history.',subs:[['history-filter','Filter command history by command name or result text.']]},
+        joke:{group:'ENTERTAINMENT',usage:'joke',desc:'Display a random joke.',subs:[]},
+        quote:{group:'ENTERTAINMENT',usage:'quote',desc:'Open the quote card. Use its button for another.',subs:[]},
+        roast:{group:'ENTERTAINMENT',usage:'roast',desc:'Open a friendly roast card.',subs:[]},
+        ascii:{group:'ENTERTAINMENT',usage:'ascii [name|next|list]',desc:'Display one of ten original terminal artworks.',subs:[['ascii next','Show another artwork without repeating the last one.'],['ascii list','List all artwork names.'],...asciiArt.map(a=>['ascii '+a.id,'Display '+a.label+'.'])]},
+        whoami:{group:'INTEL & LORE',usage:'whoami',desc:'Show the current visitor access profile.',subs:[]},
+        date:{group:'INTEL & LORE',usage:'date',desc:'Show local device date and time.',subs:[]},
+        version:{group:'INTEL & LORE',usage:'version',desc:'Show terminal build information.',subs:[]},
+        lore:{group:'INTEL & LORE',usage:'lore',desc:'Reveal a random lore fragment.',subs:[]},
+        secrets:{group:'INTEL & LORE',usage:'secrets',desc:'Reveal a random discovery hint.',subs:[]},
+        riddle:{group:'CHALLENGES',usage:'riddle',desc:'Start a riddle challenge.',subs:[['hint','Give a clue for the active challenge.'],['answer','Reveal the answer and end the challenge.'],['newchallenge','Replace the current challenge with a new one.'],['cancel','Cancel the active challenge.']]},
+        cipher:{group:'CHALLENGES',usage:'cipher',desc:'Start a decoding challenge.',subs:[['hint','Give a clue for the active challenge.'],['answer','Reveal the answer and end the challenge.'],['newchallenge','Replace the current challenge with a new one.'],['cancel','Cancel the active challenge.']]},
+        scan:{group:'CHALLENGES',usage:'scan',desc:'Run a harmless local interface status sequence.',subs:[['scan-cancel','Stop the current scan.']]},
+        room:{group:'RESTRICTED',usage:'room',desc:'Open the archive after all four discoveries.',subs:[]}
+      };
+      const allCommands = Object.keys(commandRegistry);
+      const escapeHTML = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      const normalize = value => value.trim().toLowerCase().replace(/[.!?]+$/g,'');
+      const pick = list => list[Math.floor(Math.random()*list.length)];
+      const setResponse = message => { output.textContent = message; };
+      const clearScan = () => { if(scanTimer){clearTimeout(scanTimer);scanTimer=null;} };
+      terminal._beforeClose = clearScan;
+      const removeMainCard = () => { terminal.querySelectorAll('.egg-main-card').forEach(card => { if (!(activeChallenge && card.classList.contains('egg-card-challenge'))) card.remove(); }); };
+      const showCard = (title, body, kind='info', extra='') => {
+        removeMainCard();
+        const card=document.createElement('section'); card.className='egg-main-card egg-card-'+kind; card.setAttribute('aria-label',title);
+        const h=document.createElement('h3'); h.textContent=title;
+        const content=document.createElement('div'); content.className='egg-card-body';
+        if(typeof body==='string') content.textContent=body; else content.append(body);
+        card.append(h,content); if(extra) { const foot=document.createElement('p'); foot.className='egg-card-foot'; foot.textContent=extra; card.append(foot); }
+        output.insertAdjacentElement('beforebegin',card); output.textContent='';
+        return card;
+      };
+      const showTextCard = (title, body, kind='info') => showCard(title,body,kind);
+      const showAscii = index => {
+        if(index===undefined){let next=Math.floor(Math.random()*asciiArt.length); if(asciiArt.length>1 && next===lastAscii) next=(next+1+Math.floor(Math.random()*(asciiArt.length-1)))%asciiArt.length; index=next;}
+        lastAscii=index; const item=asciiArt[index];
+        const wrap=document.createElement('div'); wrap.className='egg-ascii-wrap';
+        const pre=document.createElement('pre'); pre.className='egg-ascii'; pre.textContent=item.art.replace(/\\n/g,'\n'); wrap.append(pre);
+        const note=document.createElement('p'); note.className='egg-ascii-label'; note.textContent=item.label+' // '+(index+1)+' OF 10'; wrap.append(note);
+        const card=showCard('ASCII ARCHIVE // '+item.label,wrap,'ascii');
+        const controls=document.createElement('div'); controls.className='egg-card-actions';
+        [['NEXT ART','ascii next'],['LIST ALL','ascii list']].forEach(([label,cmd])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>runCommand(cmd));controls.append(b);});
+        card.append(controls);
+      };
+      const renderHelp = target => {
+        const keys=target && commandRegistry[target] ? [target] : Object.keys(commandRegistry);
+        const wrap=document.createElement('div'); wrap.className='egg-help-list';
+        const groups=['CORE','ENTERTAINMENT','INTEL & LORE','CHALLENGES','RESTRICTED'];
+        groups.forEach(group=>{
+          const items=keys.filter(key=>commandRegistry[key].group===group); if(!items.length)return;
+          const section=document.createElement('section'); section.className='egg-help-group';
+          const heading=document.createElement('h4'); heading.textContent='// '+group; section.append(heading);
+          items.forEach(key=>{const item=document.createElement('div');item.className='egg-help-item';const cmd=document.createElement('code');cmd.textContent=commandRegistry[key].usage;const desc=document.createElement('span');desc.textContent=commandRegistry[key].desc;item.append(cmd,desc);section.append(item);});
+          wrap.append(section);
         });
-        article.append(heading, paragraph, button); card.append(article);
-        terminal.querySelector('.egg-fun-zone')?.remove();
-        output.insertAdjacentElement('beforebegin', card);
+        const subs=keys.flatMap(key=>commandRegistry[key].subs.map(([cmd,desc])=>({cmd,desc,owner:key})));
+        if(subs.length){const section=document.createElement('section');section.className='egg-help-group egg-help-additional';const h=document.createElement('h4');h.textContent='// ADDITIONAL COMMANDS & SUBCOMMANDS';section.append(h);subs.forEach(({cmd,desc,owner})=>{const row=document.createElement('div');row.className='egg-help-item';const c=document.createElement('code');c.textContent=cmd;const d=document.createElement('span');d.textContent=desc;row.append(c,d);section.append(row);});wrap.append(section);}
+        showCard(target?'COMMAND DETAILS // '+target.toUpperCase():'COMMAND DIRECTORY // BACKROOM',wrap,'help','Type a command name to inspect its usage.');
       };
-      const setResponse = (message) => { output.textContent = message; };
-      const normalize = value => value.trim().toLowerCase().replace(/[.!?]+$/g, '');
-      const pick = list => list[Math.floor(Math.random() * list.length)];
+      const showHistory = filter => {
+        const entries=commandHistory.map((entry,index)=>({...entry,number:index+1})).filter(entry=>!filter || filter==='all' || entry.command.includes(filter) || entry.result.toLowerCase().includes(filter));
+        const wrap=document.createElement('div');wrap.className='egg-history-list';
+        if(!entries.length){const empty=document.createElement('p');empty.textContent='No matching entries in this session.';wrap.append(empty);}
+        entries.forEach(entry=>{const row=document.createElement('div');row.className='egg-history-entry';const n=document.createElement('span');n.className='egg-history-number';n.textContent=String(entry.number).padStart(2,'0');const body=document.createElement('div');body.className='egg-history-detail';const top=document.createElement('div');top.className='egg-history-top';const cmd=document.createElement('code');cmd.textContent=entry.command;const time=document.createElement('time');time.textContent=entry.time;top.append(cmd,time);const result=document.createElement('p');result.textContent=entry.result;body.append(top,result);row.append(n,body);wrap.append(row);});
+        const summary=document.createElement('div');summary.className='egg-history-summary';summary.textContent=`SESSION TOTAL // ${commandHistory.length} COMMAND${commandHistory.length===1?'':'S'} · DISPLAYED ${entries.length}`;wrap.append(summary);
+        const card=showCard('SESSION HISTORY // '+(filter?'FILTERED':'LIVE LOG'),wrap,'history');
+        const controls=document.createElement('div');controls.className='egg-history-filter';const label=document.createElement('label');label.textContent='FILTER';const field=document.createElement('input');field.type='search';field.placeholder='command or result…';field.value=filter||'';field.setAttribute('aria-label','Filter history');const clear=document.createElement('button');clear.type='button';clear.textContent='RESET';clear.addEventListener('click',()=>{historyFilter='';showHistory('');});field.addEventListener('input',()=>{historyFilter=field.value.trim().toLowerCase();});field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();showHistory(historyFilter);}});label.append(field);controls.append(label,clear);card.append(controls);
+      };
+      const startChallenge = type => {
+        activeChallenge=null; removeMainCard();
+        const collection=type==='riddle'?riddles:ciphers; const item=pick(collection);
+        const wrap=document.createElement('div');wrap.className='egg-challenge';const q=document.createElement('p');q.className='egg-challenge-question';q.textContent=item.q;const status=document.createElement('p');status.className='egg-challenge-status';status.textContent='ENTER YOUR ANSWER IN THE COMMAND LINE BELOW.';wrap.append(q,status);
+        const card=showCard(type.toUpperCase()+' CHALLENGE // ACTIVE',wrap,'challenge','hint · answer · newchallenge · cancel');
+        const actions=document.createElement('div');actions.className='egg-card-actions';[['HINT','hint'],['REVEAL ANSWER','answer'],['NEW CHALLENGE','newchallenge'],['CANCEL','cancel']].forEach(([label,cmd])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>runCommand(cmd));actions.append(b);});card.append(actions);input.placeholder='type your answer…';
+      };
+      const finishChallenge = message => { activeChallenge=null; input.placeholder='type a command...'; showTextCard('CHALLENGE RESULT',message,'result'); };
       const runScan = () => {
-        const frames = ['INITIALIZING LOCAL DIAGNOSTICS...', 'CHECKING INTERFACE MODULES...', 'VERIFYING EASTER-EGG SIGNALS...', 'SCAN COMPLETE // 0 DEVICE THREATS'];
-        let i = 0; setResponse(frames[0]);
-        const tick = () => { i++; if (i < frames.length && terminal?.classList.contains('open')) { setResponse(frames[i]); setTimeout(tick, 420); } };
-        setTimeout(tick, 420);
+        clearScan(); const frames=['INITIALIZING LOCAL DIAGNOSTICS...','CHECKING INTERFACE MODULES...','VERIFYING EASTER-EGG SIGNALS...','SCAN COMPLETE // 0 DEVICE THREATS'];let i=0;
+        const scanCard=showTextCard('LOCAL SCAN // RUNNING',frames[0],'scan');
+        const stop=document.createElement('div');stop.className='egg-card-actions';const stopButton=document.createElement('button');stopButton.type='button';stopButton.textContent='CANCEL SCAN';stopButton.addEventListener('click',()=>runCommand('scan-cancel'));stop.append(stopButton);scanCard.append(stop);
+        const tick=()=>{if(!terminal?.classList.contains('open')){clearScan();return;}i++;if(i<frames.length){const body=terminal.querySelector('.egg-card-body');if(body)body.textContent=frames[i];scanTimer=setTimeout(tick,420);}else{scanTimer=null;const body=terminal.querySelector('.egg-card-body');if(body)body.textContent=frames[i]+'\nNo device inspection or network scan was performed.';}};
+        scanTimer=setTimeout(tick,420);
       };
+      const addHistory = (command,result) => {commandHistory.push({command,time:new Date().toLocaleTimeString(),result:String(result||'OK').slice(0,110)});historyIndex=commandHistory.length;};
       const runCommand = raw => {
-        const command = raw.trim().toLowerCase();
-        if (!command) { setResponse('NO INPUT DETECTED. Type help for available commands.'); return; }
-        if (commandHistory[commandHistory.length - 1] !== command) commandHistory.push(command);
-        historyIndex = commandHistory.length;
-        let response = '';
-        if (activeChallenge) {
-          const attempt = normalize(raw);
-          if (activeChallenge.answers.includes(attempt)) response = 'CORRECT. CHALLENGE CLEARED. NICE WORK.';
-          else response = 'NOT QUITE. TRY AGAIN, OR TYPE cancel TO ABORT THE CHALLENGE.';
-          if (attempt === 'cancel') response = 'CHALLENGE ABORTED. Type riddle or cipher to start another.';
-          if (activeChallenge.answers.includes(attempt) || attempt === 'cancel') activeChallenge = null;
-          setResponse(response); return;
+        const value=raw.trim(); if(!value){setResponse('NO INPUT DETECTED. Type help for available commands.');return;}
+        const command=value.toLowerCase(); const parts=command.split(/\s+/); const root=parts[0]; const arg=parts.slice(1).join(' ');
+        if(activeChallenge){
+          if(['help','hint','answer','newchallenge','cancel'].includes(command)){/* handled below */}
+          else if(root==='riddle'||root==='cipher'){startChallenge(root);addHistory(command,'new challenge started');return;}
+          else {const attempt=normalize(value);if(activeChallenge.item.a.includes(attempt)){finishChallenge('CORRECT. CHALLENGE CLEARED. NICE WORK.');addHistory(command,'correct answer');return;}setResponse('NOT QUITE. TRY AGAIN, OR USE hint / answer / cancel.');return;}
         }
-        if (command === 'help') response = 'AVAILABLE COMMANDS:\nhelp · joke · lore · secrets · clear · room · exit\nquote · roast · whoami · date · history · version\nriddle · guide · ascii · cipher · scan';
-        else if (command === 'joke') response = pick(jokes);
-        else if (command === 'roast') { renderCard('roast', pick(roasts)); setResponse('ROAST MODULE // FRIENDLY FIRE ENABLED'); return; }
-        else if (command === 'quote') { renderCard('quote', pick(quotes)); setResponse('QUOTE MODULE // MAINFRAME TRANSMISSION RECEIVED'); return; }
-        else if (command === 'lore') response = pick(lore);
-        else if (command === 'secrets') response = trackerMessage() + ' Hint: logo, keyboard, footer, blueprint.';
-        else if (command === 'room') { if (found.size === DISCOVERIES.length) { response = 'ROOM ACCESS GRANTED. Opening archive...'; setTimeout(unlockRoom, 180); } else response = `ACCESS DENIED. ${DISCOVERIES.length - found.size} trace(s) still missing.`; }
-        else if (command === 'clear') { terminal.querySelector('.egg-fun-zone')?.remove(); output.textContent = 'Terminal cleared. The void says hi.'; updateTracker(); return; }
-        else if (command === 'exit') { terminal._close(); return; }
-        else if (command === 'whoami') response = 'IDENTITY: UNKNOWN VISITOR\nACCESS LEVEL: GUEST\nSESSION: LOCAL // ANONYMOUS';
-        else if (command === 'date') response = 'LOCAL DATE: ' + new Date().toLocaleDateString() + '\nLOCAL TIME: ' + new Date().toLocaleTimeString() + '\nCLOCK SOURCE: YOUR DEVICE';
-        else if (command === 'history') response = commandHistory.length ? commandHistory.map((item, index) => String(index + 1).padStart(2, '0') + '  ' + item).join('\n') : 'NO COMMAND HISTORY YET.';
-        else if (command === 'version') response = 'UNKNOWN_403 // BACKROOM TERMINAL\nINTERFACE BUILD: 1.1\nMODULE STATUS: ONLINE\nRELEASE CHANNEL: PERSONAL';
-        else if (command === 'riddle') { activeChallenge = pick(riddles); response = 'RIDDLE MODULE // ANSWER IN THE COMMAND LINE\n' + activeChallenge.q + '\nType cancel to abort.'; }
-        else if (command === 'cipher') { activeChallenge = pick(ciphers); response = 'CIPHER MODULE // DECODE THE MESSAGE\n' + activeChallenge.q + '\nType cancel to abort.'; }
-        else if (command === 'guide') response = 'BACKROOM QUICK GUIDE:\n↑ / ↓  Browse command history\nTAB    Complete a command\nESC    Close the terminal\nclear  Clear the output\nroom   Open the archive (when all traces are found)\nType help to list every command.';
-        else if (command === 'ascii') response = `   .----.   .----.\n  / .--. \\ / .--. \\n | |    | | | |    | |\n | |    | | | |    | |\n  \\ '--' / \\ '--' /\n   '----'   '----'\nUNKNOWN_403 // SIGNAL FOUND`;
-        else if (command === 'scan') { runScan(); return; }
-        else response = `COMMAND NOT FOUND: ${command}. Type help. Skill issue? 💀`;
-        setResponse(response);
-        if (command === 'lore') output.dataset.lore = 'seen';
+        clearScan();
+        if(root!=='clear'&&root!=='exit'&&root!=='scan-cancel') removeMainCard();
+        let result='';
+        if(root==='help'){renderHelp(arg);result='command directory opened';}
+        else if(root==='clear'){removeMainCard();output.textContent='Terminal cleared. The void says hi.';result='terminal cleared';}
+        else if(root==='exit'){clearScan();terminal._close();return;}
+        else if(root==='joke'){result=pick(jokes);showTextCard('JOKE MODULE // RANDOM TRANSMISSION',result,'fun');}
+        else if(root==='quote'||root==='roast'){
+          const collection=root==='quote'?quotes:roasts;const isQuote=root==='quote';const wrap=document.createElement('div');wrap.className='egg-feature-quote';wrap.textContent='“'+pick(collection)+'”';const card=showCard(isQuote?'QUOTES // MAINFRAME':'ROASTS // FRIENDLY FIRE',wrap,isQuote?'quote':'roast');const b=document.createElement('button');b.type='button';b.textContent=isQuote?'NEW QUOTE ↻':'ROAST AGAIN ↻';b.addEventListener('click',()=>{wrap.textContent='“'+pick(collection)+'”';});const actions=document.createElement('div');actions.className='egg-card-actions';actions.append(b);card.append(actions);result=root+' card opened';
+        }
+        else if(root==='lore'){result=pick(lore);showTextCard('LORE FRAGMENT // ARCHIVE',result,'lore');}
+        else if(root==='secrets'){result=pick(secrets)+'\n'+trackerMessage();showTextCard('DISCOVERY INTEL // CLASSIFIED',result,'secret');}
+        else if(root==='room'){if(found.size===DISCOVERIES.length){result='ROOM ACCESS GRANTED. Opening archive...';showTextCard('ACCESS GRANTED',result,'result');setTimeout(unlockRoom,180);}else{result=`ACCESS DENIED. ${DISCOVERIES.length-found.size} trace(s) still missing.`;showTextCard('RESTRICTED // ACCESS DENIED',result,'warning');}}
+        else if(root==='whoami'){result='IDENTITY: UNKNOWN VISITOR\nACCESS LEVEL: GUEST\nSESSION: LOCAL // ANONYMOUS';showTextCard('VISITOR PROFILE // WHOAMI',result,'intel');}
+        else if(root==='date'){result='LOCAL DATE: '+new Date().toLocaleDateString()+'\nLOCAL TIME: '+new Date().toLocaleTimeString()+'\nCLOCK SOURCE: YOUR DEVICE';showTextCard('LOCAL CLOCK // DATE',result,'intel');}
+        else if(root==='version'){result='UNKNOWN_403 // BACKROOM TERMINAL\nINTERFACE BUILD: 2.0\nMODULE STATUS: ONLINE\nRELEASE CHANNEL: PERSONAL';showTextCard('BUILD INFORMATION // VERSION',result,'intel');}
+        else if(root==='history'){historyFilter='';addHistory(command,'history card opened');showHistory('');return;}
+        else if(root==='history-filter'){historyFilter=arg;addHistory(command,'history filtered: '+(arg||'all'));showHistory(arg);return;}
+        else if(root==='riddle'||root==='cipher'){startChallenge(root);result=root+' challenge started';}
+        else if(root==='hint'){if(activeChallenge){result='HINT // '+activeChallenge.item.hint;const body=terminal.querySelector('.egg-challenge-status');if(body)body.textContent=result;}else result='NO ACTIVE CHALLENGE. Start riddle or cipher first.';}
+        else if(root==='answer'){if(activeChallenge){result='ANSWER // '+activeChallenge.item.a[0].toUpperCase();finishChallenge(result);}else result='NO ACTIVE CHALLENGE.';}
+        else if(root==='newchallenge'){if(activeChallenge){const type=activeChallenge.type;startChallenge(type);result='new '+type+' challenge started';}else result='NO ACTIVE CHALLENGE. Start riddle or cipher first.';}
+        else if(root==='cancel'){if(activeChallenge){finishChallenge('CHALLENGE ABORTED. Start another with riddle or cipher.');result='challenge cancelled';}else result='NO ACTIVE CHALLENGE.';}
+        else if(root==='ascii'){
+          if(arg==='list'){result='ARTWORK REGISTRY // '+asciiArt.map(a=>a.id).join(' · ');showTextCard('ASCII REGISTRY // 10 DESIGNS',result,'ascii');}
+          else if(arg==='next'||!arg){showAscii();result='ASCII artwork displayed';}
+          else{const index=asciiArt.findIndex(a=>a.id===arg);if(index>=0){showAscii(index);result='ASCII '+arg+' displayed';}else result='UNKNOWN ARTWORK. Use ascii list.';}
+        }
+        else if(root==='scan'){runScan();result='local scan started';}
+        else if(root==='scan-cancel'){clearScan();result='SCAN CANCELLED.';showTextCard('LOCAL SCAN // CANCELLED',result,'warning');}
+        else if(root==='guide'){result='DESKTOP: ↑ / ↓ browse history · TAB complete · ENTER run · ESC close.\nMOBILE: use the on-screen controls below.\nCHALLENGES: hint · answer · newchallenge · cancel.\nType help for the full command directory.';showTextCard('QUICK GUIDE // CONTROLS',result,'guide');}
+        else{result=`COMMAND NOT FOUND: ${command}. Type help. Skill issue? 💀`;showTextCard('UNKNOWN COMMAND // NOT FOUND',result,'warning');}
+        addHistory(command,result);
       };
+      // A compact touch keyboard mirrors the useful desktop controls.
+      const mobilePad=document.createElement('div');mobilePad.className='egg-virtual-pad';mobilePad.setAttribute('role','group');mobilePad.setAttribute('aria-label','Terminal on-screen controls');
+      mobilePad.innerHTML='<div class="egg-pad-row"><button type="button" data-action="ArrowUp">↑</button><button type="button" data-action="ArrowDown">↓</button><button type="button" data-action="Tab">TAB</button><button type="button" data-action="Enter">ENTER</button></div><div class="egg-pad-row"><button type="button" data-action="ArrowLeft">←</button><button type="button" data-action="ArrowRight">→</button><button type="button" data-action="Backspace">⌫</button><button type="button" data-action="Escape">ESC</button></div><div class="egg-pad-row"><button type="button" data-action="b">B</button><button type="button" data-action="a">A</button><button type="button" data-action="hint">HINT</button><button type="button" data-action="cancel">CANCEL</button></div>';
+      terminal.querySelector('.egg-terminal-content').append(mobilePad);
+      mobilePad.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
+        const action=button.dataset.action;
+        if(action==='hint'||action==='cancel'){runCommand(action);input.focus();return;}
+        if(action==='ArrowUp'||action==='ArrowDown'){document.dispatchEvent(new KeyboardEvent('keydown',{key:action,bubbles:true}));}
+        if(action==='ArrowUp'&&!activeChallenge){if(commandHistory.length){historyIndex=Math.max(0,historyIndex-1);input.value=commandHistory[historyIndex]?.command||'';}}
+        else if(action==='ArrowDown'&&!activeChallenge){historyIndex=Math.min(commandHistory.length,historyIndex+1);input.value=commandHistory[historyIndex]?.command||'';}
+        else if(action==='Tab'){const value=input.value.trim().toLowerCase();const matches=allCommands.filter(item=>item.startsWith(value));if(matches.length===1)input.value=matches[0];else if(matches.length>1)setResponse('MATCHES: '+matches.join(' · '));}
+        else if(action==='Enter'){terminal.querySelector('.egg-command-form').requestSubmit();}
+        else if(action==='Escape'){terminal._close();}
+        else if(action==='Backspace'){const start=input.selectionStart??input.value.length;const end=input.selectionEnd??start;const from=start===end?Math.max(0,start-1):start;input.setRangeText('',from,end,'end');input.focus();}
+        else if(['ArrowLeft','ArrowRight','a','b'].includes(action)){document.dispatchEvent(new KeyboardEvent('keydown',{key:action,bubbles:true}));input.focus();}
+      }));
       terminal.querySelector('.egg-command-form').addEventListener('submit', e => {
         e.preventDefault(); const command = input.value; input.value = ''; runCommand(command);
       });
       input.addEventListener('keydown', e => {
-        if (e.key === 'Escape') { terminal._close(); return; }
-        if (e.key === 'ArrowUp' && !activeChallenge) { e.preventDefault(); if (commandHistory.length) { historyIndex = Math.max(0, historyIndex - 1); input.value = commandHistory[historyIndex] || ''; } }
-        if (e.key === 'ArrowDown' && !activeChallenge) { e.preventDefault(); historyIndex = Math.min(commandHistory.length, historyIndex + 1); input.value = commandHistory[historyIndex] || ''; }
-        if (e.key === 'Tab') { e.preventDefault(); const value = input.value.trim().toLowerCase(); const matches = commandList.filter(item => item.startsWith(value)); if (matches.length === 1) input.value = matches[0]; else if (matches.length > 1) setResponse('MATCHES: ' + matches.join(' · ')); }
+        if (e.key === 'Escape') { e.preventDefault(); terminal._close(); return; }
+        if (e.key === 'ArrowUp' && !activeChallenge) { e.preventDefault(); if (commandHistory.length) { historyIndex = Math.max(0, historyIndex - 1); input.value = commandHistory[historyIndex]?.command || ''; } }
+        if (e.key === 'ArrowDown' && !activeChallenge) { e.preventDefault(); historyIndex = Math.min(commandHistory.length, historyIndex + 1); input.value = commandHistory[historyIndex]?.command || ''; }
+        if (e.key === 'Tab') { e.preventDefault(); const value = input.value.trim().toLowerCase(); const matches = allCommands.filter(item => item.startsWith(value)); if (matches.length === 1) input.value = matches[0]; else if (matches.length > 1) setResponse('MATCHES: ' + matches.join(' · ')); }
       });
     }
     discover('terminal');
@@ -410,7 +622,7 @@ if('IntersectionObserver' in window && observedSections.length){
   const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let seq = 0;
   document.addEventListener('keydown', e => {
-    if (e.target && e.target.matches('input,textarea,select,[contenteditable="true"]')) return;
+    if (e.isTrusted && e.target && e.target.matches('input,textarea,select,[contenteditable="true"]')) return;
     const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
     seq = key === konami[seq] ? seq + 1 : (key === konami[0] ? 1 : 0);
     if (seq === konami.length) { seq = 0; discover('konami'); showToast('KONAMI CODE ACCEPTED // CLASSIC CHEAT CODE 🎮'); document.body.classList.add('egg-glitch'); setTimeout(() => document.body.classList.remove('egg-glitch'), reducedMotion ? 0 : 900); }
