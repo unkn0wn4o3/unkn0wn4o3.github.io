@@ -703,3 +703,27 @@ footer>small.egg-copyright{position:absolute;left:50%;bottom:20px;transform:tran
 @media (prefers-reduced-motion: reduce) {
   .egg-main-card { animation: none !important; }
 }
+
+/* ACHIEVEMENT SYSTEM + POLISHED NOIR DETAILS */
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.17;background-image:radial-gradient(1px 1px at 12% 18%,#fff 45%,transparent 60%),radial-gradient(1px 1px at 78% 28%,#d8a7ad 45%,transparent 60%),radial-gradient(1px 1px at 42% 72%,#fff 45%,transparent 60%),radial-gradient(1px 1px at 91% 84%,#c7b9ff 45%,transparent 60%);background-size:310px 290px,390px 340px,470px 410px,560px 500px;animation:ambient-drift 38s linear infinite}
+@keyframes ambient-drift{0%{background-position:0 0,0 0,0 0,0 0}100%{background-position:70px -90px,-90px 70px,100px 80px,-70px -110px}}
+.achievement-launcher{position:absolute;left:50%;bottom:39px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:112px;color:#c9a85c;text-decoration:none;outline-offset:5px}
+.achievement-launcher img{width:27px;height:27px;object-fit:contain;filter:drop-shadow(0 2px 5px #0009);transform:translateY(0) scale(1);transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s}
+.achievement-launcher span{font:700 9px/1.2 'DM Mono',monospace;letter-spacing:.19em;color:#bba36d;opacity:0;transform:translateY(-4px);transition:opacity .22s,transform .22s;white-space:nowrap}
+.achievement-launcher:hover img,.achievement-launcher:focus-visible img{transform:translateY(-2px) scale(1.17);filter:drop-shadow(0 0 9px #d5ad5866)}
+.achievement-launcher:hover span,.achievement-launcher:focus-visible span{opacity:1;transform:translateY(2px)}
+.achievement-launcher:focus-visible{outline:1px solid #c6a75e;border-radius:8px}
+footer{min-height:132px;padding-bottom:70px!important}
+footer>small.egg-copyright{bottom:13px!important}
+.achievement-toast{position:fixed;right:22px;bottom:24px;z-index:10001;display:flex;align-items:center;gap:12px;min-width:240px;max-width:min(360px,calc(100vw - 28px));padding:13px 16px;border:1px solid #66512d;border-radius:11px;background:linear-gradient(135deg,#17140e,#090909);box-shadow:0 16px 50px #000b;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+.achievement-toast.show{opacity:1;transform:translateY(0)}.achievement-toast-mark{color:#e2c276;font-size:22px}.achievement-toast>span:last-child{display:grid;gap:3px}.achievement-toast small{font:9px 'DM Mono',monospace;letter-spacing:.15em;color:#b99a5b}.achievement-toast strong{font-size:13px;color:#f4eee2}
+.achievement-click-card{cursor:pointer;position:relative;transition:transform .22s,border-color .22s,box-shadow .22s!important}.achievement-click-card:after{content:'CLICK TO UNLOCK';position:absolute;right:10px;bottom:9px;padding:4px 6px;border:1px solid #ffffff1c;border-radius:4px;background:#080808c9;color:#b7a16e;font:8px 'DM Mono',monospace;letter-spacing:.09em;opacity:0;transform:translateY(3px);transition:opacity .2s,transform .2s;pointer-events:none}
+.achievement-click-card:hover:after,.achievement-click-card:focus-visible:after{opacity:1;transform:translateY(0)}.achievement-click-card:focus-visible{outline:2px solid #c4a45c;outline-offset:3px;z-index:2}.achievement-click-card:active{transform:scale(.985)}
+#world .achievement-click-card{padding-bottom:35px}
+@media(hover:none){.achievement-launcher span{opacity:1;transform:none}.achievement-click-card:after{content:'TAP TO UNLOCK';opacity:1;transform:none}.achievement-launcher img{width:28px;height:28px}}
+@media(max-width:520px){.achievement-toast{right:12px;bottom:72px;left:12px;min-width:0}.achievement-launcher{bottom:39px}.achievement-launcher span{font-size:8px}}
+@media(prefers-reduced-motion:reduce){body:before{animation:none!important}.achievement-launcher img,.achievement-launcher span,.achievement-toast,.achievement-click-card:after{transition:none!important}.achievement-launcher:hover img{transform:none}}
+.achievement-launcher{animation:achievement-launcher-float 5.2s ease-in-out infinite}
+@keyframes achievement-launcher-float{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.achievement-launcher:hover,.achievement-launcher:focus-visible{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.achievement-launcher{animation:none!important}}

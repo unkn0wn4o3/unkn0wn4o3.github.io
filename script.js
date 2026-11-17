@@ -56,7 +56,7 @@ if('IntersectionObserver' in window && observedSections.length){
     root.classList.add('cursor-ready');
     let x = window.innerWidth / 2, y = window.innerHeight / 2;
     let tx = x, ty = y;
-    const interactive = 'a,button,[role="button"],.media-card,.ambition-card,.project-card,.social-grid>a';
+    const interactive = 'a,button,[role="button"],.media-card,.ambition-card,.project-card,.social-grid>a,.achievement-click-card';
     window.addEventListener('mousemove', (event) => {
       tx = event.clientX; ty = event.clientY;
       cursor.style.transform = `translate(${tx - 5}px, ${ty - 5}px) rotate(-10deg)`;
@@ -150,6 +150,7 @@ if('IntersectionObserver' in window && observedSections.length){
     found.add(id); persist(); updateTracker();
     if (fresh) showToast(`TRACE FOUND // ${item.title}`);
     if (fresh && found.size === DISCOVERIES.length) {
+      window.Unknown403Achievements?.award('four-traces');
       setTimeout(() => { unlockRoom(); }, 900);
     }
   }
@@ -502,7 +503,7 @@ if('IntersectionObserver' in window && observedSections.length){
         if(activeChallenge){
           if(['help','hint','answer','newchallenge','cancel'].includes(command)){/* handled below */}
           else if(root==='riddle'||root==='cipher'){startChallenge(root);addHistory(command,'new challenge started');return;}
-          else {const attempt=normalize(value);if(activeChallenge.item.a.includes(attempt)){finishChallenge('CORRECT. CHALLENGE CLEARED. NICE WORK.');addHistory(command,'correct answer');return;}setResponse('NOT QUITE. TRY AGAIN, OR USE hint / answer / cancel.');return;}
+          else {const attempt=normalize(value);if(activeChallenge.item.a.includes(attempt)){finishChallenge('CORRECT. CHALLENGE CLEARED. NICE WORK.');window.Unknown403Achievements?.award('big-brain');addHistory(command,'correct answer');return;}setResponse('NOT QUITE. TRY AGAIN, OR USE hint / answer / cancel.');return;}
         }
         clearScan();
         if(root!=='clear'&&root!=='exit'&&root!=='scan-cancel') removeMainCard();
@@ -565,6 +566,7 @@ if('IntersectionObserver' in window && observedSections.length){
       });
     }
     discover('terminal');
+    window.Unknown403Achievements?.award('terminal-tourist');
     updateTracker();
     terminal._open();
   }

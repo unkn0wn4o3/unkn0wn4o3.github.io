@@ -36,3 +36,17 @@ FEATURE NOTES
 
 BACKUP
 Keep a copy of your currently working GitHub Pages files before replacing them with this build.
+
+
+ACHIEVEMENT ARCHIVE UPDATE
+- achievements.html: standalone archive page with all 20 badge artworks and unlock status
+- achievements.css: responsive archive styling
+- achievements.js: local achievement state, unlock conditions, progress, and unlock notifications
+- assets/achievements/: 20 transparent badge PNGs plus the transparent trophy PNG
+- The trophy launcher sits above the existing footer copyright. The original copyright five-click interaction is preserved.
+- My World cards unlock individually on click/tap (also keyboard accessible).
+- Entertainment cards unlock their category badge and the parent Fictional Hours badge on click/tap. Hovering alone never unlocks.
+- Section tasks use actual viewport visibility. Blueprint requires all four Focus Quests to be viewed and the live project link to be opened.
+- Terminal Tourist, Big Brain, and Four Traces connect to the existing terminal and discovery system.
+- Achievement progress is stored locally in this browser under unknown403-achievements-v1. It does not sync across devices.
+- Reset is available at the bottom of the achievement archive and requires confirmation.
