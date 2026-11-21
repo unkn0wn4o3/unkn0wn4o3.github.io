@@ -727,3 +727,24 @@ footer>small.egg-copyright{bottom:13px!important}
 @keyframes achievement-launcher-float{0%,100%{translate:0 0}50%{translate:0 -3px}}
 .achievement-launcher:hover,.achievement-launcher:focus-visible{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.achievement-launcher{animation:none!important}}
+
+/* Achievement click targets: retain click affordance without intrusive unlock labels or palette overrides. */
+.achievement-click-card{cursor:pointer;position:relative;transition:transform .22s,border-color .22s,box-shadow .22s!important}
+.achievement-click-card:after{content:none!important;display:none!important}
+#world .achievement-click-card{padding-bottom:21px}
+.achievement-click-card:focus-visible{outline:2px solid #9a82c7;outline-offset:3px;z-index:2}
+.achievement-click-card:active{transform:scale(.985)}
+/* The challenge feedback console is reserved for Riddle and Cipher. */
+.egg-output{color:#d4c6c8;transition:color .2s,border-color .2s,background .2s}
+.egg-output:empty{color:#ffffff66}
+.egg-output-feedback{border-color:#604a80!important;color:#e5d9ff!important;background:linear-gradient(120deg,#09070d,#050505)!important}
+.egg-challenge-status{color:#b9a7d7}
+.egg-card-fun .egg-feature-quote,.egg-card-lore .egg-feature-quote,.egg-card-secret .egg-feature-quote{font:16px/1.75 Georgia,serif;color:#eee1e5;white-space:pre-wrap}
+.egg-card-fun .egg-card-body,.egg-card-lore .egg-card-body,.egg-card-secret .egg-card-body{line-height:1.8}
+.egg-card-fun .egg-card-actions button,.egg-card-lore .egg-card-actions button,.egg-card-secret .egg-card-actions button{min-width:132px}
+.achievement-launcher{bottom:39px;gap:3px;color:#c9a85c}
+.achievement-launcher img{width:29px;height:29px}
+.achievement-launcher span{font-size:9px;letter-spacing:.2em}
+@media(hover:none){.achievement-launcher span{opacity:0;transform:translateY(-4px)}}
+
+.egg-output-idle{color:#ffffff66!important;border-color:#ffffff18!important;background:#050505!important}

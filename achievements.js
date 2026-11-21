@@ -2,6 +2,7 @@
   'use strict';
   const KEY = 'unknown403-achievements-v1';
   const DISCOVERY_KEY = 'unknown403-discoveries-v1';
+  const LOCKED_IMAGE = 'assets/achievements/Dark Crystal Question Mark Icon.png';
   const BADGES = [
     {id:'spawned-in',name:'Spawned In',desc:'You spawned in. First W secured. Welcome to the lore 💀',image:'Sci-Fi Portal Emblem with Orbital Crescent.png',hint:'Visit the website for the first time.',group:'SITE'},
     {id:'lore-check',name:'Lore Check',desc:'Read the lore. Now you know slightly too much. 😭',image:'Antique Dossier with Bronze Seal.png',hint:'Spend a moment in the About section.',group:'SITE'},
@@ -45,7 +46,10 @@
     document.querySelectorAll('[data-badge-id]').forEach(card=>{
       const yes=unlocked.has(card.dataset.badgeId);card.classList.toggle('is-unlocked',yes);card.classList.toggle('is-locked',!yes);
       const status=card.querySelector('.badge-status');if(status)status.textContent=yes?'UNLOCKED':'LOCKED';
-      const img=card.querySelector('img');if(img)img.alt=yes?`${card.dataset.badgeName} achievement badge`:'Locked achievement artwork';
+      const img=card.querySelector('img');if(img){img.src=yes?img.dataset.badgeImage:LOCKED_IMAGE;img.alt=yes?`${card.dataset.badgeName} achievement badge`:'Locked crystal question mark';}
+      const desc=card.querySelector('.badge-description');if(desc)desc.hidden=!yes;
+      const condition=card.querySelector('.badge-condition');if(condition)condition.hidden=yes;
+      const how=card.querySelector('.badge-hint');if(how)how.hidden=yes;
     });
   }
   function award(id) {
@@ -69,10 +73,10 @@
     if(grid){
       const groups=['SITE','GAMING','ENTERTAINMENT','MY WORLD','BLUEPRINT','SOCIALS','SECRETS'];
       grid.innerHTML=groups.map(group=>{
-        const cards=BADGES.filter(b=>b.group===group).map(b=>`<article class="badge-card ${unlocked.has(b.id)?'is-unlocked':'is-locked'}" data-badge-id="${b.id}" data-badge-name="${b.name}"><div class="badge-art"><img src="assets/achievements/${encodeURIComponent(b.image).replace(/%2F/g,'/')}" alt="${unlocked.has(b.id)?b.name+' achievement badge':'Locked achievement artwork'}" loading="lazy"><span class="badge-lock" aria-hidden="true">${unlocked.has(b.id)?'✦':'?'}</span></div><div class="badge-copy"><div class="badge-meta"><span>${b.group}</span><b class="badge-status">${unlocked.has(b.id)?'UNLOCKED':'LOCKED'}</b></div><h3>${b.name}</h3><p>${b.desc}</p><button type="button" class="badge-hint" aria-expanded="false">HOW TO UNLOCK <span>＋</span></button><p class="badge-condition" hidden>${b.hint}</p></div></article>`).join('');
+        const cards=BADGES.filter(b=>b.group===group).map(b=>`<article class="badge-card ${unlocked.has(b.id)?'is-unlocked':'is-locked'}" data-badge-id="${b.id}" data-badge-name="${b.name}"><div class="badge-art"><img data-badge-image="assets/achievements/${encodeURIComponent(b.image).replace(/%2F/g,'/')}" src="${unlocked.has(b.id)?'assets/achievements/'+encodeURIComponent(b.image).replace(/%2F/g,'/'):LOCKED_IMAGE}" alt="${unlocked.has(b.id)?b.name+' achievement badge':'Locked crystal question mark'}" loading="lazy"></div><div class="badge-copy"><div class="badge-meta"><span>${b.group}</span><b class="badge-status">${unlocked.has(b.id)?'UNLOCKED':'LOCKED'}</b></div><h3>${b.name}</h3><p class="badge-description" ${unlocked.has(b.id)?'':'hidden'}>${b.desc}</p><p class="badge-condition" ${unlocked.has(b.id)?'hidden':''}>HOW TO UNLOCK: ${b.hint}</p></div></article>`).join('');
         return `<section class="badge-group"><div class="badge-group-heading"><span>ARCHIVE // ${group}</span><i></i></div><div class="badge-grid">${cards}</div></section>`;
       }).join('');
-      grid.addEventListener('click',e=>{const btn=e.target.closest('.badge-hint');if(!btn)return;const card=btn.closest('.badge-card');const detail=card.querySelector('.badge-condition');const open=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',String(open));detail.hidden=!open;btn.querySelector('span').textContent=open?'−':'＋';});
+      
     }
     renderProgress();
     document.getElementById('resetAchievements')?.addEventListener('click',()=>{
