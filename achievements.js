@@ -116,3 +116,34 @@
   if('IntersectionObserver' in window&&quests.length){const qObs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting&&entry.intersectionRatio>=.25){seenQuests.add(entry.target);checkBlueprint();qObs.unobserve(entry.target);}}),{threshold:[.25,.5]});quests.forEach(q=>qObs.observe(q));}
   document.querySelector('#projects .project-card.current a.project-foot')?.addEventListener('click',()=>{openedProject=true;checkBlueprint();});
 })();
+
+
+// Main-site custom cursor — mirrored in the Achievement Archive.
+// Idle: 👾. Interactive hover: the original crimson tech crosshair.
+(() => {
+  const root = document.documentElement;
+  const cursor = document.getElementById('customCursor');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!cursor || !finePointer || reducedMotion) return;
+
+  root.classList.add('cursor-ready');
+  let tx = window.innerWidth / 2;
+  let ty = window.innerHeight / 2;
+
+  window.addEventListener('mousemove', (event) => {
+    tx = event.clientX;
+    ty = event.clientY;
+    cursor.style.transform = `translate(${tx - 5}px, ${ty - 5}px) rotate(-10deg)`;
+  }, { passive: true });
+
+  const interactive = 'a,button,[role="button"],.badge-card,.badge-hint';
+  document.addEventListener('mouseover', (event) => {
+    const target = event.target.closest(interactive);
+    cursor.classList.toggle('is-pointing', !!target);
+  });
+
+  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+})();
