@@ -50,3 +50,11 @@ body.achievement-archive{background:radial-gradient(ellipse at 50% -12%,#21152f 
 
 .badge-card.is-locked .badge-meta{display:none}
 .badge-card.is-locked .badge-description{display:none!important}
+
+/* CRYSTAL TROPHY MOTION + ARCHIVE TYPOGRAPHY */
+.archive-title-row h1,.archive-title-row h1 span{color:#d8c3ff!important;text-shadow:0 0 26px #8b5cc533}
+.archive-trophy{width:clamp(100px,16vw,176px);transform-origin:50% 60%;animation:archive-crystal-trophy 3.9s ease-in-out infinite!important;filter:drop-shadow(0 0 12px #9a63ef55) drop-shadow(0 12px 22px #000b)!important}
+@keyframes archive-crystal-trophy{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(1.2deg)}}
+.badge-card.is-locked .badge-art img{animation:locked-crystal-mystery 2.8s ease-in-out infinite;transform-origin:50% 55%;filter:drop-shadow(0 0 11px #a56cff88)!important}
+@keyframes locked-crystal-mystery{0%,100%{transform:translateY(0) rotateY(-7deg) rotateZ(-1deg) scale(.96)}50%{transform:translateY(-7px) rotateY(7deg) rotateZ(1deg) scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.archive-trophy,.badge-card.is-locked .badge-art img{animation:none!important}}
