@@ -50,3 +50,19 @@ ACHIEVEMENT ARCHIVE UPDATE
 - Terminal Tourist, Big Brain, and Four Traces connect to the existing terminal and discovery system.
 - Achievement progress is stored locally in this browser under unknown403-achievements-v1. It does not sync across devices.
 - Reset is available at the bottom of the achievement archive and requires confirmation.
+
+
+AFTERHOURS — STRUCTURE BUILD
+- afterhours.html: standalone Deep Forest music-player page.
+- afterhours.css: responsive player layout and Deep Forest styling.
+- afterhours.js: reserved scaffold for future track integration; no audio is bundled or playable in this build.
+- Homepage entry point: a left-edge headphone-style tab placed within the hero section, so it scrolls away with the page (not fixed/sticky).
+- Clicking the tab opens a dotted-border preview panel. Its inner AFTERHOURS card opens afterhours.html in the same tab.
+- The player layout has a central Now Playing area and a right-side library list with 16 numbered track slots.
+- The selected track artwork is designed to occupy the central artwork area and its corresponding small artwork slot in the right-side list once track data is added.
+- Track titles, artist names, MP3 files, track images, headphone icon, preview image, and background image are intentionally not included yet.
+- Playback controls are visual placeholders and remain disabled until authorised audio files and track metadata are supplied.
+- No mood filters or playlist categories are included.
+- No Punjabi tracks or playlist content are included.
+- Earlier requested About wording is restored: “stalk my socials” and “SCROLL DOWN, BESTIE!”
+- Existing homepage sections, assets, achievements archive, trophy, cursor, terminal, discoveries, and Secret Room files are carried forward from the supplied ZIP. No GitHub repository changes were made.

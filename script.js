@@ -699,3 +699,29 @@ if('IntersectionObserver' in window && observedSections.length){
     const roomHint = document.createElement('span'); roomHint.className = 'egg-room-ready'; roomHint.textContent = 'SECRET ROOM AVAILABLE'; roomHint.setAttribute('aria-hidden','true'); document.body.appendChild(roomHint);
   }
 })();
+
+
+/* AFTERHOURS preview launcher */
+(() => {
+  const tab = document.getElementById('afterhoursTab');
+  const panel = document.getElementById('afterhoursPreview');
+  const entry = document.getElementById('afterhoursEntry');
+  if (!tab || !panel || !entry) return;
+
+  const setOpen = (open) => {
+    panel.hidden = !open;
+    tab.setAttribute('aria-expanded', String(open));
+  };
+  tab.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setOpen(panel.hidden);
+  });
+  panel.addEventListener('click', (event) => event.stopPropagation());
+  document.addEventListener('click', (event) => {
+    if (!entry.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+})();
+
