@@ -4,26 +4,26 @@
   const DISCOVERY_KEY = 'unknown403-discoveries-v1';
   const LOCKED_IMAGE = 'assets/achievements/Dark Crystal Question Mark Icon.png';
   const BADGES = [
-    {id:'spawned-in',name:'Spawned In',desc:'You spawned in. First W secured. Welcome to the lore 💀',image:'Sci-Fi Portal Emblem with Orbital Crescent.png',hint:'Visit the website for the first time.',group:'SITE'},
-    {id:'lore-check',name:'Lore Check',desc:'Read the lore. Now you know slightly too much. 😭',image:'Antique Dossier with Bronze Seal.png',hint:'Spend a moment in the About section.',group:'SITE'},
-    {id:'queue-dodger',name:'Queue Dodger',desc:'Entered Gaming HQ. Productivity has officially left the chat. 🎮',image:'Neon Blue and Violet Gaming Controller.png',hint:'Explore Gaming HQ.',group:'GAMING'},
-    {id:'fictional-hours',name:'Fictional Hours',desc:'Entertainment tab opened. Fictional people are carrying the plot.',image:'Vintage Projector Golden Beam.png',hint:'Click any card in Entertainment.',group:'ENTERTAINMENT'},
+    {id:'spawned-in',name:'Spawned In',desc:'You spawned in. First W secured. Welcome to the lore. Try not to get lost. 💀',image:'Sci-Fi Portal Emblem with Orbital Crescent.png',hint:'Visit the website for the first time.',group:'SITE'},
+    {id:'lore-check',name:'Lore Check',desc:'Lore absorbed. You now know slightly too much. No refunds. 😭',image:'Antique Dossier with Bronze Seal.png',hint:'Spend a moment in the About section.',group:'SITE'},
+    {id:'queue-dodger',name:'Queue Dodger',desc:'Gaming HQ entered. Productivity has officially left the chat. 🎮',image:'Neon Blue and Violet Gaming Controller.png',hint:'Explore Gaming HQ.',group:'GAMING'},
+    {id:'fictional-hours',name:'Fictional Hours',desc:'Entertainment explored. Fictional people are carrying the plot again.',image:'Vintage Projector Golden Beam.png',hint:'Click any card in Entertainment.',group:'ENTERTAINMENT'},
     {id:'anime-rent-free',name:'Anime Rent-Free',desc:'Anime section visited. Character arcs got you in a chokehold. 💀',image:'Intense Indigo Manga Eye Emblem.png',hint:'Click at least one Anime I FW card.',group:'ENTERTAINMENT'},
     {id:'one-more-ep',name:'One More Ep',desc:'One more episode? Be fr. We know how this goes. 😭',image:'Cinematic Remote and Filmstrip Emblem.png',hint:'Click at least one Series That Got Me Hooked card.',group:'ENTERTAINMENT'},
     {id:'cinema-tax',name:'Cinema Tax',desc:'Movies explored. Popcorn tax has been paid. 🍿',image:'Vintage Burgundy Cinema Ticket and Film Reel.png',hint:'Click at least one Movies card.',group:'ENTERTAINMENT'},
     {id:'not-just-pixels',name:'Not Just Pixels',desc:'“It’s just cartoons” is a weak take. 💀',image:'Neon Anime Motion Reel.png',hint:'Click at least one Animated Movies card.',group:'ENTERTAINMENT'},
-    {id:'side-quest-irl',name:'Side Quest IRL',desc:'All six side quests checked. Bro actually explored the map. 🗺️',image:'Antique Compass and Treasure Map Emblem.png',hint:'Unlock all six My World card achievements.',group:'MY WORLD'},
+    {id:'side-quest-irl',name:'Side Quest IRL',desc:'All six side quests cleared. Bro actually explored the whole map. 🗺️',image:'Antique Compass and Treasure Map Emblem.png',hint:'Unlock all six My World card achievements.',group:'MY WORLD'},
     {id:'ball-knowledge',name:'Ball Knowledge',desc:'Football corner visited. Ball knowledge +1. ⚽',image:'Green Football Stadium Emblem.png',hint:'Click the Football card in My World.',group:'MY WORLD'},
     {id:'37-tabs',name:'37 Tabs Open',desc:'Learning stuff opened. 37 tabs and still curious. 😭',image:'Antique Scholar Emblem with Journal.png',hint:'Click the Learning Stuff card in My World.',group:'MY WORLD'},
     {id:'fictional-resident',name:'Fictional Resident',desc:'Fictional worlds explored. Reality got muted for a sec.',image:'Moonlit Portal to a Dreaming Citadel.png',hint:'Click the Fictional Worlds card in My World.',group:'MY WORLD'},
     {id:'menu-investigator',name:'Menu Investigator',desc:'Food section visited. Priorities? Immaculate. 🍜',image:'Copper-Kissed Ramen Still Life.png',hint:'Click the Food card in My World.',group:'MY WORLD'},
     {id:'delulu-dept',name:'Delulu Dept.',desc:'Delulu Dept. explored. Headcanon running at 4K. 💀',image:'Enchanted Moonlit Dream Journal.png',hint:'Click the Delulu Hours card in My World.',group:'MY WORLD'},
     {id:'patch-notes',name:'Patch Notes IRL',desc:'Self-improvement checked. Character development loading…',image:'Resilient Sprout and Vintage Compass.png',hint:'Click the Self Improvement card in My World.',group:'MY WORLD'},
-    {id:'blueprint-lurker',name:'Blueprint Lurker',desc:'Blueprint explored. Four quests inspected. Bro is reviewing the patch notes. 💀',image:'Blueprint Mapping Compass Emblem.png',hint:'View all four Focus Quests and open the live website project.',group:'BLUEPRINT'},
-    {id:'social-battery',name:'Social Battery',desc:'Socials checked. Choose your fighter. No pressure. 🤝',image:'Glowing Metallic Network Emblem.png',hint:'Visit the Socials section.',group:'SOCIALS'},
-    {id:'terminal-tourist',name:'Terminal Tourist',desc:'Backroom Terminal opened. IT department? That’s you now. 💀',image:'Retro Green Terminal Workspace.png',hint:'Open the Backroom Terminal.',group:'SECRETS'},
-    {id:'big-brain',name:'Big Brain, No Buffer',desc:'Riddle solved. Brain finally clocked in. 🧠',image:'Steampunk Puzzle Gear Emblem.png',hint:'Correctly solve a terminal riddle or cipher.',group:'SECRETS'},
-    {id:'four-traces',name:'Four Traces, One Door',desc:'All four traces found. Red Flag Archive unlocked. Plot twist: you were the detective. 🚩',image:'Steampunk Vault Door with Purple Glow.png',hint:'Discover all four existing Easter eggs and unlock the Secret Room.',group:'SECRETS'}
+    {id:'blueprint-lurker',name:'Blueprint Lurker',desc:'Blueprint inspected. Four quests reviewed. Bro is reading the patch notes. 💀',image:'Blueprint Mapping Compass Emblem.png',hint:'View all four Focus Quests and open the live website project.',group:'BLUEPRINT'},
+    {id:'social-battery',name:'Social Battery',desc:'Socials explored. Choose your fighter. No pressure, just vibes. 🤝',image:'Glowing Metallic Network Emblem.png',hint:'Visit the Socials section.',group:'SOCIALS'},
+    {id:'terminal-tourist',name:'Terminal Tourist',desc:'Backroom Terminal opened. IT department? Apparently that is you now. 💀',image:'Retro Green Terminal Workspace.png',hint:'Open the Backroom Terminal.',group:'SECRETS'},
+    {id:'big-brain',name:'Big Brain, No Buffer',desc:'Challenge solved. Brain finally clocked in. We love to see it. 🧠',image:'Steampunk Puzzle Gear Emblem.png',hint:'Correctly solve a terminal riddle or cipher.',group:'SECRETS'},
+    {id:'four-traces',name:'Four Traces, One Door',desc:'All four traces found. Secret Room unlocked. Plot twist: you were the detective all along. 🚩',image:'Steampunk Vault Door with Purple Glow.png',hint:'Discover all four existing Easter eggs and unlock the Secret Room.',group:'SECRETS'}
   ];
   const read = () => { try { const x=JSON.parse(localStorage.getItem(KEY)||'[]'); return new Set(Array.isArray(x)?x.filter(id=>BADGES.some(b=>b.id===id)):[]); } catch (_) { return new Set(); } };
   const unlocked = read();
@@ -52,6 +52,30 @@
       const how=card.querySelector('.badge-hint');if(how)how.hidden=yes;
     });
   }
+  function applyArchiveFilters() {
+    const search=(document.getElementById('achievementSearch')?.value||'').trim().toLowerCase();
+    const status=document.querySelector('.archive-filter.is-active')?.dataset.filter||'all';
+    const category=document.getElementById('achievementCategory')?.value||'all';
+    let visible=0;
+    document.querySelectorAll('.badge-card').forEach(card=>{
+      const id=card.dataset.badgeId;
+      const badge=BADGES.find(item=>item.id===id);
+      if(!badge)return;
+      const matchesStatus=status==='all'||(status==='unlocked'?unlocked.has(id):!unlocked.has(id));
+      const matchesCategory=category==='all'||badge.group===category;
+      const haystack=[badge.name,badge.desc,badge.hint,badge.group].join(' ').toLowerCase();
+      const matchesSearch=!search||haystack.includes(search);
+      const show=matchesStatus&&matchesCategory&&matchesSearch;
+      card.hidden=!show;
+      if(show)visible++;
+    });
+    document.querySelectorAll('.badge-group').forEach(group=>{
+      group.hidden=!group.querySelector('.badge-card:not([hidden])');
+    });
+    const results=document.getElementById('achievementResults');
+    if(results)results.textContent=`Showing ${visible} of ${BADGES.length} badges${search?' matching “'+search+'”':''}.`;
+  }
+
   function award(id) {
     const badge=BADGES.find(b=>b.id===id);if(!badge||unlocked.has(id))return false;
     unlocked.add(id);save();renderProgress();toast(badge);
@@ -74,14 +98,21 @@
       const groups=['SITE','GAMING','ENTERTAINMENT','MY WORLD','BLUEPRINT','SOCIALS','SECRETS'];
       grid.innerHTML=groups.map(group=>{
         const cards=BADGES.filter(b=>b.group===group).map(b=>`<article class="badge-card ${unlocked.has(b.id)?'is-unlocked':'is-locked'}" data-badge-id="${b.id}" data-badge-name="${b.name}"><div class="badge-art"><img data-badge-image="assets/achievements/${encodeURIComponent(b.image).replace(/%2F/g,'/')}" src="${unlocked.has(b.id)?'assets/achievements/'+encodeURIComponent(b.image).replace(/%2F/g,'/'):LOCKED_IMAGE}" alt="${unlocked.has(b.id)?b.name+' achievement badge':'Locked crystal question mark'}" loading="lazy"></div><div class="badge-copy"><div class="badge-meta"><span>${b.group}</span><b class="badge-status">${unlocked.has(b.id)?'UNLOCKED':'LOCKED'}</b></div><h3>${b.name}</h3><p class="badge-description" ${unlocked.has(b.id)?'':'hidden'}>${b.desc}</p><p class="badge-condition" ${unlocked.has(b.id)?'hidden':''}>HOW TO UNLOCK: ${b.hint}</p></div></article>`).join('');
-        return `<section class="badge-group"><div class="badge-group-heading"><span>ARCHIVE // ${group}</span><i></i></div><div class="badge-grid">${cards}</div></section>`;
+        return `<section class="badge-group" data-badge-group="${group}"><div class="badge-group-heading"><span>ARCHIVE // ${group}</span><i></i></div><div class="badge-grid">${cards}</div></section>`;
       }).join('');
       
     }
     renderProgress();
+    document.getElementById('achievementSearch')?.addEventListener('input',applyArchiveFilters);
+    document.getElementById('achievementCategory')?.addEventListener('change',applyArchiveFilters);
+    document.querySelectorAll('.archive-filter').forEach(button=>button.addEventListener('click',()=>{
+      document.querySelectorAll('.archive-filter').forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
+      applyArchiveFilters();
+    }));
+    applyArchiveFilters();
     document.getElementById('resetAchievements')?.addEventListener('click',()=>{
-      if(!window.confirm('Reset all 20 achievement unlocks on this browser? This cannot be undone.'))return;
-      unlocked.clear();save();renderProgress();
+      if(!window.confirm('Reset all achievement progress saved in this browser? This cannot be undone.'))return;
+      unlocked.clear();save();renderProgress();applyArchiveFilters();
     });
     return;
   }

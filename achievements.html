@@ -13,13 +13,23 @@
   <main class="archive-main">
     <section class="archive-hero">
       <p class="eyebrow">CLASSIFIED PLAYER RECORD // 020</p>
-      <div class="archive-title-row"><div><h1>THE ACHIEVEMENT<br><span>ARCHIVE.</span></h1><p class="archive-intro">Twenty badges. A suspicious amount of side quests. No participation trophies. 💀</p></div><img src="assets/achievements/trophy.png" alt="Dark crystal purple achievement trophy" class="archive-trophy"></div>
+      <div class="archive-title-row"><div><h1>THE ACHIEVEMENT<br><span>ARCHIVE.</span></h1><p class="archive-intro">20 badges. Too many side quests. Absolutely zero participation trophies. Earn the lore. 💀</p></div><img src="assets/achievements/trophy.png" alt="Dark crystal purple achievement trophy" class="archive-trophy"></div>
       <div class="archive-progress-panel"><div class="archive-progress-top"><strong data-achievement-count>0 / 20 UNLOCKED</strong><span>LOCAL PLAYER DATA</span></div><div class="archive-progress-track"><span data-achievement-progress></span></div><p data-achievement-subtitle>0% complete · all 20 are still hiding.</p></div>
       <div class="archive-legend"><span><i class="legend-unlocked"></i> UNLOCKED</span><span><i class="legend-locked"></i> LOCKED</span><span>PROGRESS SAVES IN THIS BROWSER</span></div>
     </section>
+    <section class="archive-tools" aria-label="Achievement filters">
+      <label class="archive-search-wrap"><span>SEARCH THE ARCHIVE</span><input id="achievementSearch" type="search" placeholder="find a badge..." autocomplete="off"></label>
+      <div class="archive-filter-row" role="group" aria-label="Filter achievements">
+        <button type="button" class="archive-filter is-active" data-filter="all" aria-pressed="true">ALL 20</button>
+        <button type="button" class="archive-filter" data-filter="unlocked" aria-pressed="false">UNLOCKED</button>
+        <button type="button" class="archive-filter" data-filter="locked" aria-pressed="false">LOCKED</button>
+      </div>
+      <label class="archive-category-wrap"><span>SECTION</span><select id="achievementCategory"><option value="all">All sections</option><option value="SITE">Site</option><option value="GAMING">Gaming</option><option value="ENTERTAINMENT">Entertainment</option><option value="MY WORLD">My World</option><option value="BLUEPRINT">Blueprint</option><option value="SOCIALS">Socials</option><option value="SECRETS">Secrets</option></select></label>
+      <p class="archive-results" id="achievementResults" aria-live="polite">Showing all 20 badges.</p>
+    </section>
     <div id="achievementGrid" class="archive-groups" aria-live="polite"></div>
-    <section class="archive-footer-note"><span>END OF CURRENT BUILD</span><p>Some badges are easy. Some require actual exploration. Either way, the archive remembers. 🗝️</p><a href="index.html">RETURN TO THE WEBSITE ↗</a></section>
+    <section class="archive-footer-note"><span>END OF CURRENT BUILD</span><p>Some badges are free roam. Others need actual exploration. Either way, the archive keeps receipts. 🗝️</p><a href="index.html">RETURN TO THE WEBSITE ↗</a></section>
   </main>
-  <footer class="archive-bottom"><span>ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹</span><span>ACHIEVEMENT SYSTEM // LOCAL SAVE</span><button type="button" id="resetAchievements">RESET ACHIEVEMENTS</button></footer>
+  <footer class="archive-bottom"><span>ᴜɴᴋɴᴏᴡɴ_𝟺ᴏ𝟹</span><span>ACHIEVEMENT SYSTEM // LOCAL SAVE</span><button type="button" id="resetAchievements">RESET LOCAL PROGRESS</button></footer>
   <script src="achievements.js"></script>
 </body></html>

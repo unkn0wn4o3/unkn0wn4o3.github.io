@@ -66,3 +66,15 @@ AFTERHOURS — STRUCTURE BUILD
 - No Punjabi tracks or playlist content are included.
 - Earlier requested About wording is restored: “stalk my socials” and “SCROLL DOWN, BESTIE!”
 - Existing homepage sections, assets, achievements archive, trophy, cursor, terminal, discoveries, and Secret Room files are carried forward from the supplied ZIP. No GitHub repository changes were made.
+
+
+AFTERHOURS / WEBSITE POLISH UPDATE
+- Homepage copy received a consistency pass for punctuation, phrasing, and the requested Gen-Z voice.
+- The left-edge AFTERHOURS launcher now peeks out as an icon-only tab; hover/focus reveals the full headphone + AFTERHOURS label. It is positioned inside the homepage hero (not fixed/sticky), so it scrolls away with the hero.
+- Clicking the tab opens a two-stage preview: image slot + witty entrance copy, followed by a separate clickable AFTERHOURS entry card.
+- AFTERHOURS now uses the same 👾 idle cursor and crimson tech crosshair on interactive elements as the main website and archive.
+- AFTERHOURS centre stage shows the large empty background state at first. The Now Playing panel is hidden until a future track-selection integration.
+- The right-side library contains 16 numbered replaceable slots. Track titles, artists, MP3s and artwork remain intentionally empty.
+- Achievement Archive received searchable/filterable All, Unlocked, Locked, and category views; progress copy, badge descriptions and focus states were polished. Existing unlock IDs and local storage keys are preserved.
+- Added responsive layout, keyboard focus styling, and reduced-motion handling for new interactions.
+- No MP3s, track artwork, user-provided headphone icon, preview image, or background image are included. No GitHub changes were made.

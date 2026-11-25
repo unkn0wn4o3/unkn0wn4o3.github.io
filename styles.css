@@ -888,3 +888,26 @@ footer>small.egg-copyright{bottom:13px!important}
   .afterhours-preview { animation:none; }
 }
 
+
+
+/* AFTERHOURS TAB — edge-peek interaction; it belongs to the hero and scrolls away with it. */
+.afterhours-entry{position:absolute;z-index:20;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center}
+.afterhours-headphone-tab{display:flex;align-items:center;gap:11px;width:158px;min-width:158px;height:64px;padding:9px 14px 9px 9px;flex-direction:row-reverse;transform:translateX(-110px);border:1px solid #527b60;border-left:0;border-radius:0 15px 15px 0;background:linear-gradient(105deg,#101a14,#1d3328 72%,#294b38);color:#c1e5ce;box-shadow:8px 12px 34px #0009,inset 0 0 20px #9bd7b315;cursor:pointer;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s}
+.afterhours-headphone-tab:hover,.afterhours-headphone-tab:focus-visible,.afterhours-entry:focus-within .afterhours-headphone-tab{transform:translateX(0);box-shadow:10px 14px 38px #000b,0 0 24px #68b98538;outline:none}
+.afterhours-headphone-icon{flex:0 0 39px;width:39px;height:39px;display:grid;place-items:center;border:1px dashed #a7d9b7a0;border-radius:50%;background:#0b130e;color:#c1e5ce}
+.headphone-icon-placeholder{font-size:22px;line-height:1}
+.afterhours-tab-label{font:800 12px/1 'DM Mono',monospace;letter-spacing:.16em;color:#c1e5ce;white-space:nowrap;text-shadow:0 0 13px #75bd8a55}
+.afterhours-preview{position:absolute;left:49px;top:calc(50% + 2px);width:min(330px,calc(100vw - 80px));padding:12px;display:grid;gap:10px;border:1px dashed #8db99a;border-radius:15px;background:rgba(9,16,12,.98);box-shadow:0 20px 58px #000d,0 0 26px #4d9b7020;backdrop-filter:blur(16px);transform:translateY(-50%);transform-origin:left center;animation:afterhours-panel-in .24s cubic-bezier(.2,.8,.2,1) both}
+.afterhours-preview[hidden]{display:none}
+.afterhours-preview-art{min-height:105px;display:grid;place-items:center;border:1px solid #41684e;border-radius:9px;background:radial-gradient(circle at 50% 42%,#345640,#14251a 62%,#0b110d);color:#9dc9a9;font:9px 'DM Mono',monospace;letter-spacing:.16em}
+.afterhours-preview-intro{padding:4px 5px 2px}
+.afterhours-preview-kicker,.afterhours-preview-card-kicker{display:block;color:#83b895;font:8px 'DM Mono',monospace;letter-spacing:.13em}
+.afterhours-preview-intro strong{display:block;margin-top:6px;color:#e0f0e4;font-size:17px;letter-spacing:-.035em}
+.afterhours-preview-intro p{margin:5px 0 0;color:#9fb0a3;font-size:11px;line-height:1.65}
+.afterhours-preview-card{display:flex;flex-direction:column;gap:6px;padding:13px;border:1px solid #466b50;border-radius:9px;background:linear-gradient(120deg,#1a3022,#101a14);color:#e1f0e5;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+.afterhours-preview-card:hover{transform:translateY(-2px);border-color:#8bc49a;background:linear-gradient(120deg,#24432e,#142319)}
+.afterhours-preview-card strong{font-size:13px;letter-spacing:.08em}.afterhours-preview-card strong b{color:#9ed4aa}.afterhours-preview-card>span:last-child{color:#9aafa0;font-size:10px;line-height:1.5}
+@keyframes afterhours-panel-in{from{opacity:0;transform:translate(-8px,-50%) scale(.97)}to{opacity:1;transform:translate(0,-50%) scale(1)}}
+@media(max-width:760px){.afterhours-entry{top:50%;left:0;transform:translateY(-50%)}.afterhours-headphone-tab{height:58px;width:148px;min-width:148px;transform:translateX(-116px)}.afterhours-preview{left:43px;width:min(300px,calc(100vw - 60px));max-height:calc(100svh - 110px);overflow:auto}}
+@media(max-width:380px){.afterhours-preview{left:38px;width:calc(100vw - 48px)}}
+@media(prefers-reduced-motion:reduce){.afterhours-headphone-tab,.afterhours-preview-card{transition:none}.afterhours-preview{animation:none}}
