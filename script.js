@@ -711,6 +711,7 @@ if('IntersectionObserver' in window && observedSections.length){
   const setOpen = (open) => {
     panel.hidden = !open;
     tab.setAttribute('aria-expanded', String(open));
+    entry.classList.toggle('is-expanded', open);
   };
   tab.addEventListener('click', (event) => {
     event.stopPropagation();
