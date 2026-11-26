@@ -78,3 +78,12 @@ AFTERHOURS / WEBSITE POLISH UPDATE
 - Achievement Archive received searchable/filterable All, Unlocked, Locked, and category views; progress copy, badge descriptions and focus states were polished. Existing unlock IDs and local storage keys are preserved.
 - Added responsive layout, keyboard focus styling, and reduced-motion handling for new interactions.
 - No MP3s, track artwork, user-provided headphone icon, preview image, or background image are included. No GitHub changes were made.
+
+
+AFTERHOURS SIDEBAR IMAGE UPDATE
+- Repositioned the headphone launcher as a fixed viewport-side control, visible throughout the entire homepage while scrolling (not limited to the hero section).
+- Removed the green rectangular/tab background, border and container styling. The supplied headphone artwork is the only visible launcher graphic.
+- Launcher is mostly tucked beyond the left edge by default; hover reveals the full headphone artwork and the AFTERHOURS label in the same DM Mono lettering style as the trophy label.
+- Clicking the headphone control opens a preview panel with the supplied wide forest-headphones image, a short entrance message, and a separate AFTERHOURS entry card.
+- Added supplied assets: assets/afterhours/afterhours-headphones.png and assets/afterhours/afterhours-preview.png.
+- The preview panel's inner card opens afterhours.html. Existing website sections and achievement launcher are unchanged.
