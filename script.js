@@ -726,3 +726,16 @@ if('IntersectionObserver' in window && observedSections.length){
   });
 })();
 
+
+/* AFTERHOURS edge dock: smooth reveal with a short, forgiving close delay. */
+(() => {
+  const entry = document.getElementById('afterhoursEntry');
+  if (!entry || matchMedia('(hover: none)').matches) return;
+  let closeTimer = null;
+  const reveal = () => { clearTimeout(closeTimer); entry.classList.add('is-hover-expanded'); };
+  const scheduleClose = () => { clearTimeout(closeTimer); closeTimer = setTimeout(() => entry.classList.remove('is-hover-expanded'), 2400); };
+  entry.addEventListener('pointerenter', reveal);
+  entry.addEventListener('pointerleave', scheduleClose);
+  entry.addEventListener('focusin', reveal);
+  entry.addEventListener('focusout', scheduleClose);
+})();

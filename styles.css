@@ -1008,3 +1008,7 @@ footer>small.egg-copyright{bottom:13px!important}
   .afterhours-headphone-tab,.afterhours-headphone-image,.afterhours-tab-label,.afterhours-preview-card{transition:none!important}
   .afterhours-preview{animation:none!important}
 }
+/* AFTERHOURS hover linger: keep the dock open briefly after pointer exit. */
+.afterhours-entry.is-hover-expanded .afterhours-headphone-tab{transform:translateX(0)!important;border-color:rgba(151,218,169,.78)!important;box-shadow:0 14px 38px rgba(0,0,0,.52),0 0 22px rgba(77,177,112,.2),inset 0 1px 0 rgba(224,255,231,.15)!important}
+.afterhours-entry.is-hover-expanded .afterhours-headphone-image{transform:translateX(0) scale(1.015)!important;filter:drop-shadow(0 4px 7px rgba(0,0,0,.58)) drop-shadow(0 0 9px rgba(80,220,137,.4))!important}
+.afterhours-entry.is-hover-expanded .afterhours-tab-label{max-height:16px!important;opacity:1!important;transform:translateY(0)!important}

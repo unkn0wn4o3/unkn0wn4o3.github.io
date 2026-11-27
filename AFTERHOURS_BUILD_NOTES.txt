@@ -1,0 +1,16 @@
+AFTERHOURS — FINAL INTEGRATION NOTES
+
+Included:
+- Updated homepage AFTERHOURS dock using the newly supplied headset icon and preview image.
+- Dock is fixed to the left edge across the homepage, smoothly expands, and lingers open for 2.4 seconds after pointer exit.
+- Updated AFTERHOURS standalone page with all 16 confirmed track titles/artists and exact cover-art mappings.
+- Four supplied background choices.
+- Settings panel: volume, bass, mid, treble, pitch/speed, shuffle, repeat, and background selection.
+- Player controls, seek bar, time display, responsive layouts, rounded panels, empty-state message, and custom cursor support.
+- All existing website files/features are carried forward from the supplied forest-dock-v2 site package.
+
+Audio note:
+The supplied MP3s are commercially released recordings. They are not bundled in this public-site package because permission to redistribute/publicly stream them was not established. The player is wired to the exact filenames in music/README.txt. Add only recordings you own or have explicit permission to publish.
+
+Deployment:
+Copy the contents of this folder into the root of the existing GitHub Pages repository, preserving the existing .git folder. Do not upload the enclosing folder itself.

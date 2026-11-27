@@ -2,48 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101613"><meta name="description" content="AFTERHOURS — your personal late-night music space.">
+  <meta name="theme-color" content="#101613"><meta name="description" content="AFTERHOURS — the late-night rotation.">
   <title>AFTERHOURS — unknown403</title><link rel="icon" href="assets/icons/favicon.svg">
   <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="afterhours.css">
 </head>
 <body class="afterhours-page">
-  <div class="custom-cursor" id="customCursor" aria-hidden="true">👾</div>
-  <div class="ah-noise" aria-hidden="true"></div>
-  <header class="ah-topbar"><a class="ah-brand" href="index.html"><span class="ah-brand-mark">◈</span> AFTERHOURS<span class="ah-dot">.</span></a><span class="ah-top-note">PERSONAL LISTENING SPACE // BUILD 01</span><a class="ah-back" href="index.html">← BACK TO THE LORE</a></header>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">👾</div><div class="ah-noise" aria-hidden="true"></div>
+  <header class="ah-topbar"><a class="ah-brand" href="index.html"><span class="ah-brand-mark">◈</span> AFTERHOURS<span class="ah-dot">.</span></a><span class="ah-top-note">LATE-NIGHT ROTATION // 403</span><a class="ah-back" href="index.html">← BACK TO THE LORE</a></header>
   <main class="ah-shell">
-    <section class="ah-heading"><p class="ah-kicker">THE WORLD GETS QUIETER. THE MUSIC DOESN'T.</p><h1>AFTER<span>HOURS</span><i>.</i></h1><p>your corner of the internet after dark. press play when the lineup lands.</p></section>
+    <section class="ah-heading"><p class="ah-kicker">THE WORLD GETS QUIETER. THE MUSIC DOESN'T.</p><h1>AFTER<span>HOURS</span><i>.</i></h1><p>no yap. just press play. 🎧</p></section>
+    <section class="ah-toolbar"><div><span class="ah-toolbar-label">THE VIBE</span><strong>one library. zero mood homework.</strong></div><button class="ah-settings-button" id="ahSettingsToggle" type="button" aria-expanded="false" aria-controls="ahSettings">⚙ SETTINGS</button></section>
+    <section class="ah-settings" id="ahSettings" hidden aria-label="Player settings">
+      <div class="ah-settings-head"><div><span class="ah-section-label">CONTROL ROOM</span><h2>tweak the experience.</h2></div><button class="ah-close-settings" id="ahSettingsClose" type="button" aria-label="Close settings">✕</button></div>
+      <div class="ah-settings-grid">
+        <div class="ah-setting-group"><label for="ahVolume">VOLUME <output id="ahVolumeValue">80%</output></label><input id="ahVolume" type="range" min="0" max="100" value="80"></div>
+        <div class="ah-setting-group"><label for="ahBass">BASS <output id="ahBassValue">0 dB</output></label><input id="ahBass" type="range" min="-12" max="12" value="0"></div>
+        <div class="ah-setting-group"><label for="ahMid">MID <output id="ahMidValue">0 dB</output></label><input id="ahMid" type="range" min="-12" max="12" value="0"></div>
+        <div class="ah-setting-group"><label for="ahTreble">TREBLE <output id="ahTrebleValue">0 dB</output></label><input id="ahTreble" type="range" min="-12" max="12" value="0"></div>
+        <div class="ah-setting-group"><label for="ahPitch">PITCH / SPEED <output id="ahPitchValue">1.00×</output></label><input id="ahPitch" type="range" min="0.8" max="1.2" step="0.01" value="1"></div>
+        <div class="ah-setting-group ah-background-setting"><span class="ah-setting-title">BACKGROUND // 04 OPTIONS</span><div class="ah-backgrounds" id="ahBackgrounds"><button type="button" data-bg="1" aria-label="Background one" class="is-active"><img src="assets/afterhours/backgrounds/1.png" alt=""></button><button type="button" data-bg="2" aria-label="Background two"><img src="assets/afterhours/backgrounds/2.png" alt=""></button><button type="button" data-bg="3" aria-label="Background three"><img src="assets/afterhours/backgrounds/3.png" alt=""></button><button type="button" data-bg="4" aria-label="Background four"><img src="assets/afterhours/backgrounds/4.png" alt=""></button></div></div>
+        <div class="ah-setting-group ah-toggle-row"><label for="ahShuffle">SHUFFLE</label><input id="ahShuffle" type="checkbox"></div>
+        <div class="ah-setting-group ah-toggle-row"><label for="ahRepeat">REPEAT CURRENT</label><input id="ahRepeat" type="checkbox"></div>
+      </div><p class="ah-settings-note">audio tuning changes the playback tone; pitch/speed may also change the song's tempo. no fake studio-magic claims. 🫡</p>
+    </section>
     <section class="ah-workspace" aria-label="AFTERHOURS music library">
-      <aside class="ah-library-panel"><div class="ah-panel-heading"><span class="ah-section-label">THE LIBRARY</span><span class="ah-count">16 SLOTS</span></div><div class="ah-library-summary"><span class="ah-library-orb">♫</span><div><strong>YOUR ROTATION</strong><small>the lineup is loading...</small></div></div><div class="ah-library-stats"><div><strong>16</strong><span>TRACK SLOTS</span></div><div><strong>—</strong><span>NOW PLAYING</span></div></div><div class="ah-library-note">one library. no forced categories. no mood homework. just press a track and let it run.</div><div class="ah-library-foot">LOCAL PLAYER // BUILD 01</div></aside>
-      <section class="ah-center-stage" aria-label="Now playing area">
-        <div class="ah-empty-stage" id="ahEmptyStage" role="img" aria-label="AFTERHOURS background artwork placeholder"></div>
+      <aside class="ah-library-panel"><div class="ah-panel-heading"><span class="ah-section-label">THE LIBRARY</span><span class="ah-count">16 TRACKS</span></div><div class="ah-library-summary"><span class="ah-library-orb">♫</span><div><strong>THE ROTATION</strong><small>hand-picked. no skips in taste.</small></div></div><div class="ah-library-stats"><div><strong>16</strong><span>TRACKS</span></div><div><strong id="ahLibraryPlaying">—</strong><span>PLAYING</span></div></div><div class="ah-library-note">a little late-night soundtrack. if the neighbours complain, that's between you and them. 💀</div><div class="ah-library-foot">AFTERHOURS // 403</div></aside>
+      <section class="ah-center-stage" id="ahCenterStage" aria-label="Now playing area">
+        <div class="ah-empty-stage" id="ahEmptyStage"><div class="ah-empty-content"><span class="ah-empty-orb">♫</span><p class="ah-stage-kicker">CURRENTLY IN MY HEAD</p><h2>the aux is yours.<br><span>don't fumble it.</span></h2><p>pick a track on the right. main character soundtrack loading…</p><span class="ah-stage-footnote">NO TRACK SELECTED // VIBE PENDING</span></div></div>
         <section class="ah-now-panel" id="ahNowPanel" hidden aria-live="polite">
           <div class="ah-panel-heading"><span class="ah-section-label">NOW PLAYING</span><span class="ah-live-state"><i></i> ON THE DECKS</span></div>
-          <div class="ah-feature-art" id="ahFeatureArt"><div class="ah-art-orbit orbit-one"></div><div class="ah-art-orbit orbit-two"></div><div class="ah-art-placeholder"><span>TRACK ARTWORK</span><strong>GOES HERE</strong><small>IMAGE SLOT // 01</small></div><div class="ah-art-corner">AH / 001</div></div>
-          <div class="ah-track-meta"><div><p class="ah-meta-label">CURRENT SELECTION</p><h2 id="ahNowTitle">Track title</h2><p id="ahNowArtist">Artist name</p></div><span class="ah-track-index" id="ahTrackIndex">01 / 16</span></div>
-          <div class="ah-progress-wrap"><div class="ah-progress"><span></span></div><div class="ah-time"><span>0:00</span><span>0:00</span></div></div>
-          <div class="ah-controls" aria-label="Playback controls"><button type="button" disabled aria-label="Shuffle">⤨</button><button type="button" disabled aria-label="Previous track">|◀</button><button type="button" class="ah-play" disabled aria-label="Play or pause">▶</button><button type="button" disabled aria-label="Next track">▶|</button><button type="button" disabled aria-label="Repeat">↻</button></div>
-          <div class="ah-player-status">TRACK SELECTED <span>•</span> AUDIO WILL BE CONNECTED IN A LATER UPDATE</div>
+          <div class="ah-feature-art"><img id="ahFeatureImage" src="" alt="Selected track cover"><span class="ah-art-corner" id="ahArtCode">AH / 001</span></div>
+          <div class="ah-track-meta"><div><p class="ah-meta-label">CURRENT SELECTION</p><h2 id="ahNowTitle">Track title</h2><p id="ahNowArtist">Artist</p></div><span class="ah-track-index" id="ahTrackIndex">01 / 16</span></div>
+          <div class="ah-progress-wrap"><input id="ahSeek" type="range" min="0" max="1000" value="0" aria-label="Seek through track"><div class="ah-time"><span id="ahCurrentTime">0:00</span><span id="ahDuration">0:00</span></div></div>
+          <div class="ah-controls"><button type="button" id="ahShuffleButton" aria-label="Toggle shuffle" title="Shuffle">⤨</button><button type="button" id="ahPrevious" aria-label="Previous track">|◀</button><button type="button" class="ah-play" id="ahPlay" aria-label="Play">▶</button><button type="button" id="ahNext" aria-label="Next track">▶|</button><button type="button" id="ahRepeatButton" aria-label="Repeat current track" title="Repeat">↻</button></div>
+          <p class="ah-player-status" id="ahPlayerStatus">READY WHEN YOU ARE.</p>
+          <audio id="ahAudio" preload="metadata"></audio>
         </section>
       </section>
-      <aside class="ah-queue-panel"><div class="ah-panel-heading"><span class="ah-section-label">YOUR TRACKS</span><span class="ah-count">01—16</span></div><p class="ah-queue-intro">the lineup. one by one. no skips in the setup phase.</p><div class="ah-track-list" id="ahTrackList">
-<div class="ah-track-slot" data-slot="01"><span class="ah-slot-number">01</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 01</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="02"><span class="ah-slot-number">02</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 02</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="03"><span class="ah-slot-number">03</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 03</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="04"><span class="ah-slot-number">04</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 04</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="05"><span class="ah-slot-number">05</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 05</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="06"><span class="ah-slot-number">06</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 06</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="07"><span class="ah-slot-number">07</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 07</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="08"><span class="ah-slot-number">08</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 08</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="09"><span class="ah-slot-number">09</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 09</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="10"><span class="ah-slot-number">10</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 10</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="11"><span class="ah-slot-number">11</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 11</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="12"><span class="ah-slot-number">12</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 12</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="13"><span class="ah-slot-number">13</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 13</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="14"><span class="ah-slot-number">14</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 14</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="15"><span class="ah-slot-number">15</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 15</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-<div class="ah-track-slot" data-slot="16"><span class="ah-slot-number">16</span><span class="ah-slot-art">ART</span><span class="ah-slot-copy"><strong>Track slot 16</strong><small>artist name pending</small></span><span class="ah-slot-duration">—:—</span></div>
-      </div></aside>
+      <aside class="ah-queue-panel"><div class="ah-panel-heading"><span class="ah-section-label">YOUR TRACKS</span><span class="ah-count">01—16</span></div><p class="ah-queue-intro">the lineup. tap one. let it cook.</p><div class="ah-track-list" id="ahTrackList"></div></aside>
     </section>
-    <footer class="ah-footer"><span>AFTERHOURS // DEEP FOREST BUILD</span><span>MADE FOR THE LATE-NIGHT ROTATION.</span></footer>
+    <footer class="ah-footer"><span>AFTERHOURS // DEEP FOREST</span><span>GOOD MUSIC. QUESTIONABLE SLEEP SCHEDULE.</span></footer>
   </main><script src="afterhours.js"></script>
 </body></html>
