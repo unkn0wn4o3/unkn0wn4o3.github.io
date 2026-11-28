@@ -28,7 +28,7 @@
     {title:'Me Gusta',artist:'DTF',cover:'me gusta.jfif',file:'DTF - Me Gusta [Clip Officiel].mp3'},
     {title:'Low Life',artist:'Future ft. The Weeknd',cover:'low life.jfif',file:'Future - Low Life (Official Music Video) ft. The Weeknd.mp3'},
     {title:'Mask Off',artist:'Future',cover:'mask off.jfif',file:'Future - Mask Off (Official Music Video).mp3'},
-    {title:'London View',artist:'OTP',cover:'london view.jfif',file:'#TPL BM (OTP) - London View Remix ft Mini x Sava x Marin x Rambizz (Music Video) Rzon.mp3'},
+    {title:'London View',artist:'OTP',cover:'london view.jfif',file:'TPL BM (OTP) - London View Remix ft Mini x Sava x Marin x Rambizz (Music Video) Rzon.mp3'},
     {title:'Ransom (Slowed + Reverb)',artist:'Lil Tecca',cover:'ransom (slowed + reverb).jfif',file:'Lil Tecca - Ransom (slowed+reverb).mp3'},
     {title:'Rockstar (Slowed + Reverb)',artist:'Post Malone ft. 21 Savage',cover:'rockstar (slowed + reverb).jfif',file:'Post Malone ft. 21 Savage - Rockstar - (Slowed Reverb).mp3'},
     {title:'Goosebumps (Slowed + Reverb)',artist:'Travis Scott ft. Kendrick Lamar',cover:'goosebumps (slowed + reverb).jfif',file:'travis scott & kendrick lamar - goosebumps (slowed + reverb).mp3'},
